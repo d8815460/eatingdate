@@ -11,5 +11,9 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+// 包含任何系統框架，並在此庫頭應包含在所有編譯單元。
+// 你還需要設置前綴頭建立一個你的目標或多個設置引用此文件。
+
+#import <Parse.h>
 
 #endif
