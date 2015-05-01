@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
 		DB571C8F1AF340A2005CAB77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB571C8E1AF340A2005CAB77 /* main.m */; };
 		DB571C921AF340A2005CAB77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB571C911AF340A2005CAB77 /* AppDelegate.m */; };
 		DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB571C931AF340A2005CAB77 /* eatingdate.xcdatamodeld */; };
@@ -28,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09448ABFC1D04C21ABCB76A0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0B0D2DC7EA608B6634039FD3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		128C34AE763AC0129DD65798 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DB571C891AF340A2005CAB77 /* eatingdate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eatingdate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB571C8D1AF340A2005CAB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB571C8E1AF340A2005CAB77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +68,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		876976AD64D9C8E4788EF8CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09448ABFC1D04C21ABCB76A0 /* Pods.debug.xcconfig */,
+				128C34AE763AC0129DD65798 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B531A574E6A49508C955958C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B0D2DC7EA608B6634039FD3 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DB571C801AF340A2005CAB77 = {
 			isa = PBXGroup;
 			children = (
 				DB571C8B1AF340A2005CAB77 /* eatingdate */,
 				DB571CA81AF340A2005CAB77 /* eatingdateTests */,
 				DB571C8A1AF340A2005CAB77 /* Products */,
+				876976AD64D9C8E4788EF8CE /* Pods */,
+				B531A574E6A49508C955958C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +126,7 @@
 			children = (
 				DB571C8D1AF340A2005CAB77 /* Info.plist */,
 				DB571C8E1AF340A2005CAB77 /* main.m */,
+				DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -129,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB571CAF1AF340A2005CAB77 /* Build configuration list for PBXNativeTarget "eatingdate" */;
 			buildPhases = (
+				95FFB94A5A95397CC5F0C09F /* Check Pods Manifest.lock */,
 				DB571C851AF340A2005CAB77 /* Sources */,
 				DB571C861AF340A2005CAB77 /* Frameworks */,
 				DB571C871AF340A2005CAB77 /* Resources */,
+				4E7566EE235708C1705D7B10 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,6 +244,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E7566EE235708C1705D7B10 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95FFB94A5A95397CC5F0C09F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DB571C851AF340A2005CAB77 /* Sources */ = {
@@ -349,9 +410,12 @@
 		};
 		DB571CB01AF340A2005CAB77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09448ABFC1D04C21ABCB76A0 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/eatingdate/PrefixHeader.pch";
 				INFOPLIST_FILE = eatingdate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -359,9 +423,12 @@
 		};
 		DB571CB11AF340A2005CAB77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 128C34AE763AC0129DD65798 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/eatingdate/PrefixHeader.pch";
 				INFOPLIST_FILE = eatingdate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -420,6 +487,7 @@
 				DB571CB11AF340A2005CAB77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB571CB21AF340A2005CAB77 /* Build configuration list for PBXNativeTarget "eatingdateTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +496,7 @@
 				DB571CB41AF340A2005CAB77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
