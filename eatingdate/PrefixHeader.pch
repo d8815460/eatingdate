@@ -15,5 +15,18 @@
 // 你還需要設置前綴頭建立一個你的目標或多個設置引用此文件。
 
 #import <Parse.h>
+#import "CMUtility.h"
+#import "CMConstants.h"
+#import "CMCache.h"
+#import "MinnaNotificationProtocol.h"
+
 
 #endif
+
+
+//定義常用的顏色
+#define mainOrangeColor [UIColor colorWithRed:255.0f/255.0f green:95.0f/255.0f blue:26.0f/255.0f alpha:1.0]
+#define mainFacebookBlueColor [UIColor colorWithRed:82.0f/255 green:98.0/255 blue:159.0/255 alpha:1.0f]
+#define mainLightBlueColor [UIColor colorWithRed:5.0f/255 green:133.0/255 blue:255.0/255 alpha:1.0f]
+#define mainTableViewBGColor [UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0f]
+#define mainGreenViewBGColor [UIColor colorWithRed:27.0/255 green:132.0f/255 blue:73.0/255 alpha:1.0f]

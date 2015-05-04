@@ -10,6 +10,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <ParseCrashReporting/ParseCrashReporting.h>
 #import <Facebook-iOS-SDK/FBSDKCoreKit/FBSDKCoreKit.h>
+#import "PictureListViewController.h"
 
 @interface AppDelegate ()
 
@@ -39,7 +40,6 @@
     // ****************************************************************************
     
     [PFAnalytics trackAppOpenedWithLaunchOptionsInBackground:launchOptions block:nil];
-    
     
     PFACL *defaultACL = [PFACL ACL];
     
@@ -252,5 +252,64 @@
         }
     }
 }
+
+
+#pragma mark - 轉場至首頁
+//轉場至首頁
+- (void)presentToHomePage{
+    NSLog(@"self.windows.rootViewController = %@", [self.window.rootViewController class]);
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"homeNavigation"];
+    self.window.rootViewController = homeNav;
+    NSLog(@"self.windows.rootViewController 2 = %@", [self.window.rootViewController class]);
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
+}
+
+
+
+#pragma mark - MinnaListenerServerProtocol
+-(void) addMinnaListener:(id<MinnaNotificationProtocol>)listener
+{
+    if(!minnaNotificationDictionary)
+        minnaNotificationDictionary=[[NSMutableDictionary alloc] init];
+    
+    if([listener conformsToProtocol:@protocol(MinnaNotificationProtocol)]) {
+        [minnaNotificationDictionary setObject:listener forKey:[listener MinnaListenerID]];
+    }else{
+        NSLog(@"Error: addMinnaListener with none MinnaNotificationProtocol object");
+    }
+}
+
+-(void) removeMinnaListener:(id<MinnaNotificationProtocol>)listener
+{
+    if(!minnaNotificationDictionary) return;
+    
+    if([listener conformsToProtocol:@protocol(MinnaNotificationProtocol)]) {
+        [minnaNotificationDictionary removeObjectForKey:[listener MinnaListenerID]];
+    }else{
+        NSLog(@"Error: removeMinnaListener with none MinnaNotificationProtocol object");
+    }
+}
+
+-(void) addMinnaOpenGraphRequest:(MinnaOpenGraphRequest *) opengraphObject
+{
+    if(!minnaOpenGraphQueue)
+        minnaOpenGraphQueue=[[NSMutableArray alloc] init];
+}
+-(void) broadcastMinnaNotificationMessage:(NSString *)broadcastMessage
+{
+    if(!minnaNotificationDictionary) return;
+    
+    NSEnumerator *enumerator = [minnaNotificationDictionary objectEnumerator];
+    id minnaListener;
+    while ((minnaListener = [enumerator nextObject])) {
+        if([minnaListener conformsToProtocol:@protocol(MinnaNotificationProtocol)]) {
+            [minnaListener MinnaMessage:broadcastMessage];
+        }
+    }
+}
+
 
 @end
