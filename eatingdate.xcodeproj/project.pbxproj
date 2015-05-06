@@ -86,6 +86,8 @@
 		DB0BE2531AF4909B00B49B4A /* UISwipe4ScrollGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE23F1AF4909B00B49B4A /* UISwipe4ScrollGestureRecognizer.m */; };
 		DB0BE2541AF4909B00B49B4A /* UuidLib.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE2421AF4909B00B49B4A /* UuidLib.m */; };
 		DB0BE2581AF4AC7C00B49B4A /* DKCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE2571AF4AC7C00B49B4A /* DKCircleButton.m */; };
+		DB1C9E131AFAD927000DED5B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1C9E121AFAD927000DED5B /* ForgotPasswordViewController.swift */; };
+		DB1C9E151AFAD94E000DED5B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1C9E141AFAD94E000DED5B /* SignUpViewController.swift */; };
 		DB571C8F1AF340A2005CAB77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB571C8E1AF340A2005CAB77 /* main.m */; };
 		DB571C921AF340A2005CAB77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB571C911AF340A2005CAB77 /* AppDelegate.m */; };
 		DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB571C931AF340A2005CAB77 /* eatingdate.xcdatamodeld */; };
@@ -263,6 +265,8 @@
 		DB0BE2421AF4909B00B49B4A /* UuidLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UuidLib.m; sourceTree = "<group>"; };
 		DB0BE2561AF4AC7C00B49B4A /* DKCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCircleButton.h; sourceTree = "<group>"; };
 		DB0BE2571AF4AC7C00B49B4A /* DKCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKCircleButton.m; sourceTree = "<group>"; };
+		DB1C9E121AFAD927000DED5B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		DB1C9E141AFAD94E000DED5B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB571C891AF340A2005CAB77 /* eatingdate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eatingdate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB571C8D1AF340A2005CAB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB571C8E1AF340A2005CAB77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -823,6 +827,8 @@
 		DB5C82661AF5A4B000A8F57E /* 0.0註冊與登入 */ = {
 			isa = PBXGroup;
 			children = (
+				DB1C9E141AFAD94E000DED5B /* SignUpViewController.swift */,
+				DB1C9E121AFAD927000DED5B /* ForgotPasswordViewController.swift */,
 				DB5C82671AF5A4BC00A8F57E /* SignInViewController.h */,
 				DB5C82681AF5A4BC00A8F57E /* SignInViewController.m */,
 			);
@@ -1089,11 +1095,13 @@
 				DB0BE2581AF4AC7C00B49B4A /* DKCircleButton.m in Sources */,
 				DB0BE17B1AF4676A00B49B4A /* ADVProgressLayer.m in Sources */,
 				DB0BE2431AF4909B00B49B4A /* NSString+Empty.m in Sources */,
+				DB1C9E151AFAD94E000DED5B /* SignUpViewController.swift in Sources */,
 				DB0BE1941AF4678800B49B4A /* NavigationModel.m in Sources */,
 				DB5C827A1AF5AE4700A8F57E /* AMSlideMenuContentSegue.m in Sources */,
 				DB5C827F1AF5AE4700A8F57E /* AMSlideMenuRightTableViewController.m in Sources */,
 				DB0BE2521AF4909B00B49B4A /* UIKeyboardCoViewForMessenger.m in Sources */,
 				DB0BE1FB1AF467C400B49B4A /* MetaCell.m in Sources */,
+				DB1C9E131AFAD927000DED5B /* ForgotPasswordViewController.swift in Sources */,
 				DBFFBDED1AF62452003127DB /* UIColor+CreateMethods.m in Sources */,
 				DB0BE17A1AF4676A00B49B4A /* ADVProgressControl.m in Sources */,
 				DB0BE1981AF4678800B49B4A /* RevenueModel.m in Sources */,

@@ -519,7 +519,7 @@ typedef enum {
 + (void)addUserToHelperListInBackground:(PFUser *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock{
     
 }
-+ (void)addUserToHelperListEventually:(PFObject *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock{
++ (void)addUserToHelperListEventually:(PFUser *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock{
     
     int peopleamount=[cases[@"peopleAmount"] intValue];
     PFQuery *query = [PFQuery queryWithClassName:@"CasesHelperList"];

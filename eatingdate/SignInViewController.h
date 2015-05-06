@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignInViewController : UIViewController
+@interface SignInViewController : UIViewController <UITextFieldDelegate>
 {
     IBOutlet UILabel* titleLabel;
     
@@ -33,4 +33,9 @@
     IBOutlet UIView* userUnderline;
 
 }
+
+- (IBAction)loginButtonPressed:(id)sender;
+- (IBAction)signupButtonPressed:(id)sender;
+- (IBAction)forgotPasswordButtonPressed:(id)sender;
+
 @end
