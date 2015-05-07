@@ -8,11 +8,16 @@
 
 #import "SignInViewController.h"
 #import "MegaTheme.h"
-@interface SignInViewController ()
+#import <MBProgressHUD.h>
+#import <FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
+@interface SignInViewController ()
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation SignInViewController
+@synthesize hud = _hud;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,11 +29,13 @@
     titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 45];
     titleLabel.textColor = [UIColor whiteColor];
     
+    /*先拔掉twitterButton
     [twitterButton setTitle:NSLocalizedString(@"Sign in with Twitter", "登入畫面") forState: UIControlStateNormal];
     [twitterButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
     twitterButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 15];
     twitterButton.backgroundColor = [UIColor colorWithRed:0.23 green: 0.43 blue: 0.88 alpha: 1.0];
     [twitterButton addTarget:self action:@selector(dismiss) forControlEvents: UIControlEventTouchUpInside];
+    */
     
     [facebookButton setTitle:NSLocalizedString(@"Sign in with Facebook", "登入畫面") forState: UIControlStateNormal];
     [facebookButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
@@ -122,14 +129,32 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
+    //檢查文字輸入框是不是有少輸入
+    activityIndicator.hidden = false;
+    [activityIndicator startAnimating];
     
-    [PFUser logInWithUsernameInBackground:userTextField.text password:passwordTextField.text block:^(PFUser *user, NSError *error){
-        if (user) {
-            
-        } else {
-            
-        }
-    }];
+    [PFUser logInWithUsernameInBackground:userTextField.text password:passwordTextField.text
+                                    block:^(PFUser *user, NSError *error) {
+                                        if (user) {
+                                            // Do stuff after successful login.
+                                            [activityIndicator stopAnimating];
+                                            
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                //取消登錄程序畫面
+                                                [self dismissViewControllerAnimated:true completion:^{
+                                                    
+                                                }];
+                                            });
+                                            
+                                        } else {
+                                            // The login failed. Check error to see why.
+                                            [activityIndicator stopAnimating];
+                                            
+                                            NSString *message = error.userInfo[@"error"];
+                                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登錄時發生錯誤" message:message delegate:self cancelButtonTitle:@"確定" otherButtonTitles:nil];
+                                            [alertView show];
+                                        }
+                                    }];
 }
 
 - (IBAction)signupButtonPressed:(id)sender {
@@ -138,6 +163,268 @@
 - (IBAction)forgotPasswordButtonPressed:(id)sender {
 }
 
+- (IBAction)facebookLoginButtonPressed:(id)sender {
+    activityIndicator.hidden = false;
+    [activityIndicator startAnimating];
+    
+    // Set permissions required from the facebook user account
+    NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends"];
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    _hud.dimBackground = YES;
+    _hud.labelText = NSLocalizedString(@"正在進行登錄", nil);
+    
+    // Login PFUser using facebook
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        
+        [activityIndicator stopAnimating]; // Hide loading indicator
+        activityIndicator.hidesWhenStopped = YES;
+        
+        if (!user) {
+            if (!error) {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登錄取消" message:@"您已經取消了Facebook登錄" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"確定", nil];
+                [alert show];
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登錄錯誤" message:error.localizedFailureReason delegate:nil cancelButtonTitle:nil otherButtonTitles:@"確定", nil];
+                [alert show];
+            }
+        } else if (user.isNew) {
+            NSLog(@"User with facebook signed up and logged in!");
+            if ([PFFacebookUtils isLinkedWithUser:user]) {
+                _hud.labelText = NSLocalizedString(@"正在進行註冊", nil);
+                
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                NSString *privateChannelName = [NSString stringWithFormat:@"user_%@", [user objectId]];
+                //儲存用戶名稱
+                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:kPAPInstallationUserKey];
+                [[PFInstallation currentInstallation] addUniqueObject:privateChannelName forKey:kPAPInstallationChannelsKey];
+                [[PFInstallation currentInstallation] saveEventually];
+                
+                //儲存用戶名稱
+                [userDefaults setValue:privateChannelName forKey:kPAPUserPrivateChannelKey];
+                [userDefaults synchronize];
+                [user setObject:privateChannelName forKey:kPAPUserPrivateChannelKey];
+                
+                
+                PFACL *ACL = [PFACL ACL];
+                [ACL setPublicReadAccess:YES];
+                user.ACL = ACL;
+                
+                [user saveEventually:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        //轉場到 首頁 的畫面
+                        [MBProgressHUD hideHUDForView:self.view animated:NO];
+                        
+                        // Request new Publish Permissions
+                        if ([FBSDKAccessToken currentAccessToken]) {
+                            [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                                if (!error) {
+                                    NSLog(@"fetched user:%@", result);
+                                    [self facebookRequestDidLoad:result];
+                                }else{
+                                    [self facebookRequestDidFailWithError:error];
+                                }
+                            }];
+                        }
+                    }else{
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"電話號碼已經被註册", nil) message:NSLocalizedString(@"此號碼已被註册", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+                    }
+                }];
+            }else{
+                
+            }
+        } else {
+            NSLog(@"User logged in through Facebook!");
+        }
+    }];
+}
+
+#pragma mark - Facebook Request Delegate
+- (void)facebookRequestDidLoad:(id)result {
+    // This method is called twice - once for the user's /me profile, and a second time when obtaining their friends. We will try and handle both scenarios in a single method.
+    PFUser *user = [PFUser currentUser];
+    
+    NSArray *data = [result objectForKey:@"data"];
+    
+    if (data) {
+        // we have friends data
+        // 如果有朋友的資料
+        NSMutableArray *facebookIds = [[NSMutableArray alloc] initWithCapacity:[data count]];
+        for (NSDictionary *friendData in data) {
+            if (friendData[@"id"]) {
+                [facebookIds addObject:friendData[@"id"]];
+            }
+        }
+        
+        // cache friend data
+        [[CMCache sharedCache] setFacebookFriends:facebookIds];
+        
+        if (user) {
+            /* 暫時先不處理朋友資料，只要先存在本機就好
+            if (![user objectForKey:kPAPUserAlreadyAutoFollowedFacebookFriendsKey]) {
+                
+             
+                self.hud.labelText = NSLocalizedString(@"Following Friends", nil);
+                firstLaunch = YES;
+             
+                [user setObject:@YES forKey:kPAPUserAlreadyAutoFollowedFacebookFriendsKey];
+                
+                // find common Facebook friends already using Anypic
+                PFQuery *facebookFriendsQuery = [PFUser query];
+                [facebookFriendsQuery whereKey:kPAPUserFacebookIDKey containedIn:facebookIds];
+                
+                // auto-follow Parse employees
+                //                PFQuery *autoFollowAccountsQuery = [PFUser query];
+                //                [autoFollowAccountsQuery whereKey:kPAPUserFacebookIDKey containedIn:kPAPAutoFollowAccountFacebookIds];
+                
+                // combined query
+                PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:facebookFriendsQuery, nil]];
+                
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    
+                    NSArray *anypicFriends = objects;
+                    
+                    if (!error) {
+                        [anypicFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+                            PFObject *joinActivity = [PFObject objectWithClassName:kPAPActivityClassKey];
+                            [joinActivity setObject:user forKey:kPAPActivityFromUserKey];
+                            [joinActivity setObject:newFriend forKey:kPAPActivityToUserKey];
+                            [joinActivity setObject:kPAPActivityTypeJoined forKey:kPAPActivityTypeKey];
+                            
+                            PFACL *joinACL = [PFACL ACL];
+                            [joinACL setPublicReadAccess:YES];
+                            joinActivity.ACL = joinACL;
+                            
+                            // make sure our join activity is always earlier than a follow
+                            [joinActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                [CMUtility followUserInBackground:newFriend block:^(BOOL succeeded, NSError *error) {
+                                    // This block will be executed once for each friend that is followed.
+                                    // We need to refresh the timeline when we are following at least a few friends
+                                    // Use a timer to avoid refreshing innecessarily
+                                    if (self.autoFollowTimer) {
+                                        [self.autoFollowTimer invalidate];
+                                    }
+                                    
+                                    self.autoFollowTimer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(autoFollowTimerFired:) userInfo:nil repeats:NO];
+                                }];
+                            }];
+                        }];
+                    }
+                    
+                    if (!error) {
+                        [MBProgressHUD hideHUDForView:self.view animated:NO];
+                        if (anypicFriends.count > 0) {
+                            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+                            self.hud.dimBackground = YES;
+                            self.hud.labelText = NSLocalizedString(@"Following Friends", nil);
+                        } else {
+                            
+                        }
+                    }
+                }];
+            }
+            PFACL *ACL = [PFACL ACL];
+            [ACL setPublicReadAccess:YES];
+            user.ACL = ACL;
+            
+            [user saveEventually];
+            */
+        } else {
+            /*登出*/
+//            [(AppDelegate*)[[UIApplication sharedApplication] delegate] logOut];
+        }
+    } else {
+        self.hud.labelText = NSLocalizedString(@"Creating Profile", nil);
+        NSString *facebookId = [result objectForKey:@"id"];
+        NSString *facebookName = [result objectForKey:@"name"];
+        //新增用戶資料 名字、姓氏、性別、地區(用Graph API的代號)
+        NSString *facebookFirst_Name = [result objectForKey:@"first_name"];
+        NSString *facebookLast_Name = [result objectForKey:@"last_name"];
+        NSString *facebookBirthday = [result objectForKey:@"birthday"];
+        NSString *facebookEmail = [result objectForKey:@"email"];
+        NSString *facebookGender = [result objectForKey:@"gender"];
+        NSString *facebookLocation = [result objectForKey:@"locale"];
+        
+        if (user) {
+            if (facebookName && [facebookName length] != 0) {
+                [user setObject:facebookName forKey:kPAPUserDisplayNameKey];
+            } else {
+                [user setObject:[NSString stringWithFormat:@"%@%@", facebookFirst_Name, facebookLast_Name] forKey:kPAPUserDisplayNameKey];
+            }
+            if (facebookId && [facebookId length] != 0) {
+                [user setObject:facebookId forKey:kPAPUserFacebookIDKey];
+            }
+            //儲存姓氏
+            if (facebookFirst_Name && facebookFirst_Name != 0) {
+                [[PFUser currentUser] setObject:facebookFirst_Name forKey:kPAPUserFacebookFirstNameKey];
+            }
+            //儲存名字
+            if (facebookLast_Name && facebookLast_Name != 0) {
+                [[PFUser currentUser] setObject:facebookLast_Name forKey:kPAPUserFacebookLastNameKey];
+            }
+            //儲存生日
+            if (facebookBirthday && facebookBirthday != 0) {
+                [[PFUser currentUser] setObject:facebookBirthday forKey:kPAPUserFacebookBirthdayKey];
+            }
+            //儲存email
+            if (facebookEmail && facebookEmail != 0) {
+                [[PFUser currentUser] setObject:facebookEmail forKey:kPAPUserFacebookEmailKey];
+            }
+            //儲存性別
+            if (facebookGender && facebookGender != 0) {
+                [[PFUser currentUser] setObject:facebookGender forKey:kPAPUserFacebookGenderKey];
+            }
+            //儲存地理位置
+            if (facebookLocation && facebookLocation != 0) {
+                [[PFUser currentUser] setObject:facebookLocation forKey:kPAPUserFacebookLocalsKey];
+            }
+            
+            
+            
+            // Download user's profile picture
+            NSURL *profilePictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [user objectForKey:kPAPUserFacebookIDKey]]];
+            // Facebook profile picture cache policy: Expires in 2 weeks
+            NSURLRequest *profilePictureURLRequest = [NSURLRequest requestWithURL:profilePictureURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:0.0f];
+            [NSURLConnection connectionWithRequest:profilePictureURLRequest delegate:self];
+            
+            PFACL *ACL = [PFACL ACL];
+            [ACL setPublicReadAccess:YES];
+            [PFUser currentUser].ACL = ACL;
+            
+            [[PFUser currentUser] saveEventually:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    [[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                        
+                    }];
+                }
+            }];
+        }
+        
+        /* 還不清楚要怎麼改成讀取朋友資料
+        [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                [self facebookRequestDidLoad:result];
+            } else {
+                [self facebookRequestDidFailWithError:error];
+            }
+        }];
+         */
+    }
+}
+
+- (void)facebookRequestDidFailWithError:(NSError *)error {
+    if ([PFUser currentUser]) {
+        if ([[error userInfo][@"error"][@"type"] isEqualToString:@"OAuthException"]) {
+            //登出
+//            [(AppDelegate*)[[UIApplication sharedApplication] delegate] logOut];
+        }
+    }
+}
 /*
  #pragma mark - Navigation
  

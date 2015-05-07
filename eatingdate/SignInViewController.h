@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
-@interface SignInViewController : UIViewController <UITextFieldDelegate>
+@interface SignInViewController : UIViewController <UITextFieldDelegate, FBSDKGraphRequestConnectionDelegate>
 {
     IBOutlet UILabel* titleLabel;
     
     IBOutlet UIButton* facebookButton;
-    IBOutlet UIButton* twitterButton;
     
     IBOutlet UIImageView* bgImageView;
     
@@ -32,10 +32,13 @@
     IBOutlet UITextField* userTextField;
     IBOutlet UIView* userUnderline;
 
+    IBOutlet UIActivityIndicatorView *activityIndicator;
 }
+@property (nonatomic, assign) id<FBSDKGraphRequestConnectionDelegate> delegate;
 
 - (IBAction)loginButtonPressed:(id)sender;
 - (IBAction)signupButtonPressed:(id)sender;
 - (IBAction)forgotPasswordButtonPressed:(id)sender;
+- (IBAction)facebookLoginButtonPressed:(id)sender;
 
 @end
