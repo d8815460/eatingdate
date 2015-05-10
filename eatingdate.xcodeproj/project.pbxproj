@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */; };
+		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
 		DB0BE11C1AF37F8700B49B4A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11B1AF37F8700B49B4A /* libz.dylib */; };
 		DB0BE11E1AF37F9600B49B4A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11D1AF37F9600B49B4A /* Social.framework */; };
@@ -128,6 +130,8 @@
 		09448ABFC1D04C21ABCB76A0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		0B0D2DC7EA608B6634039FD3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		128C34AE763AC0129DD65798 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillPostDateViewController.swift; sourceTree = "<group>"; };
+		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDatePhotoCell.swift; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DB0BE1191AF37F8000B49B4A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB0BE11B1AF37F8700B49B4A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -352,6 +356,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		236580FB1AFDEC88008BC27D /* 2.0發佈約流程 */ = {
+			isa = PBXGroup;
+			children = (
+				23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */,
+				236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */,
+			);
+			name = "2.0發佈約流程";
+			sourceTree = "<group>";
+		};
 		876976AD64D9C8E4788EF8CE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +792,7 @@
 				DB5C82811AF5B19100A8F57E /* 左右菜單 */,
 				DB5C82661AF5A4B000A8F57E /* 0.0註冊與登入 */,
 				DB0BE1581AF4669B00B49B4A /* 1.0首頁約會清單 */,
+				236580FB1AFDEC88008BC27D /* 2.0發佈約流程 */,
 				DB0BE1531AF445F500B49B4A /* RMParallax */,
 				DB0BE1511AF445A800B49B4A /* IntroViewController.swift */,
 				DB571C901AF340A2005CAB77 /* AppDelegate.h */,
@@ -933,7 +947,7 @@
 				TargetAttributes = {
 					DB571C881AF340A2005CAB77 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = LX8P49F6F2;
+						DevelopmentTeam = CHX656NT89;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1080,6 +1094,7 @@
 				DB0BE2471AF4909B00B49B4A /* MyFile.m in Sources */,
 				DB0BE24F1AF4909B00B49B4A /* UIImage+Utils.m in Sources */,
 				DB0BE1FD1AF467C400B49B4A /* NavigationSideCell.m in Sources */,
+				236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */,
 				DB0BE24C1AF4909B00B49B4A /* UIImage+ImageEffects.m in Sources */,
 				DB571C981AF340A2005CAB77 /* ViewController.m in Sources */,
 				DB0BE1561AF4460200B49B4A /* RMParallaxItem.swift in Sources */,
@@ -1112,6 +1127,7 @@
 				DB0BE2541AF4909B00B49B4A /* UuidLib.m in Sources */,
 				DB0BE1FE1AF467C400B49B4A /* NavigationTableCell.m in Sources */,
 				DB5C827D1AF5AE4700A8F57E /* AMSlideMenuMainViewController.m in Sources */,
+				23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */,
 				DB0BE1FF1AF467C400B49B4A /* TimelineCell.m in Sources */,
 				DB0BE15B1AF466AA00B49B4A /* PictureListViewController.m in Sources */,
 				DB0BE1571AF4460200B49B4A /* RMParallax.swift in Sources */,
@@ -1175,7 +1191,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1197,6 +1214,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1218,7 +1236,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1233,6 +1252,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1245,7 +1265,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1255,7 +1275,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
 				SWIFT_OBJC_BRIDGING_HEADER = "eatingdate/eatingdate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1268,7 +1288,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1278,7 +1298,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
 				SWIFT_OBJC_BRIDGING_HEADER = "eatingdate/eatingdate-Bridging-Header.h";
 			};
 			name = Release;

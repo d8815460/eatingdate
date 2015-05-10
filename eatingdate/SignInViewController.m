@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    activityIndicator.hidden = true;
+    
     bgImageView.image = [UIImage imageNamed:@"nav-bg-2"];
     bgImageView.contentMode = UIViewContentModeScaleAspectFill;
     

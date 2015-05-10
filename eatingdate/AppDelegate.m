@@ -257,12 +257,9 @@
 #pragma mark - 轉場至首頁
 //轉場至首頁
 - (void)presentToHomePage{
-    NSLog(@"self.windows.rootViewController = %@", [self.window.rootViewController class]);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     UINavigationController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"homeNavigation"];
     self.window.rootViewController = homeNav;
-    NSLog(@"self.windows.rootViewController 2 = %@", [self.window.rootViewController class]);
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
 }

@@ -14,17 +14,19 @@
 
 @implementation ProfileViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && ![UIApplication sharedApplication].isStatusBarHidden)
     {
-        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     }
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         // The device is an iPhone or iPod touch.
-        [self setFixedStatusBar];
+//        [self setFixedStatusBar];
     }
     
     
@@ -120,6 +122,19 @@
     [doneButton setImage:doneImage forState:UIControlStateNormal];
     doneButton.tintColor = [UIColor whiteColor];
     
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    } else {
+        // iOS 6 or under
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+        
+    }
+}
+
+-(BOOL)prefersStatusBarHidden {
+    return true;
 }
 
 - (void)setFixedStatusBar

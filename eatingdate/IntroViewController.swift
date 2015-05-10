@@ -9,6 +9,10 @@
 import UIKit
 
 class IntroViewController: UIViewController {
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,21 @@ class IntroViewController: UIViewController {
         self.addChildViewController(rmParallaxViewController)
         self.view.addSubview(rmParallaxViewController.view)
         rmParallaxViewController.didMoveToParentViewController(self)
+        
+        //先看看用戶是不是第一次安裝。如果是，就要載入本頁面。如果不是就直接跳到首頁。
+        userDefaults = NSUserDefaults.standardUserDefaults()
+        if (userDefaults.objectForKey(firstTimeInstallKey) === true){
+            //非第一次
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.presentToHomePage()
+        }else{
+            userDefaults.setBool(true, forKey: firstTimeInstallKey)
+            userDefaults.synchronize()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,9 +61,9 @@ class IntroViewController: UIViewController {
     }
     
     
-    
+    /*沒用到*/
     func goToHomePage (){
-        self.performSegueWithIdentifier("goHome", sender: self)
+//        self.performSegueWithIdentifier("goHome", sender: self)
     }
     
     /*

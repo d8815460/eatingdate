@@ -71,7 +71,13 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"signIn" sender:nil];
+    /*尚未登入的人，就要跳出登入及註冊的頁面*/
+    if (![PFUser currentUser]) {
+        [self performSegueWithIdentifier:@"signIn" sender:nil];
+    }else{
+        NSLog(@"我已經登陸了");
+    }
+    
 }
 
 

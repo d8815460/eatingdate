@@ -24,7 +24,9 @@
 #endif
 
 
-//定義常用的顏色
+//定義常用的顏色 244 252 219
+#define mainGreenColor [UIColor colorWithRed:179.0f/255.0f green:225.0f/255.0f blue:100.0f/255.0f alpha:1.0]
+#define mainTableViewBackgroundColor [UIColor colorWithRed:244.0f/255.0f green:252.0f/255.0f blue:219.0f/255.0f alpha:1.0]
 #define mainOrangeColor [UIColor colorWithRed:255.0f/255.0f green:95.0f/255.0f blue:26.0f/255.0f alpha:1.0]
 #define mainFacebookBlueColor [UIColor colorWithRed:82.0f/255 green:98.0/255 blue:159.0/255 alpha:1.0f]
 #define mainLightBlueColor [UIColor colorWithRed:5.0f/255 green:133.0/255 blue:255.0/255 alpha:1.0f]

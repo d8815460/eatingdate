@@ -245,7 +245,7 @@ extern NSString * const kPAWParseLocationKey;
 extern NSString * const kPAWWallCantViewPost;
 
 //firstTimeInstall
-extern NSString *const firstTimeInstall;
+extern NSString *const firstTimeInstallKey;
 
 //類別的存檔路徑
 extern NSString *const mainCategoryFile;
@@ -384,3 +384,6 @@ extern NSString *const UploadDataNoti;
 
 extern BOOL isFromPostTaskFlow;
 extern BOOL hasCenterButton;
+
+// ***************** 用戶的基本資料 ****************************
+extern NSUserDefaults *userDefaults;

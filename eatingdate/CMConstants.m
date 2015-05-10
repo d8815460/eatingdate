@@ -219,7 +219,7 @@ NSString * const kPAWParseLocationKey = @"toGeo";
 NSString * const kPAWWallCantViewPost = @"距離您太遠！請再靠近";
 
 //紀錄是不是第一次安裝，要出現tutorial
-NSString *const firstTimeInstall = @"firstTimeInstall.text";
+NSString *const firstTimeInstallKey = @"firstTimeInstallKey";
 
 //大類別的存檔路徑
 NSString *const mainCategoryFile = @"mainCategoryFile.text";
@@ -359,3 +359,7 @@ NSString *const UploadDataNoti =        @"UploadDataNoti";
 
 BOOL isFromPostTaskFlow;
 BOOL hasCenterButton;
+
+
+// ***************** 用戶的基本資料 ****************************
+NSUserDefaults *userDefaults;
