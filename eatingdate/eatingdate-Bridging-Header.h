@@ -4,6 +4,9 @@
 //  這裡import才能讓swift讀的到
 
 #import <Parse.h>
+#import <ParseUI.h>
 #import "AppDelegate.h"
 #import "MegaTheme.h"
 #import "CMConstants.h"
+#import "CMUtility.h"
+#import "CMCache.h"

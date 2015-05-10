@@ -387,3 +387,6 @@ extern BOOL hasCenterButton;
 
 // ***************** 用戶的基本資料 ****************************
 extern NSUserDefaults *userDefaults;
+
+// ***************** 餐廳的類別 ****************************
+extern NSArray *categoriesForRestaurant;

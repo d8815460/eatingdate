@@ -105,7 +105,8 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         }else if indexPath.row == 2{
            
         }else if indexPath.row == 3{
-            
+            //設定餐廳
+            self.performSegueWithIdentifier("choseRestaurant", sender: self)
         }else if indexPath.row == 4{
             
         }else{
@@ -316,7 +317,7 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -324,6 +325,6 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

@@ -363,3 +363,7 @@ BOOL hasCenterButton;
 
 // ***************** 用戶的基本資料 ****************************
 NSUserDefaults *userDefaults;
+
+
+// ***************** 餐廳的類別 ****************************
+NSArray *categoriesForRestaurant;

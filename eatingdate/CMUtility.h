@@ -13,6 +13,10 @@
 
 @interface CMUtility : NSObject <UIAlertViewDelegate>
 
++ (CGFloat)getScreenWidth;
++ (CGFloat)getScreenHeight;
++ (NSInteger)windowWidth;
++ (NSInteger)windowHeight;
 + (void)likePhotoInBackground:(id)photo block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
 + (void)unlikePhotoInBackground:(id)photo block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
 

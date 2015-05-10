@@ -18,6 +18,15 @@ typedef enum {
 
 @implementation CMUtility
 
++ (CGFloat)getScreenWidth {
+    UIViewController *root = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    return root.presentedViewController.view.bounds.size.width;
+}
+
++ (CGFloat)getScreenHeight {
+    UIViewController *root = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    return root.presentedViewController.view.bounds.size.height;
+}
 
 + (NSInteger)windowWidth {
     UIWindow *win = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
