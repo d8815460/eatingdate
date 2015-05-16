@@ -50,69 +50,69 @@ typedef enum {
         PFObject *likeActivity = [PFObject objectWithClassName:kPAPActivityClassKey];
         [likeActivity setObject:kPAPActivityTypeLike forKey:kPAPActivityTypeKey];
         [likeActivity setObject:[PFUser currentUser] forKey:kPAPActivityFromUserKey];
-        [likeActivity setObject:[photo objectForKey:kTaskOwner_User] forKey:kPAPActivityToUserKey];
+//        [likeActivity setObject:[photo objectForKey:kTaskOwner_User] forKey:kPAPActivityToUserKey];
         [likeActivity setObject:photo forKey:kPAPActivityPhotoKey];
         
         PFACL *likeACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [likeACL setPublicReadAccess:YES];
         likeActivity.ACL = likeACL;
         
-        [likeActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (completionBlock) {
-                completionBlock(succeeded,error);
-            }
-            
-            if (succeeded && ![[[photo objectForKey:kTaskOwner_User] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
-                NSString *privateChannelName = [NSString stringWithFormat:@"user_%@", [[photo objectForKey:kTaskOwner_User] objectId]];
-                if (privateChannelName && privateChannelName.length != 0) {
-                    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSString stringWithFormat:@"%@喜歡你的任務。", [CMUtility firstNameForDisplayName:[[PFUser currentUser] objectForKey:kPAPUserDisplayNameKey]]], kAPNSAlertKey,
-                                          kPAPPushPayloadPayloadTypeActivityKey, kPAPPushPayloadPayloadTypeKey,
-                                          kPAPPushPayloadActivityLikeKey, kPAPPushPayloadActivityTypeKey,
-                                          [[PFUser currentUser] objectId], kPAPPushPayloadFromUserObjectIdKey,
-                                          [photo objectId], kPAPPushPayloadPhotoObjectIdKey,
-                                          @"Increment",kAPNSBadgeKey,
-                                          @"action", @"tw.com.taiwan8.CUSTOM_BROADCAST",
-                                          nil];
-                    PFPush *push = [[PFPush alloc] init];
-                    [push setChannel:privateChannelName];
-                    [push setData:data];
-                    [push sendPushInBackground];
-                }
-            }
-            
-            // refresh cache
-            PFQuery *query = [CMUtility queryForActivitiesOnPhoto:photo cachePolicy:kPFCachePolicyNetworkOnly];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (!error) {
-                    
-                    NSMutableArray *likers = [NSMutableArray array];
-                    NSMutableArray *commenters = [NSMutableArray array];
-                    
-                    
-                    BOOL isLikedByCurrentUser = NO;
-                    
-                    for (PFObject *activity in objects) {
-                        if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeLike] && [activity objectForKey:kPAPActivityFromUserKey]) {
-                            [likers addObject:[activity objectForKey:kPAPActivityFromUserKey]];
-                        } else if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeComment] && [activity objectForKey:kPAPActivityFromUserKey]) {
-                            [commenters addObject:[activity objectForKey:kPAPActivityFromUserKey]];
-                        }
-                        
-                        if ([[[activity objectForKey:kPAPActivityFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
-                            if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeLike]) {
-                                isLikedByCurrentUser = YES;
-                            }
-                        }
-                    }
-                    
-                    [[CMCache sharedCache] setAttributesForPhoto:photo likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
-                }
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:photo userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:succeeded] forKey:PAPPhotoDetailsViewControllerUserLikedUnlikedPhotoNotificationUserInfoLikedKey]];
-            }];
-            
-        }];
+//        [likeActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (completionBlock) {
+//                completionBlock(succeeded,error);
+//            }
+//            
+//            if (succeeded && ![[[photo objectForKey:kTaskOwner_User] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+//                NSString *privateChannelName = [NSString stringWithFormat:@"user_%@", [[photo objectForKey:kTaskOwner_User] objectId]];
+//                if (privateChannelName && privateChannelName.length != 0) {
+//                    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                          [NSString stringWithFormat:@"%@喜歡你的任務。", [CMUtility firstNameForDisplayName:[[PFUser currentUser] objectForKey:kPAPUserDisplayNameKey]]], kAPNSAlertKey,
+//                                          kPAPPushPayloadPayloadTypeActivityKey, kPAPPushPayloadPayloadTypeKey,
+//                                          kPAPPushPayloadActivityLikeKey, kPAPPushPayloadActivityTypeKey,
+//                                          [[PFUser currentUser] objectId], kPAPPushPayloadFromUserObjectIdKey,
+//                                          [photo objectId], kPAPPushPayloadPhotoObjectIdKey,
+//                                          @"Increment",kAPNSBadgeKey,
+//                                          @"action", @"tw.com.taiwan8.CUSTOM_BROADCAST",
+//                                          nil];
+//                    PFPush *push = [[PFPush alloc] init];
+//                    [push setChannel:privateChannelName];
+//                    [push setData:data];
+//                    [push sendPushInBackground];
+//                }
+//            }
+//            
+//            // refresh cache
+//            PFQuery *query = [CMUtility queryForActivitiesOnPhoto:photo cachePolicy:kPFCachePolicyNetworkOnly];
+//            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//                if (!error) {
+//                    
+//                    NSMutableArray *likers = [NSMutableArray array];
+//                    NSMutableArray *commenters = [NSMutableArray array];
+//                    
+//                    
+//                    BOOL isLikedByCurrentUser = NO;
+//                    
+//                    for (PFObject *activity in objects) {
+//                        if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeLike] && [activity objectForKey:kPAPActivityFromUserKey]) {
+//                            [likers addObject:[activity objectForKey:kPAPActivityFromUserKey]];
+//                        } else if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeComment] && [activity objectForKey:kPAPActivityFromUserKey]) {
+//                            [commenters addObject:[activity objectForKey:kPAPActivityFromUserKey]];
+//                        }
+//                        
+//                        if ([[[activity objectForKey:kPAPActivityFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+//                            if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeLike]) {
+//                                isLikedByCurrentUser = YES;
+//                            }
+//                        }
+//                    }
+//                    
+//                    [[CMCache sharedCache] setAttributesForPhoto:photo likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
+//                }
+//                
+//                [[NSNotificationCenter defaultCenter] postNotificationName:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:photo userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:succeeded] forKey:PAPPhotoDetailsViewControllerUserLikedUnlikedPhotoNotificationUserInfoLikedKey]];
+//            }];
+//            
+//        }];
 //    }];
     
     /*
@@ -1162,6 +1162,7 @@ typedef enum {
 }
 
 //看別人的任務，系統推薦
+/*
 + (void)SystemAutoFromQuery:(PFQuery *)helperList withObjects:(NSArray *)objects AndCaseObject:(PFObject *)caseObject InTheView:(UIView *)theView ChangeButtonName:(UIButton *)button{
     if (objects.count < [[caseObject objectForKey:kTaskTotalPeopleNumber] intValue]) {
         [helperList getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -1213,6 +1214,7 @@ typedef enum {
         }];
     }
 }
+*/
 
 //業主自選，我已經接過
 + (void)havedGetThisJob:(UIButton *)button InTheView:(UIView *)theView{
@@ -1223,6 +1225,7 @@ typedef enum {
 }
 
 //看別人的任務，業主自選
+/*
 + (void)CustomerChoseFromQuery:(PFQuery *)helperList withObjects:(NSArray *)objects AndCaseObject:(PFObject *)caseObject InTheView:(UIView *)theView ChangeButtonName:(UIButton *)button{
     
     if (objects.count >= [[caseObject objectForKey:kTaskTotalPeopleNumber] intValue]) {
@@ -1299,6 +1302,7 @@ typedef enum {
         }];
     }
 }
+*/
 
 //經緯度轉換成縣市單位
 + (void)getLocationName:(PFGeoPoint *)point block:(void (^)(BOOL succeeded, NSString *nameLabel))completionBlock{

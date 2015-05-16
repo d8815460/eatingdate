@@ -11,6 +11,13 @@
 		238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */; };
 		238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */; };
 		238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */; };
+		238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */; };
+		238934731B01AE2700C1E8B3 /* SettingPostTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */; };
+		23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */; };
+		23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658E1B057B9C00DBADE1 /* WriteTask.m */; };
+		23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965901B057B9C00DBADE1 /* writeTaskSync.m */; };
+		23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */; };
+		23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */; };
 		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
 		DB0BE11C1AF37F8700B49B4A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11B1AF37F8700B49B4A /* libz.dylib */; };
@@ -137,6 +144,17 @@
 		238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantViewController.swift; sourceTree = "<group>"; };
 		238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryCell.swift; sourceTree = "<group>"; };
 		238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantCell.swift; sourceTree = "<group>"; };
+		238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPostTitleViewController.swift; sourceTree = "<group>"; };
+		23A9658B1B057B9C00DBADE1 /* WriteTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTaskManager.h; sourceTree = "<group>"; };
+		23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTaskManager.m; sourceTree = "<group>"; };
+		23A9658D1B057B9C00DBADE1 /* WriteTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTask.h; sourceTree = "<group>"; };
+		23A9658E1B057B9C00DBADE1 /* WriteTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTask.m; sourceTree = "<group>"; };
+		23A9658F1B057B9C00DBADE1 /* writeTaskSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writeTaskSync.h; sourceTree = "<group>"; };
+		23A965901B057B9C00DBADE1 /* writeTaskSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = writeTaskSync.m; sourceTree = "<group>"; };
+		23A965911B057B9C00DBADE1 /* writeTaskSync+Extern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "writeTaskSync+Extern.h"; sourceTree = "<group>"; };
+		23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "writeTaskSync+Extern.m"; sourceTree = "<group>"; };
+		23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDatePhotoCell.swift; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DB0BE1191AF37F8000B49B4A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -365,6 +383,8 @@
 		236580FB1AFDEC88008BC27D /* 2.0發佈約流程 */ = {
 			isa = PBXGroup;
 			children = (
+				23A9658A1B057B0D00DBADE1 /* 約會單的類 */,
+				238934711B01ADCD00C1E8B3 /* 30.1.1 設定主題 */,
 				238665AF1AFF678B00745655 /* 30.1.2選擇餐廳 */,
 				238665B41AFF8C3200745655 /* 30.1.2.1 餐廳資料庫 */,
 				23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */,
@@ -387,6 +407,29 @@
 				238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */,
 			);
 			name = "30.1.2.1 餐廳資料庫";
+			sourceTree = "<group>";
+		};
+		238934711B01ADCD00C1E8B3 /* 30.1.1 設定主題 */ = {
+			isa = PBXGroup;
+			children = (
+				238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */,
+			);
+			name = "30.1.1 設定主題";
+			sourceTree = "<group>";
+		};
+		23A9658A1B057B0D00DBADE1 /* 約會單的類 */ = {
+			isa = PBXGroup;
+			children = (
+				23A9658B1B057B9C00DBADE1 /* WriteTaskManager.h */,
+				23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */,
+				23A9658D1B057B9C00DBADE1 /* WriteTask.h */,
+				23A9658E1B057B9C00DBADE1 /* WriteTask.m */,
+				23A9658F1B057B9C00DBADE1 /* writeTaskSync.h */,
+				23A965901B057B9C00DBADE1 /* writeTaskSync.m */,
+				23A965911B057B9C00DBADE1 /* writeTaskSync+Extern.h */,
+				23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */,
+			);
+			name = "約會單的類";
 			sourceTree = "<group>";
 		};
 		876976AD64D9C8E4788EF8CE /* Pods */ = {
@@ -550,6 +593,8 @@
 		DB0BE1CE1AF467C300B49B4A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */,
+				2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */,
 				238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */,
 				DB0BE1CF1AF467C300B49B4A /* ChartCells */,
 				DB0BE1D21AF467C300B49B4A /* eCommerceCells */,
@@ -1078,6 +1123,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5C827C1AF5AE4700A8F57E /* AMSlideMenuLeftTableViewController.m in Sources */,
+				23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */,
+				238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */,
 				DBFFBDE91AF62313003127DB /* MainVC.m in Sources */,
 				DB0BE2101AF48D7300B49B4A /* Utils.m in Sources */,
 				DB5C82871AF5B19F00A8F57E /* RightMenuVC.m in Sources */,
@@ -1090,6 +1137,7 @@
 				DB0BE2491AF4909B00B49B4A /* RCSwitchOnOff.m in Sources */,
 				DB0BE1521AF445A800B49B4A /* IntroViewController.swift in Sources */,
 				DB0BE2501AF4909B00B49B4A /* TPKeyboardAvoidingScrollView.m in Sources */,
+				23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */,
 				DB0BE1951AF4678800B49B4A /* Person.m in Sources */,
 				DB0BE1F61AF467C400B49B4A /* ProductCell.m in Sources */,
 				DB0BE1FC1AF467C400B49B4A /* NavigationFullCell.m in Sources */,
@@ -1106,6 +1154,7 @@
 				DB0BE2451AF4909B00B49B4A /* MinnaMessageView.m in Sources */,
 				DB0BE1911AF4678800B49B4A /* Album.m in Sources */,
 				DB0BE15F1AF466E100B49B4A /* MegaTheme.m in Sources */,
+				238934731B01AE2700C1E8B3 /* SettingPostTitleViewController.swift in Sources */,
 				DB0BE1F81AF467C400B49B4A /* AlbumCell.m in Sources */,
 				DB0BE20F1AF48D7300B49B4A /* CMUtility.m in Sources */,
 				DB571C921AF340A2005CAB77 /* AppDelegate.m in Sources */,
@@ -1127,7 +1176,9 @@
 				DB0BE20D1AF48D7300B49B4A /* CMCache.m in Sources */,
 				DB5C828A1AF5BF1200A8F57E /* ProfileViewController.m in Sources */,
 				DB0BE20E1AF48D7300B49B4A /* CMConstants.m in Sources */,
+				23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */,
 				DB0BE2111AF48D7300B49B4A /* FlatTheme.m in Sources */,
+				23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */,
 				238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */,
 				DB0BE1F41AF467C400B49B4A /* CartCell.m in Sources */,
 				DB5C82801AF5AE4700A8F57E /* UIViewController+AMSlideMenu.m in Sources */,
@@ -1143,6 +1194,7 @@
 				DB5C827F1AF5AE4700A8F57E /* AMSlideMenuRightTableViewController.m in Sources */,
 				238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */,
 				DB0BE2521AF4909B00B49B4A /* UIKeyboardCoViewForMessenger.m in Sources */,
+				23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */,
 				DB0BE1FB1AF467C400B49B4A /* MetaCell.m in Sources */,
 				DB1C9E131AFAD927000DED5B /* ForgotPasswordViewController.swift in Sources */,
 				DBFFBDED1AF62452003127DB /* UIColor+CreateMethods.m in Sources */,

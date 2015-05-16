@@ -10,3 +10,5 @@
 #import "CMConstants.h"
 #import "CMUtility.h"
 #import "CMCache.h"
+#import "WriteTask.h"
+#import "UIImage+ResizeAdditions.h"

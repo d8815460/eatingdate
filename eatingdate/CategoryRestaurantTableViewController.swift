@@ -11,8 +11,15 @@ import UIKit
 class CategoryRestaurantTableViewController: PFQueryTableViewController {
 
     // Initialise the PFQueryTable tableview
-    override init(style: UITableViewStyle, className: String!) {
+    override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
+        
+        // Configure the PFQueryTableView
+        self.parseClassName = "Restaurant"
+        self.textKey = "text"
+        self.pullToRefreshEnabled = true
+        self.paginationEnabled = false
+        self.loadingViewEnabled = false
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -20,9 +27,10 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController {
         
         // Configure the PFQueryTableView
         self.parseClassName = "Restaurant"
-        self.textKey = "nameEnglish"
+        self.textKey = "text"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
+        self.loadingViewEnabled = false
     }
     
     
@@ -34,6 +42,8 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,36 +55,53 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController {
 
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
-        var query = PFQuery(className: "Restaurant")
+        
+        
+        let query = PFQuery(className: self.parseClassName!)
+//        var query = PFQuery(className: "Restaurant")
+        query.includeKey("category")
         query.orderByAscending("createdAt")
         return query
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 5
+    override func objectsDidLoad(error: NSError?) {
+        self.loadingViewEnabled = false
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        println("objects = \(objects)")
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! PFTableViewCell
+        let cell:ChoseRestaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! ChoseRestaurantCell
        
         // Extract values from the PFObject to display in the table cell
-        if let nameEnglish = object?["name"] as? String {
-//            cell?.textLabel?.text = nameEnglish
+        if let nameRestaurant = object?["name"] as? String {
+            cell.nameLabel.text = nameRestaurant
         }
-        if let capital = object?["capital"] as? String {
-//            cell?.detailTextLabel?.text = capital
+        if let address = object?["address"] as? String {
+            cell.addressLabel.text = address
         }
+        if let category = object?["category"] as? PFObject {
+            cell.categoryLabel.text = category["categoryName"] as? String
+        }
+        if let popularity = object?["popularity"] as? NSNumber {
+            cell.popularityLabel.text = "人氣 \(popularity)"
+        }
+        if let geo = object?["geo"] as? PFGeoPoint {
+            cell.localLabel.text = "距離"
+        }
+        if let miniCost = object?["minCost"] as? String {
+            cell.minCostLabel.text = "最低消費 \(miniCost)"
+        }
+        
+        cell.choseButton.setTitle("選這家", forState: UIControlState.Normal)
         // Configure the cell...
         
         return cell
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

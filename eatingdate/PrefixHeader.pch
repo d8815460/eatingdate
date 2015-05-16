@@ -19,7 +19,7 @@
 #import "CMConstants.h"
 #import "CMCache.h"
 #import "MinnaNotificationProtocol.h"
-
+#import "WriteTask.h"
 
 #endif
 

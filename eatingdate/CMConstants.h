@@ -28,6 +28,9 @@ extern NSString *const kPAPUserDefaultsWaitTasksTableViewControllerLastRefreshKe
 extern NSString *const kPAPUserDefaultsEndTasksTableViewControllerLastRefreshKey;       //結案任務最後一次刷新鍵
 extern NSString *const kPAPUserDefaultsSelectHelperTableViewControllerLastRefreshKey;   //接案幫手選擇頁面最後一次刷新鍵
 
+
+extern NSString *const kPAPUploadPhotoQueueKey;   //上傳照片的列隊Key
+
 #pragma mark - Launch URLs
 extern NSString *const kPAPLaunchURLHostTakePicture;
 
@@ -271,76 +274,31 @@ extern NSString *const professionalSubCategoryFile; //5
 extern NSString *const tasksSyncNewFormat;
 //案子路徑
 extern NSString *const WriteTaskFile;
-//任務key
-extern NSString *const kTaskCasesClassesKey;
+
+
+// ***************** 發布任務暫存 ****************************
+
+//約會任務單主key
+extern NSString *const kPostDateClassesKey;     //主Key
 //table
-extern NSString *const kTaskObjectId;
-extern NSString *const kTaskTitle;
-extern NSString *const kTaskCategory;               //大類別
-extern NSString *const kTaskLitleCategory;          //小類別
-extern NSString *const kTaskPhotoFile;              //照片檔案
-extern NSString *const kTaskPhotoSmallFile;         //小照片
-extern NSString *const kTaskProjectMoney;           //單一商品價格
-extern NSString *const kTaskProjectUnit;            //單一商品單位
-extern NSString *const kTaskProjectName;            //商品名稱
-extern NSString *const kTaskProjectNumber;          //商品數量
-extern NSString *const kTaskWaitingTime;            //等待時間
-extern NSString *const kTaskProjectWeight;          //物品總重量
-extern NSString *const kTaskBuildType;              //建築物類型
-extern NSString *const kTaskDepartmentName;         //用人單位
-extern NSString *const kTaskDistance;               //兩點間導航距離公尺
-extern NSString *const kTaskDuaration;              //兩點間導航秒數
-extern NSString *const kTaskEmerFee;                //急件加價
-extern NSString *const kTaskStartTime;              //開始時間
-extern NSString *const kTaskEndTime;                //結束時間
-extern NSString *const kTaskFromAddress;            //起始地址
-extern NSString *const kTaskFromAdministrativeArea;
-extern NSString *const kTaskFromCity;
-extern NSString *const kTaskToAddress;              //結束地址
-extern NSString *const kTaskToAdministrativeArea;
-extern NSString *const kTaskToCity;
-extern NSString *const kTaskFromWhere;              //起始經緯
-extern NSString *const kTaskToWhere;                //結束經緯
-extern NSString *const kTaskFromFloor;              //起始樓層
-extern NSString *const kTaskToFloor;                //結束樓層
-extern NSString *const kTaskOwner_User;             //業主
-extern NSString *const kTaskFromContactName;        //從-聯絡人
-extern NSString *const kTaskFromContactPhone;       //從-聯絡電話
-extern NSString *const kTaskToContactName;          //從-聯絡人
-extern NSString *const kTaskToContactPhone;         //從-聯絡電話
-extern NSString *const kTaskConverner_User;         //幫手
-extern NSString *const kTaskHourlyPay;              //時薪
-extern NSString *const kTaskIsEmer;                 //是否急件
-extern NSString *const kTaskNeedConvener;           //是否要召集人
-extern NSString *const kTaskDescript;               //任務描述
-extern NSString *const kTaskTotalPeopleNumber;      //需要人數
-extern NSString *const kTaskServiceFee;             //服務費
-extern NSString *const kTaskServiceTime;            //服務總時
-extern NSString *const kTaskSpecialRequirementsA;   //特別要求A
-extern NSString *const kTaskSpecialRequirementsB;   //特別要求B
-extern NSString *const kTaskTotalMoney;             //總金額
-extern NSString *const kTaskTrafficMoney;           //交通費
-extern NSString *const kTaskWishPay;                //可以賺的錢 = 服務費＋交通費
-extern NSString *const ktaskPaymentMethod;          //付款方式
-extern NSString *const kTaskIsFree;                 //是否找義工
-extern NSString *const kTaskIsClose;                //是否結案
-extern NSString *const kTaskIsAuto;                 //是否系統指派
-extern NSString *const kTaskIsYou;                  //是否是你得標，多數人得標的時候用
-extern NSString *const kTaskIsResponse;             //你是否已經搶了該案（多數人用）
-extern NSString *const kTaskPushAmount;             //推播出去的總人數。
-extern NSString *const kTaskCaseDesc;               //備註
-extern NSString *const kTaskIsPublish;              //分享FB
-
-extern NSString *const kTaskMapDirectionIOS7;
-extern NSString *const kTaskMapDirectionIOS6;
-
-extern NSString *const kTaskNotes;
-extern NSString *const kTaskOrganization;
-extern NSString *const kTaskOwnerCheck;
-extern NSString *const kTaskConvernerCheck;
-
-extern NSString *const kTaskActivitiesForm;
-extern NSString *const kTaskChoseArray;
+extern NSString *const kDateObjectId;
+extern NSString *const kDateFromUser;           //誰發起約會單
+extern NSString *const kDateType;               //約會形式（我請客，誰請我）
+extern NSString *const kDateTitle;              //約會主題
+extern NSString *const kDatePicMedium;          //發布約會背景照片（大）
+extern NSString *const kDatePicSmall;           //發布約會背景照片（小）
+extern NSString *const kDateRestaurant;         //發布約會的餐廳
+extern NSString *const kDateTime;               //約會的時間
+extern NSString *const kDateRestaurantCategory; //餐廳類別
+extern NSString *const kDateRestaurantName;     //餐廳名稱
+extern NSString *const kDateRestaurantAddress;  //餐廳地址
+extern NSString *const kDateRestaurantGeo;      //餐廳經緯度
+extern NSString *const kDateRestaurantPhone;    //餐廳電話
+extern NSString *const kDateRestaurantMinCost;  //餐廳最低消費
+extern NSString *const kDateGameType;           //馬上約或指定約或發布約
+extern NSString *const kDatePeopleAskNumber;    //報名人數
+extern NSString *const kDateToUser;             //最後決定約會的人選
+extern NSString *const kDatePostCost;           //約會單花費的信用額度
 
 #pragma mark - Cached Photo Attributes
 // keys
@@ -390,3 +348,5 @@ extern NSUserDefaults *userDefaults;
 
 // ***************** 餐廳的類別 ****************************
 extern NSArray *categoriesForRestaurant;
+
+

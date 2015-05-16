@@ -90,4 +90,11 @@
 }
 
 
+- (IBAction)postButtonPressed:(id)sender {
+    if (![PFUser currentUser]) {
+        [self performSegueWithIdentifier:@"signIn" sender:nil];
+    }else{
+        [self performSegueWithIdentifier:@"showPost" sender:nil];
+    }
+}
 @end

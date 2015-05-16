@@ -23,6 +23,11 @@ NSString *const kPAPUserDefaultsEndTasksTableViewControllerLastRefreshKey   = @"
 NSString *const kPAPUserDefaultsSelectHelperTableViewControllerLastRefreshKey   =
 @"tw.taiwan8.userDefaults.selectHelperTableViewControllerLastRefresh";        //接案幫手選擇頁面最後一次刷新鍵
 
+
+
+NSString *const kPAPUploadPhotoQueueKey = @"com.eatingdate.uploadPhoto";        //上傳照片的列隊Key
+
+
 #pragma mark - Launch URLs
 NSString *const kPAPLaunchURLHostTakePicture = @"camera";
 
@@ -253,74 +258,27 @@ NSString *const tasksSyncNewFormat = @"tasksSyncNewFormat";
 NSString *const WriteTaskFile = @"WriteTaskFile.txt";
 
 
-//任務key
-NSString *const kTaskCasesClassesKey = @"Cases";            //主Key
-NSString *const kTaskObjectId = @"objectId";
-NSString *const kTaskTitle    = @"title";
-NSString *const kTaskCategory = @"categoryID";              //大類別
-NSString *const kTaskLitleCategory = @"categoryDetailID";   //小類別
-NSString *const kTaskPhotoFile = @"picMedium";              //照片檔案
-NSString *const kTaskPhotoSmallFile = @"picSmall";          //小照片
-NSString *const kTaskProjectMoney = @"itemFee";             //單一商品價格
-NSString *const kTaskProjectUnit = @"itemUnit";             //單一商品單位
-NSString *const kTaskProjectName  = @"itemName";            //商品名稱
-NSString *const kTaskNotes = @"note";                       //任務描述
-NSString *const kTaskProjectNumber = @"amount";             //商品數量
-NSString *const kTaskWaitingTime   = @"waitTime";           //等待時間
-NSString *const kTaskProjectWeight = @"totalWeight";        //物品總重量
-NSString *const kTaskBuildType = @"buildType";              //建築物類型
-NSString *const kTaskDepartmentName = @"departmentName";    //用人單位
-NSString *const kTaskDistance = @"distance";                //兩點間導航距離公尺
-NSString *const kTaskDuaration = @"duaration";              //兩點間導航秒數
-NSString *const kTaskEmerFee = @"emerFee";                  //急件加價
-NSString *const kTaskStartTime = @"startTime";              //開始時間
-NSString *const kTaskEndTime = @"endTime";                  //結束時間
-NSString *const kTaskFromAddress = @"fromAddress";          //起始地址
-NSString *const kTaskFromAdministrativeArea = @"fromAdministrativeArea";//地址縣市
-NSString *const kTaskFromCity = @"fromCity";                //市區
-NSString *const kTaskToAddress = @"toAddress";              //結束地址
-NSString *const kTaskToAdministrativeArea = @"toAdministrativeArea";//地址縣市
-NSString *const kTaskToCity = @"toCity";                    //市區
-NSString *const kTaskFromWhere = @"fromGeo";                //起始經緯
-NSString *const kTaskToWhere = @"toGeo";                    //結束經緯
-NSString *const kTaskFromFloor = @"fromFloor";              //起始樓層
-NSString *const kTaskToFloor = @"toFloor";                  //結束樓層
-NSString *const kTaskOwner_User = @"ownID";                 //業主
-NSString *const kTaskFromContactName = @"fromContactName";   //從-聯絡人
-NSString *const kTaskFromContactPhone = @"fromContactPhone"; //從-聯絡電話
-NSString *const kTaskToContactName = @"toContactName";       //到-聯絡人
-NSString *const kTaskToContactPhone = @"toContactPhone";     //到-聯絡電話
-NSString *const kTaskConverner_User = @"helperID";          //幫手
-NSString *const kTaskHourlyPay = @"hourlyPay";              //時薪
-NSString *const kTaskIsEmer = @"isEmer";                    //是否急件
-NSString *const kTaskNeedConvener = @"needConvener";        //是否要召集人
-NSString *const kTaskTotalPeopleNumber = @"peopleAmount";   //需要人數
-NSString *const kTaskServiceFee = @"serviceFee";            //服務費
-NSString *const kTaskServiceTime = @"serviceTime";          //服務總時
-NSString *const kTaskSpecialRequirementsA = @"specialRequirementsA";    //特別要求A
-NSString *const kTaskSpecialRequirementsB = @"specialRequirementsB";    //特別要求B
-NSString *const kTaskTotalMoney = @"totalFee";              //總金額
-NSString *const kTaskTrafficMoney = @"trafficFee";          //交通費
-NSString *const kTaskWishPay = @"wishPay";                  //可以賺的錢 = 服務費＋交通費
-NSString *const ktaskPaymentMethod = @"paymentMethod";      //付款方式
-NSString *const kTaskIsFree = @"volunteer";                 //是否找義工
-NSString *const kTaskIsClose = @"isClosed";                  //是否結案
-NSString *const kTaskIsAuto = @"isAuto";                    //是否系統指派
-NSString *const kTaskIsYou  = @"isYou";                     //是否參與競標
-NSString *const kTaskIsResponse = @"isResponse";            //是否搶過這個案子
-NSString *const kTaskPushAmount = @"pushAmount";            //推播出去的總人數
-NSString *const kTaskCaseDesc   = @"caseDesc";              //備註
-NSString *const kTaskIsPublish  = @"isPublish";             //分享FB
+//約會任務單key
+NSString *const kPostDateClassesKey     = @"PostDate";          //主Key
+NSString *const kDateObjectId           = @"objectId";
+NSString *const kDateFromUser           = @"fromUser";          //誰發起約會單
+NSString *const kDateType               = @"dateType";          //約會形式（我請客，誰請我）
+NSString *const kDateTitle              = @"dateTitle";         //約會主題
+NSString *const kDatePicMedium          = @"picMedium";         //發布約會背景照片（大）
+NSString *const kDatePicSmall           = @"picSmall";          //發布約會背景照片（小）
+NSString *const kDateRestaurant         = @"restaurant";        //發布約會的餐廳
+NSString *const kDateTime               = @"dateTime";          //約會的時間
+NSString *const kDateRestaurantCategory = @"restaurantCategory";//餐廳類別
+NSString *const kDateRestaurantName     = @"restaurantName";    //餐廳名稱
+NSString *const kDateRestaurantAddress  = @"restaurantAddress"; //餐廳地址
+NSString *const kDateRestaurantGeo      = @"restaurantGeo";     //餐廳經緯度
+NSString *const kDateRestaurantPhone    = @"restaurantPhone";   //餐廳電話
+NSString *const kDateRestaurantMinCost  = @"restaurantMinCost"; //餐廳最低消費
+NSString *const kDateGameType           = @"gameType";          //馬上約或指定約或發布約
+NSString *const kDatePeopleAskNumber    = @"peopleAskNumber";   //報名人數
+NSString *const kDateToUser             = @"toUser";            //最後決定約會的人選
+NSString *const kDatePostCost           = @"postCost";          //約會單花費的信用額度
 
-NSString *const kTaskMapDirectionIOS7 = @"mapDirectionIOS7";
-NSString *const kTaskMapDirectionIOS6 = @"mapDirectionIOS6";
-
-NSString *const kTaskDescript = @"descript";
-NSString *const kTaskOrganization = @"organization";
-NSString *const kTaskOwnerCheck = @"ownerCheck";
-NSString *const kTaskConvernerCheck = @"convernerCheck";
-NSString *const kTaskActivitiesForm = @"activitiesForm";
-NSString *const kTaskChoseArray = @"choseArray";
 
 #pragma mark - Cached 任務 Attributes
 // keys

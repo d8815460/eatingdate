@@ -18,5 +18,6 @@
 }
 @property(nonatomic, strong) IBOutlet ADVTabSegmentControl* tabSegmentControl;
 @property(nonatomic, strong) IBOutlet UITableView* tableView;
+- (IBAction)postButtonPressed:(id)sender;
 
 @end

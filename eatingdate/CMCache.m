@@ -437,7 +437,7 @@
 
 //計算我過去發過案子總數
 - (void)postTasksCount:(PFUser *)currenter block:(void (^)(BOOL, int))completionBlock{
-    PFQuery *query = [PFQuery queryWithClassName:kTaskCasesClassesKey];
+    PFQuery *query = [PFQuery queryWithClassName:kPostDateClassesKey];
     PFObject *pocase = [PFObject objectWithClassName:@"Category"];
     [pocase setObjectId:@"J7zvtq1KNq"];
     [query whereKey:@"categoryID" notEqualTo:pocase];
@@ -464,7 +464,7 @@
 - (void)getTasksCount:(PFUser *)currenter block:(void (^)(BOOL, int))completionBlock{
     
     
-    PFQuery *query = [PFQuery queryWithClassName:kTaskCasesClassesKey];
+    PFQuery *query = [PFQuery queryWithClassName:kPostDateClassesKey];
     NSArray *array = [NSArray arrayWithObject:currenter.objectId];
 //    [query includeKey:@"ownID"];
 //    [query includeKey:@"categoryID"];
@@ -513,7 +513,7 @@
 
 //查看現在已經選擇的人數
 + (void)SelectNumberQuery:(PFQuery *)SelectHelperList block:(void (^)(BOOL succeeded, NSArray *array))completionBlock{
-    [SelectHelperList whereKey:kTaskIsYou equalTo:@YES];
+//    [SelectHelperList whereKey:kTaskIsYou equalTo:@YES];
     [SelectHelperList findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error == nil )
         {

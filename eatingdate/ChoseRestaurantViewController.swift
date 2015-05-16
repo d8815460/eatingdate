@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -41,6 +41,8 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
         categoryLayout.minimumInteritemSpacing = 5
         categoryLayout.minimumLineSpacing = 10
         categoryLayout.scrollDirection == UICollectionViewScrollDirection.Horizontal
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,9 +82,21 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
         
         //選擇否個類別之後，就隱藏colllectionView
         categoryCollectionView.hidden = true
-        var categoryTable = self.storyboard?.instantiateViewControllerWithIdentifier("categoryRestaurantTable") as! CategoryRestaurantTableViewController
-        viewForTableView.addSubview(categoryTable.view)
+        self.loadPostsTableViewController()
     }
+    
+    
+    
+    func loadPostsTableViewController () {
+        // add the posts tableview as a subview with view containment 
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var CategoryTableVC:CategoryRestaurantTableViewController! = storyboard.instantiateViewControllerWithIdentifier("categoryRestaurantTable") as! CategoryRestaurantTableViewController
+        
+        self.viewForTableView.addSubview(CategoryTableVC.view)
+        self.addChildViewController(CategoryTableVC)
+        CategoryTableVC.didMoveToParentViewController(self)
+    }
+    
     /*
     // MARK: - Navigation
 

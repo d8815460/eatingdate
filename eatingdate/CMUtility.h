@@ -38,10 +38,10 @@
 
 
 ///// helperlists
-+ (void)addUserToHelperListInBackground:(PFUser *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
-+ (void)addUserToHelperListEventually:(PFUser *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
-+ (void)addUsersToHelperListEventually:(NSArray *)users toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
-+ (void)unaddToHelperListEventually:(PFUser *)user fromCase:(PFObject *)cases;
+//+ (void)addUserToHelperListInBackground:(PFUser *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
+//+ (void)addUserToHelperListEventually:(PFUser *)user toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
+//+ (void)addUsersToHelperListEventually:(NSArray *)users toCase:(PFObject *)cases block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
+//+ (void)unaddToHelperListEventually:(PFUser *)user fromCase:(PFObject *)cases;
 
 /////
 
