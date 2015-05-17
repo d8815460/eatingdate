@@ -1,18 +1,15 @@
 //
-//  CategoryRestaurantTableViewController.swift
+//  MyRestaurantTableViewController.swift
 //  eatingdate
 //
-//  Created by 駿逸 陳 on 2015/5/10.
+//  Created by 駿逸 陳 on 2015/5/17.
 //  Copyright (c) 2015年 駿逸 陳. All rights reserved.
 //
 
 import UIKit
 
-class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearchBarDelegate, ChoseRestaurantCellDelegate{
+class MyRestaurantTableViewController: PFQueryTableViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    var keywork: String!
-    
     // Initialise the PFQueryTable tableview
     override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
@@ -47,8 +44,6 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-        
-        self.searchBar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,44 +51,12 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Search Bar Delegate
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        searchBar.showsCancelButton = true
-        return true
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.keywork = nil
-        searchBar.showsCancelButton = false
-        self.view.endEditing(true)
-        self.loadObjects()
-    }
-    
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        println("search bar search 2 \(searchBar.text)")
-        
-        self.keywork = searchBar.text
-        searchBar.showsCancelButton = false
-        self.view.endEditing(true)
-        
-        //開始搜尋關鍵字
-        self.loadObjects()
-    }
-    
-    
-    
     // MARK: - Table view data source
-
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
         query.orderByAscending("createdAt")
-        if keywork != nil {
-            println("有搜尋到嗎")
-            query.whereKey("name", containsString: keywork)
-        }
         return query
     }
     
@@ -104,7 +67,7 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cell:ChoseRestaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! ChoseRestaurantCell
-       
+        
         // Extract values from the PFObject to display in the table cell
         if let nameRestaurant = object?["name"] as? String {
             cell.nameLabel.text = nameRestaurant
@@ -126,29 +89,23 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         }
         
         cell.choseButton.setTitle("選這家", forState: UIControlState.Normal)
-        cell.delegate = self
-        cell.restaurantObject = object
         // Configure the cell...
         
         return cell
     }
     
-    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
     }
-    
-    func didSelectedRestaurant() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
 
         // Configure the cell...
 
         return cell
-    }*/
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.

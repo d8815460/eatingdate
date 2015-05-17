@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+protocol ChoseRestaurantCellDelegate {
+    func didSelectedRestaurant()
+}
+
 class ChoseRestaurantCell: PFTableViewCell {
 
     @IBOutlet weak var photo: UIImageView!
@@ -19,10 +24,15 @@ class ChoseRestaurantCell: PFTableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var minCostLabel: UILabel!
     @IBOutlet weak var choseButton: UIButton!
+    var task:WriteTask!
+    var restaurantObject:PFObject!
+    var delegate:ChoseRestaurantCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.task = WriteTask.sharedWriteTask() as? WriteTask
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -30,5 +40,11 @@ class ChoseRestaurantCell: PFTableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func selectButtonPressed(sender: AnyObject) {
+        println("我選了這一家")
+        
+        self.task.restaurant = self.restaurantObject
+        delegate?.didSelectedRestaurant()
+    }
 }

@@ -13,7 +13,7 @@ class PostDatePhotoCell: UITableViewCell {
     @IBOutlet weak var uploadPhotoView: UIImageView!
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
-    
+    @IBOutlet weak var addLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

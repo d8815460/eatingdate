@@ -17,6 +17,8 @@
 		23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658E1B057B9C00DBADE1 /* WriteTask.m */; };
 		23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965901B057B9C00DBADE1 /* writeTaskSync.m */; };
 		23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */; };
+		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
+		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
 		23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */; };
 		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
@@ -154,8 +156,10 @@
 		23A965901B057B9C00DBADE1 /* writeTaskSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = writeTaskSync.m; sourceTree = "<group>"; };
 		23A965911B057B9C00DBADE1 /* writeTaskSync+Extern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "writeTaskSync+Extern.h"; sourceTree = "<group>"; };
 		23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "writeTaskSync+Extern.m"; sourceTree = "<group>"; };
+		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
-		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDatePhotoCell.swift; sourceTree = "<group>"; };
+		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDatePhotoCell.swift; path = ../PostDatePhotoCell.swift; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DB0BE1191AF37F8000B49B4A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB0BE11B1AF37F8700B49B4A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -387,7 +391,6 @@
 				238934711B01ADCD00C1E8B3 /* 30.1.1 設定主題 */,
 				238665AF1AFF678B00745655 /* 30.1.2選擇餐廳 */,
 				238665B41AFF8C3200745655 /* 30.1.2.1 餐廳資料庫 */,
-				23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */,
 				236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */,
 			);
 			name = "2.0發佈約流程";
@@ -405,6 +408,8 @@
 			isa = PBXGroup;
 			children = (
 				238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */,
+				23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */,
+				23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */,
 			);
 			name = "30.1.2.1 餐廳資料庫";
 			sourceTree = "<group>";
@@ -430,6 +435,17 @@
 				23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */,
 			);
 			name = "約會單的類";
+			sourceTree = "<group>";
+		};
+		23B4284C1B079D2100181D1A /* 發布約會及餐廳 */ = {
+			isa = PBXGroup;
+			children = (
+				23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */,
+				23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */,
+				2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */,
+				238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */,
+			);
+			name = "發布約會及餐廳";
 			sourceTree = "<group>";
 		};
 		876976AD64D9C8E4788EF8CE /* Pods */ = {
@@ -593,9 +609,7 @@
 		DB0BE1CE1AF467C300B49B4A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */,
-				2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */,
-				238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */,
+				23B4284C1B079D2100181D1A /* 發布約會及餐廳 */,
 				DB0BE1CF1AF467C300B49B4A /* ChartCells */,
 				DB0BE1D21AF467C300B49B4A /* eCommerceCells */,
 				DB0BE1DB1AF467C400B49B4A /* MediaCells */,
@@ -1122,6 +1136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */,
 				DB5C827C1AF5AE4700A8F57E /* AMSlideMenuLeftTableViewController.m in Sources */,
 				23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */,
 				238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */,
@@ -1132,6 +1147,7 @@
 				DB0BE2461AF4909B00B49B4A /* MinnaOpenGraphRequest.m in Sources */,
 				DB0BE1F51AF467C400B49B4A /* CategoryCell.m in Sources */,
 				DB0BE24B1AF4909B00B49B4A /* UIImage+AlphaAdditions.m in Sources */,
+				23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */,
 				DB0BE1791AF4676A00B49B4A /* ADVGradientButton.m in Sources */,
 				DB0BE2011AF467C400B49B4A /* PictureCell.m in Sources */,
 				DB0BE2491AF4909B00B49B4A /* RCSwitchOnOff.m in Sources */,

@@ -22,6 +22,7 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet var datePicker: UIDatePicker!
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var dateTypeSegmented: UISegmentedControl!
     
     
     
@@ -34,8 +35,6 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-       
-        
     }
     
     override func viewDidLoad() {
@@ -52,6 +51,17 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         
         // Cells is a 2D array containing sections and rows.
         cells = [[DVDatePickerTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)], [DVDatePickerTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)]]
+        
+        //男生預設是我請客，女生預設是誰請我
+        if let gender:String = PFUser.currentUser()?.objectForKey("gender") as? String {
+            if gender == "male" {
+                dateTypeSegmented.selectedSegmentIndex = 0
+                self.task.dateType = "我請客"
+            }else if gender == "female" {
+                dateTypeSegmented.selectedSegmentIndex = 1
+                self.task.dateType = "誰請我"
+            }
+        }
     }
     
     
@@ -63,8 +73,12 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         //當所有選項都填完之後，nextButton才會顯示。
-        println("will appear \(self.task.dateTitle)")
+        println("will appear \(self.task.restaurant)")
         self.table.reloadData()
+        
+        if self.task.restaurant != nil && self.task.dateTime != nil && self.task.dateTitle != nil {
+            self.nextButton.hidden = false
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,21 +103,34 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         }else if indexPath.row == 1{
             cell = tableView.dequeueReusableCellWithIdentifier("twoFillCell", forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = "主題"
-            cell.detailTextLabel?.text = "簡述約會主題"
+            
             if task.dateTitle != nil {
                 println("主題 \(task.dateTitle)")
                 cell.detailTextLabel?.text = task.dateTitle
             }else{
-                
+                cell.detailTextLabel?.text = "簡述約會主題"
             }
         }else if indexPath.row == 2{
             var cell = cells[0][0] as! DVDatePickerTableViewCell
             cell.leftLabel.text = "日期/時間"
+            var now = NSDate()
+            //1個小時
+            var calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            var comps = NSDateComponents()
+            comps.hour = 1
+            var onehourlater = calendar?.dateByAddingComponents(comps, toDate: now, options: nil)
+            cell.datePicker.minimumDate = onehourlater
+            cell.datePicker.minuteInterval = 15
             return cell
         }else if indexPath.row == 3{
             cell = tableView.dequeueReusableCellWithIdentifier("twoFillCell", forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = "餐廳"
-            cell.detailTextLabel?.text = ""
+            if self.task.restaurant != nil {
+                cell.detailTextLabel?.text = self.task.restaurant?.objectForKey("name") as? String
+            }else{
+                cell.detailTextLabel?.text = "選擇餐廳"
+            }
+            
             return cell
         }else if indexPath.row == 4{
             cell = tableView.dequeueReusableCellWithIdentifier("attentionCell", forIndexPath: indexPath) as! UITableViewCell
@@ -197,6 +224,7 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         //指定cell裡面的ImageView
         cell.uploadPhotoView.image = image
         cell.addPhotoButton.setTitle("", forState: .Normal)
+        cell.addLabel.text = ""
         
         //要將照片壓縮成兩個大小，以利儲存到WriteTask的picMedium & picSmall
         var medium = image.thumbnailImage(640, transparentBorder: 0, cornerRadius: 0, interpolationQuality: kCGInterpolationHigh)
@@ -425,6 +453,16 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
             
         }
         self.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func dateTypeButtonPressed(sender: AnyObject) {
+        var dateTypeSeg = sender as! UISegmentedControl
+        println("dateTypeSet = \(dateTypeSeg.selectedSegmentIndex)")
+        if dateTypeSeg.selectedSegmentIndex == 0 {
+            self.task.dateType = "我請客"
+        }else if dateTypeSeg.selectedSegmentIndex == 1 {
+            self.task.dateType = "誰請我"
+        }
     }
     
     @IBAction func nextButtonPressed(sender: AnyObject) {

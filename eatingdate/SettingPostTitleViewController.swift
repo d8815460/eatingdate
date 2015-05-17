@@ -33,6 +33,8 @@ class SettingPostTitleViewController: UIViewController, UITextViewDelegate {
             placeholderLabel.hidden = true
             self.textView2.text = self.task.dateTitle
         }
+        
+        self.textView2.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,9 +76,12 @@ class SettingPostTitleViewController: UIViewController, UITextViewDelegate {
     func textViewDidEndEditing(textView: UITextView) {
         //中文字最後得儲存這裡的文字，所以通一都在這裡儲存
         
-        self.task.dateTitle = textView.text
-        
-        println("儲存 \(self.task)")
+        if textView.text.isEmpty {
+            
+        }else{
+            self.task.dateTitle = textView.text
+            println("儲存 \(self.task)")
+        }
     }
 
     /*
