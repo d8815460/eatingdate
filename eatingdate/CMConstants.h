@@ -125,6 +125,8 @@ extern NSString *const kPAPUserMaxReceiveQuotaKey;
 extern NSString *const kPAPUserFrequencyKey;
 //個人資訊的key
 extern NSString *const kCMUserNameString;
+extern NSString *const kCMUserFirstName;
+extern NSString *const kCMUserLastName;
 extern NSString *const defaultsFilterDistanceKey;
 extern NSString *const defaultsLocationKey;
 extern NSString *const kPAPParseLocationKey;
@@ -299,6 +301,8 @@ extern NSString *const kDateGameType;           //馬上約或指定約或發布
 extern NSString *const kDatePeopleAskNumber;    //報名人數
 extern NSString *const kDateToUser;             //最後決定約會的人選
 extern NSString *const kDatePostCost;           //約會單花費的信用額度
+extern NSString *const kIsTVIP;                 //是否用TVIP身份發佈
+
 
 #pragma mark - Cached Photo Attributes
 // keys

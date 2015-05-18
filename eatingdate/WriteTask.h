@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSNumber * peopleAskNumber;       //報名人數
 @property (nonatomic, strong) PFObject * toUser;                //最後決定約會的人選
 @property (nonatomic, strong) NSNumber * postCost;              //約會單花費的信用額度
+@property (nonatomic, strong) NSNumber * isTVIP;                //是否用TVIP身份發佈, O是false, 1=true
 
 /*這裏以下是餐廳的類別
 @property (nonatomic, strong) PFObject * category;              //餐廳類別

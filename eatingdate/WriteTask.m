@@ -57,6 +57,7 @@
     [aCoder encodeObject:self.peopleAskNumber       forKey:kDatePeopleAskNumber];
     [aCoder encodeObject:self.toUser                forKey:kDateToUser];
     [aCoder encodeObject:self.postCost              forKey:kDatePostCost];
+    [aCoder encodeObject:self.isTVIP                forKey:kIsTVIP];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -82,6 +83,7 @@
         self.peopleAskNumber    = [aDecoder decodeObjectForKey:kDatePeopleAskNumber];
         self.toUser             = [aDecoder decodeObjectForKey:kDateToUser];
         self.postCost           = [aDecoder decodeObjectForKey:kDatePostCost];
+        self.isTVIP             = [aDecoder decodeObjectForKey:kIsTVIP];
     }
     return self;
 }
@@ -108,9 +110,7 @@
     another.peopleAskNumber     = self.peopleAskNumber;
     another.toUser          = self.toUser;
     another.postCost        = self.postCost;
-    another.objectId        = self.objectId;
-    another.objectId        = self.objectId;
-    another.objectId        = self.objectId;
+    another.isTVIP          = self.isTVIP;
     
     return another;
 }

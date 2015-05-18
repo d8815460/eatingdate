@@ -19,6 +19,9 @@
 		23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */; };
 		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
 		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
+		23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */; };
+		23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */; };
+		23DEEFBA1B08B7D700273EC2 /* MalePostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */; };
 		23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */; };
 		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
@@ -158,6 +161,9 @@
 		23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "writeTaskSync+Extern.m"; sourceTree = "<group>"; };
 		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVIPPostCostTableViewController.swift; sourceTree = "<group>"; };
+		23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FemalePostCostTableViewController.swift; sourceTree = "<group>"; };
+		23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalePostCostTableViewController.swift; sourceTree = "<group>"; };
 		23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDatePhotoCell.swift; path = ../PostDatePhotoCell.swift; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -391,6 +397,7 @@
 				238934711B01ADCD00C1E8B3 /* 30.1.1 設定主題 */,
 				238665AF1AFF678B00745655 /* 30.1.2選擇餐廳 */,
 				238665B41AFF8C3200745655 /* 30.1.2.1 餐廳資料庫 */,
+				23DEEFB41B08B73E00273EC2 /* 30.2 */,
 				236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */,
 			);
 			name = "2.0發佈約流程";
@@ -446,6 +453,16 @@
 				238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */,
 			);
 			name = "發布約會及餐廳";
+			sourceTree = "<group>";
+		};
+		23DEEFB41B08B73E00273EC2 /* 30.2 */ = {
+			isa = PBXGroup;
+			children = (
+				23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */,
+				23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */,
+				23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */,
+			);
+			name = 30.2;
 			sourceTree = "<group>";
 		};
 		876976AD64D9C8E4788EF8CE /* Pods */ = {
@@ -1155,6 +1172,7 @@
 				DB0BE2501AF4909B00B49B4A /* TPKeyboardAvoidingScrollView.m in Sources */,
 				23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */,
 				DB0BE1951AF4678800B49B4A /* Person.m in Sources */,
+				23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */,
 				DB0BE1F61AF467C400B49B4A /* ProductCell.m in Sources */,
 				DB0BE1FC1AF467C400B49B4A /* NavigationFullCell.m in Sources */,
 				DB0BE1991AF4678800B49B4A /* ViewInfo.m in Sources */,
@@ -1180,6 +1198,7 @@
 				DB0BE2511AF4909B00B49B4A /* UIKeyboardCoView.m in Sources */,
 				DB0BE2441AF4909B00B49B4A /* JSONKit.m in Sources */,
 				DB5C827E1AF5AE4700A8F57E /* AMSlideMenuRightMenuSegue.m in Sources */,
+				23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */,
 				DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */,
 				DB0BE2481AF4909B00B49B4A /* RCSwitch.m in Sources */,
 				DB0BE2471AF4909B00B49B4A /* MyFile.m in Sources */,
@@ -1203,6 +1222,7 @@
 				DB0BE1F31AF467C400B49B4A /* EventCell.m in Sources */,
 				DB0BE2581AF4AC7C00B49B4A /* DKCircleButton.m in Sources */,
 				DB0BE17B1AF4676A00B49B4A /* ADVProgressLayer.m in Sources */,
+				23DEEFBA1B08B7D700273EC2 /* MalePostCostTableViewController.swift in Sources */,
 				DB0BE2431AF4909B00B49B4A /* NSString+Empty.m in Sources */,
 				DB1C9E151AFAD94E000DED5B /* SignUpViewController.swift in Sources */,
 				DB0BE1941AF4678800B49B4A /* NavigationModel.m in Sources */,

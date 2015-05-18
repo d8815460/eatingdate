@@ -114,6 +114,8 @@ NSString *const kPAPUserMaxReceiveQuotaKey                      = @"receiveQuota
 NSString *const kPAPUserFrequencyKey                            = @"frequency";
 
 NSString *const kCMUserNameString           = @"username";
+NSString *const kCMUserFirstName            = @"firstName";
+NSString *const kCMUserLastName             = @"lastName";
 NSString *const defaultsFilterDistanceKey   = @"filterDistance";
 NSString *const defaultsLocationKey         = @"currentLocation";
 NSString *const kPAPParseLocationKey        = @"location";
@@ -278,6 +280,7 @@ NSString *const kDateGameType           = @"gameType";          //馬上約或�
 NSString *const kDatePeopleAskNumber    = @"peopleAskNumber";   //報名人數
 NSString *const kDateToUser             = @"toUser";            //最後決定約會的人選
 NSString *const kDatePostCost           = @"postCost";          //約會單花費的信用額度
+NSString *const kIsTVIP                 = @"isTVIP";            //是否用TVIP身份發佈
 
 
 #pragma mark - Cached 任務 Attributes

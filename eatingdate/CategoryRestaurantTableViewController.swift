@@ -89,6 +89,7 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
+        query.fromLocalDatastore()
         query.orderByAscending("createdAt")
         if keywork != nil {
             println("有搜尋到嗎")

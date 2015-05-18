@@ -467,6 +467,8 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
         
+        //先轉場至TVIP
+        self.performSegueWithIdentifier("TVIPPost", sender: self)
     }
     
     
