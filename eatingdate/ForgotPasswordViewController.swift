@@ -64,12 +64,12 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     //返回上一頁，登錄畫面
     func dismiss(){
-        dismissViewControllerAnimated(true, completion: { () -> Void in
+        /*dismissViewControllerAnimated(true, completion: { () -> Void in
             
-        })
-        /* 切換到 storyboard 模式
+        })*/
+        
         self.navigationController?.popViewControllerAnimated(true)
-        */
+
     }
     
     //密碼鍵盤按下Go == 按下登錄按鈕

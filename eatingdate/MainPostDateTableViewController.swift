@@ -1,24 +1,26 @@
 //
-//  CategoryRestaurantTableViewController.swift
+//  MainPostDateTableViewController.swift
 //  eatingdate
 //
-//  Created by 駿逸 陳 on 2015/5/10.
+//  Created by 駿逸 陳 on 2015/5/24.
 //  Copyright (c) 2015年 駿逸 陳. All rights reserved.
 //
 
 import UIKit
 
-class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearchBarDelegate, ChoseRestaurantCellDelegate{
+class MainPostDateTableViewController: PFQueryTableViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    var keywork: String!
+    @IBOutlet weak var headerView: PFTableViewCell!
+    
+    
+    
     
     // Initialise the PFQueryTable tableview
     override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
         
         // Configure the PFQueryTableView
-        self.parseClassName = "Restaurant"
+        self.parseClassName = kPostDateClassesKey
         self.textKey = "text"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
@@ -29,7 +31,7 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         super.init(coder: aDecoder)
         
         // Configure the PFQueryTableView
-        self.parseClassName = "Restaurant"
+        self.parseClassName = kPostDateClassesKey
         self.textKey = "text"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
@@ -39,16 +41,13 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-        
-        self.searchBar.delegate = self
+        self.headerView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,47 +55,26 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Search Bar Delegate
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        searchBar.showsCancelButton = true
-        return true
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.keywork = nil
-        searchBar.showsCancelButton = false
-        self.view.endEditing(true)
-        self.loadObjects()
-    }
-    
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        self.keywork = searchBar.text
-        searchBar.showsCancelButton = false
-        self.view.endEditing(true)
-        
-        //開始搜尋關鍵字
-        self.loadObjects()
-    }
-    
-    
-    
     // MARK: - Table view data source
-
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.objects!.count
+    }
+    
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
-//        if self.objects?.count == 0 {
-//            
-//        }else{
-//            query.fromLocalDatastore()
-//        }
-        query.orderByAscending("createdAt")
-        if keywork != nil {
-            println("有搜尋到嗎")
-            query.whereKey("name", containsString: keywork)
-        }
+        query.includeKey("fromUser")
+        query.includeKey("restaurant")
+        
+        query.addAscendingOrder("postCost")
+        query.orderByAscending("dateTime")
+        
         return query
     }
     
@@ -106,61 +84,83 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         
         println("objects = \(self.objects)")
     }
-
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        let cell:ChoseRestaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! ChoseRestaurantCell
-       
-        // Extract values from the PFObject to display in the table cell
-        if let nameRestaurant = object?["name"] as? String {
-            cell.nameLabel.text = nameRestaurant
-        }
-        if let address = object?["address"] as? String {
-            cell.addressLabel.text = address
-        }
-        if let category = object?["category"] as? PFObject {
-            cell.categoryLabel.text = category["categoryName"] as? String
-        }
-        if let popularity = object?["popularity"] as? NSNumber {
-            cell.popularityLabel.text = "人氣 \(popularity)"
-        }
-        if let geo = object?["geo"] as? PFGeoPoint {
-            cell.localLabel.text = "距離"
-        }
-        if let miniCost = object?["minCost"] as? String {
-            cell.minCostLabel.text = "最低消費 \(miniCost)"
-        }
-        if let administrativeArea = object?["administrativeArea"] as? String {
-            cell.administrativeArea.text = "\(administrativeArea)"
-        }
-        if let city = object?["city"] as? String {
-            cell.city.text = "\(city)"
+        let cell:PostDateCell! = tableView.dequeueReusableCellWithIdentifier("PostDateCell", forIndexPath: indexPath) as! PostDateCell
+        
+        if let picMediumFile = object?[kDatePicMedium] as? PFFile {
+            picMediumFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                cell.bgImageView.image = UIImage(data: imageData!)
+            }, progressBlock: { (percentDone: Int32) -> Void in
+                if percentDone < 100 && percentDone != 0 {
+                    cell.progressView.hidden = false
+                }else{
+                    cell.progressView.hidden = true
+                }
+                cell.progressView.setProgress(( Float(percentDone) / 100.0), animated: true);
+                cell.bgImageView.image = UIImage(named: "img_ctn_box")
+            })
         }
         
-        cell.choseButton.setTitle("選這家", forState: UIControlState.Normal)
-        cell.delegate = self
-        cell.restaurantObject = object
-        // Configure the cell...
+        if object?[kDateFromUser] != nil {
+            let fromUser = object?[kDateFromUser] as! PFUser
+            if let picProfilePhotoFile: PFFile! = fromUser[kPAPUserProfilePicMediumKey] as? PFFile {
+                picProfilePhotoFile!.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    cell.profileImageView.image = UIImage(data: imageData!)
+                })
+                
+            }
+            
+            // 姓氏＋先生/小姐
+            if let userName:String! = fromUser[kPAPUserFacebookLastNameKey] as? String{
+                if let userGender:String! = fromUser[kPAPUserFacebookGenderKey] as? String {
+                    if userGender == "male"{
+                        cell.nameLabel.text = "\(userName!)先生"
+                    }else{
+                        cell.nameLabel.text = "\(userName!)小姐"
+                    }
+                }
+            }
+            
+            //餐廳姓名
+            if let Restaurant:String! = object?[kDateRestaurantName] as? String {
+                cell.restaurantLabel.text = Restaurant!
+            }
+            
+            //誠意值
+            if let cost:NSNumber! = object?[kDatePostCost] as? NSNumber {
+                cell.sinceritygoodLabel.text = "誠意\(cost!)%"
+            }
+            
+            //我請客/誰請我
+            if let dateType:String! = object?[kDateType] as? String {
+                cell.whoTreatLabel.text = "\(dateType!)"
+            }
+            
+            //約會時間
+            if let dateTime:NSDate! = object?[kDateTime] as? NSDate {
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                cell.dateTimeLabel.text = dateFormatter.stringFromDate(dateTime!)
+            }
+        }
+        
         
         return cell
     }
     
-    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 105
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
     
-    func didSelectedRestaurant() {
-        self.navigationController?.popViewControllerAnimated(true)
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.headerView
     }
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }*/
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

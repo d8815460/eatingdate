@@ -17,9 +17,6 @@
     self.locationImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.locationImageView.image = [[UIImage imageNamed:@"location"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    self.commentsImageView.tintColor = [UIColor colorWithRed: 0.16 green: 0.75 blue: 0.56 alpha: 1.0];
-    self.commentsImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.commentsImageView.image = [[UIImage imageNamed: @"icon-chat"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     self.profileImageView.layer.cornerRadius = 25;
     
@@ -28,9 +25,6 @@
     
     self.locationLabel.textColor = [UIColor whiteColor];
     self.locationLabel.font = [UIFont fontWithName: MegaTheme.fontName size: 11];
-    
-    self.commentsLabel.textColor = [UIColor whiteColor];
-    self.commentsLabel.font = [UIFont fontWithName: MegaTheme.fontName size: 11];
     
 }
 

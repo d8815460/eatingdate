@@ -50,6 +50,8 @@
     [aCoder encodeObject:self.restaurantCategory    forKey:kDateRestaurantCategory];
     [aCoder encodeObject:self.restaurantName        forKey:kDateRestaurantName];
     [aCoder encodeObject:self.restaurantAddress     forKey:kDateRestaurantAddress];
+    [aCoder encodeObject:self.administrativeArea    forKey:kDateRestaurantAdministrativeArea];
+    [aCoder encodeObject:self.city                  forKey:kDateRestaurantCity];
     [aCoder encodeObject:self.restaurantGeo         forKey:kDateRestaurantGeo];
     [aCoder encodeObject:self.restaurantPhone       forKey:kDateRestaurantPhone];
     [aCoder encodeObject:self.restaurantMinCost     forKey:kDateRestaurantMinCost];
@@ -76,6 +78,8 @@
         self.restaurantCategory = [aDecoder decodeObjectForKey:kDateRestaurantCategory];
         self.restaurantName     = [aDecoder decodeObjectForKey:kDateRestaurantName];
         self.restaurantAddress  = [aDecoder decodeObjectForKey:kDateRestaurantAddress];
+        self.administrativeArea = [aDecoder decodeObjectForKey:kDateRestaurantAdministrativeArea];
+        self.city               = [aDecoder decodeObjectForKey:kDateRestaurantCity];
         self.restaurantGeo      = [aDecoder decodeObjectForKey:kDateRestaurantGeo];
         self.restaurantPhone    = [aDecoder decodeObjectForKey:kDateRestaurantPhone];
         self.restaurantMinCost  = [aDecoder decodeObjectForKey:kDateRestaurantMinCost];
@@ -103,6 +107,8 @@
     another.restaurantCategory  = self.restaurantCategory;
     another.restaurantName      = self.restaurantName;
     another.restaurantAddress   = self.restaurantAddress;
+    another.administrativeArea  = self.administrativeArea;
+    another.city                = self.city;
     another.restaurantGeo       = self.restaurantGeo;
     another.restaurantPhone     = self.restaurantPhone;
     another.restaurantMinCost   = self.restaurantMinCost;

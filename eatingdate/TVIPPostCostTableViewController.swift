@@ -188,11 +188,31 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
                     findPeopleQuery?.whereKey("gender", equalTo: "male")
                 }
                 findPeopleQuery?.limit = 100
+                
+                println("開始尋找附近的人")
+                
                 findPeopleQuery?.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
-                    if let error = error {
+                    
+                    
+                    if error != nil {
+                        println("尋找失敗")
                         // There was an error
+                        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                        // There was a problem, check error.description
+                        // Build the terms and conditions alert
+                        let alertController = UIAlertController(title: "發生了錯誤",
+                            message: "\(error!.localizedFailureReason)",
+                            preferredStyle: UIAlertControllerStyle.Alert
+                        )
+                        alertController.addAction(UIAlertAction(title: "確定",
+                            style: UIAlertActionStyle.Default,
+                            handler: nil)
+                        )
                         
+                        // Display alert
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     }else{
+                        println("尋找成功")
                         // objects has all finded
                         // 照理講，我發請帖出去收到推播的人，必須要能夠收到訊息。
                         if let allUsers = objects as? [PFUser] {
@@ -242,13 +262,41 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
                                     if success {
                                         MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                                         //完成之後，就直接回到該回到的頁面
-                                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                            
-                                        })
+                                        
+                                        let alertController = UIAlertController(title: "系統通知了\(channelSet.allObjects.count)人",
+                                            message: "\(error!.localizedFailureReason)",
+                                            preferredStyle: UIAlertControllerStyle.Alert
+                                        )
+                                        alertController.addAction(UIAlertAction(title: "確定",
+                                            style: UIAlertActionStyle.Default,
+                                            handler: nil)
+                                        )
+                                        
+                                        // Display alert
+                                        self.presentViewController(alertController, animated: true, completion: nil)
+                                        
+                                        
                                     }
                                 })
+                            }else{
+                                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                                // There was a problem, check error.description
+                                // Build the terms and conditions alert
+                                let alertController = UIAlertController(title: nil,
+                                    message: "附近找不到合適的人",
+                                    preferredStyle: UIAlertControllerStyle.Alert
+                                )
+                                alertController.addAction(UIAlertAction(title: "確定",
+                                    style: UIAlertActionStyle.Default,
+                                    handler: { alertController in self.dismiss()})
+                                )
+                                
+                                // Display alert
+                                self.presentViewController(alertController, animated: true, completion: nil)
                             }
-                        } 
+                        }
+                        
+                        
                     }
                 })
                 
@@ -268,6 +316,13 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
+    }
+    
+    
+    func dismiss (){
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
     }
 
     /*

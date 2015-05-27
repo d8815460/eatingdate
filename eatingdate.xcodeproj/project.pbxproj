@@ -17,6 +17,16 @@
 		23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658E1B057B9C00DBADE1 /* WriteTask.m */; };
 		23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965901B057B9C00DBADE1 /* writeTaskSync.m */; };
 		23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */; };
+		23B0C7951B0F7F1F00D60CC3 /* PhoneVerifiedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7941B0F7F1F00D60CC3 /* PhoneVerifiedViewController.swift */; };
+		23B0C7971B100EC000D60CC3 /* WriteMyProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7961B100EC000D60CC3 /* WriteMyProfileTableViewController.swift */; };
+		23B0C79A1B10111F00D60CC3 /* UploadProfilePhotoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7981B10111F00D60CC3 /* UploadProfilePhotoTableViewController.swift */; };
+		23B0C79B1B10111F00D60CC3 /* uploadPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7991B10111F00D60CC3 /* uploadPhotoCell.swift */; };
+		23B0C79F1B10403400D60CC3 /* WriteProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C79E1B10403400D60CC3 /* WriteProfileCells.swift */; };
+		23B0C7A11B107C2600D60CC3 /* AddPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A01B107C2500D60CC3 /* AddPhoneNumberViewController.swift */; };
+		23B0C7A41B11B9A100D60CC3 /* MainPostDateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A31B11B9A100D60CC3 /* MainPostDateTableViewController.swift */; };
+		23B0C7A61B11DB1400D60CC3 /* PostDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */; };
+		23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */; };
+		23B0C7AA1B11E3DD00D60CC3 /* PictureListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */; };
 		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
 		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
 		23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */; };
@@ -47,7 +57,6 @@
 		DB0BE1521AF445A800B49B4A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE1511AF445A800B49B4A /* IntroViewController.swift */; };
 		DB0BE1561AF4460200B49B4A /* RMParallaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE1541AF4460200B49B4A /* RMParallaxItem.swift */; };
 		DB0BE1571AF4460200B49B4A /* RMParallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE1551AF4460200B49B4A /* RMParallax.swift */; };
-		DB0BE15B1AF466AA00B49B4A /* PictureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE15A1AF466AA00B49B4A /* PictureListViewController.m */; };
 		DB0BE15F1AF466E100B49B4A /* MegaTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE15E1AF466E100B49B4A /* MegaTheme.m */; };
 		DB0BE1781AF4676A00B49B4A /* ADVAnimatedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE1691AF4676A00B49B4A /* ADVAnimatedButton.m */; };
 		DB0BE1791AF4676A00B49B4A /* ADVGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BE16C1AF4676A00B49B4A /* ADVGradientButton.m */; };
@@ -159,6 +168,16 @@
 		23A965901B057B9C00DBADE1 /* writeTaskSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = writeTaskSync.m; sourceTree = "<group>"; };
 		23A965911B057B9C00DBADE1 /* writeTaskSync+Extern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "writeTaskSync+Extern.h"; sourceTree = "<group>"; };
 		23A965921B057B9C00DBADE1 /* writeTaskSync+Extern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "writeTaskSync+Extern.m"; sourceTree = "<group>"; };
+		23B0C7941B0F7F1F00D60CC3 /* PhoneVerifiedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneVerifiedViewController.swift; sourceTree = "<group>"; };
+		23B0C7961B100EC000D60CC3 /* WriteMyProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteMyProfileTableViewController.swift; sourceTree = "<group>"; };
+		23B0C7981B10111F00D60CC3 /* UploadProfilePhotoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProfilePhotoTableViewController.swift; sourceTree = "<group>"; };
+		23B0C7991B10111F00D60CC3 /* uploadPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = uploadPhotoCell.swift; path = ../uploadPhotoCell.swift; sourceTree = "<group>"; };
+		23B0C79E1B10403400D60CC3 /* WriteProfileCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteProfileCells.swift; sourceTree = "<group>"; };
+		23B0C7A01B107C2500D60CC3 /* AddPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhoneNumberViewController.swift; sourceTree = "<group>"; };
+		23B0C7A31B11B9A100D60CC3 /* MainPostDateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostDateTableViewController.swift; sourceTree = "<group>"; };
+		23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateCell.swift; sourceTree = "<group>"; };
+		23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateHeaderView.swift; sourceTree = "<group>"; };
+		23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureListViewController.swift; sourceTree = "<group>"; };
 		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVIPPostCostTableViewController.swift; sourceTree = "<group>"; };
@@ -190,8 +209,6 @@
 		DB0BE1511AF445A800B49B4A /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		DB0BE1541AF4460200B49B4A /* RMParallaxItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMParallaxItem.swift; sourceTree = "<group>"; };
 		DB0BE1551AF4460200B49B4A /* RMParallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMParallax.swift; sourceTree = "<group>"; };
-		DB0BE1591AF466AA00B49B4A /* PictureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureListViewController.h; sourceTree = "<group>"; };
-		DB0BE15A1AF466AA00B49B4A /* PictureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureListViewController.m; sourceTree = "<group>"; };
 		DB0BE15D1AF466E100B49B4A /* MegaTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MegaTheme.h; sourceTree = "<group>"; };
 		DB0BE15E1AF466E100B49B4A /* MegaTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MegaTheme.m; sourceTree = "<group>"; };
 		DB0BE1681AF4676A00B49B4A /* ADVAnimatedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVAnimatedButton.h; sourceTree = "<group>"; };
@@ -416,7 +433,6 @@
 			children = (
 				238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */,
 				23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */,
-				23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */,
 			);
 			name = "30.1.2.1 餐廳資料庫";
 			sourceTree = "<group>";
@@ -444,6 +460,22 @@
 			name = "約會單的類";
 			sourceTree = "<group>";
 		};
+		23B0C79C1B10113100D60CC3 /* 註冊時後上傳個人照片Cells */ = {
+			isa = PBXGroup;
+			children = (
+				23B0C7991B10111F00D60CC3 /* uploadPhotoCell.swift */,
+			);
+			name = "註冊時後上傳個人照片Cells";
+			sourceTree = "<group>";
+		};
+		23B0C79D1B10400500D60CC3 /* 填寫個人基本資料cells */ = {
+			isa = PBXGroup;
+			children = (
+				23B0C79E1B10403400D60CC3 /* WriteProfileCells.swift */,
+			);
+			name = "填寫個人基本資料cells";
+			sourceTree = "<group>";
+		};
 		23B4284C1B079D2100181D1A /* 發布約會及餐廳 */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +492,7 @@
 			children = (
 				23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */,
 				23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */,
+				23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */,
 				23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */,
 			);
 			name = 30.2;
@@ -524,8 +557,8 @@
 				DBFFBDEA1AF62443003127DB /* Categories */,
 				DBFFBDE71AF62313003127DB /* MainVC.h */,
 				DBFFBDE81AF62313003127DB /* MainVC.m */,
-				DB0BE1591AF466AA00B49B4A /* PictureListViewController.h */,
-				DB0BE15A1AF466AA00B49B4A /* PictureListViewController.m */,
+				23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */,
+				23B0C7A31B11B9A100D60CC3 /* MainPostDateTableViewController.swift */,
 			);
 			name = "1.0首頁約會清單";
 			sourceTree = "<group>";
@@ -626,6 +659,8 @@
 		DB0BE1CE1AF467C300B49B4A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				23B0C79D1B10400500D60CC3 /* 填寫個人基本資料cells */,
+				23B0C79C1B10113100D60CC3 /* 註冊時後上傳個人照片Cells */,
 				23B4284C1B079D2100181D1A /* 發布約會及餐廳 */,
 				DB0BE1CF1AF467C300B49B4A /* ChartCells */,
 				DB0BE1D21AF467C300B49B4A /* eCommerceCells */,
@@ -705,6 +740,8 @@
 				DB0BE1F01AF467C400B49B4A /* ConnectionCell.m */,
 				DB0BE1F11AF467C400B49B4A /* PictureCell.h */,
 				DB0BE1F21AF467C400B49B4A /* PictureCell.m */,
+				23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */,
+				23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */,
 			);
 			path = SocialCells;
 			sourceTree = "<group>";
@@ -946,6 +983,10 @@
 				DB1C9E121AFAD927000DED5B /* ForgotPasswordViewController.swift */,
 				DB5C82671AF5A4BC00A8F57E /* SignInViewController.h */,
 				DB5C82681AF5A4BC00A8F57E /* SignInViewController.m */,
+				23B0C7A01B107C2500D60CC3 /* AddPhoneNumberViewController.swift */,
+				23B0C7941B0F7F1F00D60CC3 /* PhoneVerifiedViewController.swift */,
+				23B0C7961B100EC000D60CC3 /* WriteMyProfileTableViewController.swift */,
+				23B0C7981B10111F00D60CC3 /* UploadProfilePhotoTableViewController.swift */,
 			);
 			name = "0.0註冊與登入";
 			sourceTree = "<group>";
@@ -1144,7 +1185,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=/usr/local/bin:$PATH\ncd parse\n\nparse symbols -p \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1162,6 +1203,7 @@
 				DB5C82871AF5B19F00A8F57E /* RightMenuVC.m in Sources */,
 				DB0BE1961AF4678800B49B4A /* Product.m in Sources */,
 				DB0BE2461AF4909B00B49B4A /* MinnaOpenGraphRequest.m in Sources */,
+				23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */,
 				DB0BE1F51AF467C400B49B4A /* CategoryCell.m in Sources */,
 				DB0BE24B1AF4909B00B49B4A /* UIImage+AlphaAdditions.m in Sources */,
 				23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */,
@@ -1170,6 +1212,7 @@
 				DB0BE2491AF4909B00B49B4A /* RCSwitchOnOff.m in Sources */,
 				DB0BE1521AF445A800B49B4A /* IntroViewController.swift in Sources */,
 				DB0BE2501AF4909B00B49B4A /* TPKeyboardAvoidingScrollView.m in Sources */,
+				23B0C7951B0F7F1F00D60CC3 /* PhoneVerifiedViewController.swift in Sources */,
 				23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */,
 				DB0BE1951AF4678800B49B4A /* Person.m in Sources */,
 				23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */,
@@ -1179,11 +1222,13 @@
 				DB0BE1921AF4678800B49B4A /* DataPointCollection.m in Sources */,
 				DB0BE24A1AF4909B00B49B4A /* TTTTimeIntervalFormatter.m in Sources */,
 				DB0BE17C1AF4676A00B49B4A /* ADVSegmentedControl.m in Sources */,
+				23B0C7A41B11B9A100D60CC3 /* MainPostDateTableViewController.swift in Sources */,
 				DB5C828D1AF5C96F00A8F57E /* AccountViewController.m in Sources */,
 				DB0BE24E1AF4909B00B49B4A /* UIImage+RoundedCornerAdditions.m in Sources */,
 				238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */,
 				DB0BE1F91AF467C400B49B4A /* PhotoCell.m in Sources */,
 				DB0BE2001AF467C400B49B4A /* ConnectionCell.m in Sources */,
+				23B0C7A61B11DB1400D60CC3 /* PostDateCell.swift in Sources */,
 				DB0BE24D1AF4909B00B49B4A /* UIImage+ResizeAdditions.m in Sources */,
 				DB0BE2451AF4909B00B49B4A /* MinnaMessageView.m in Sources */,
 				DB0BE1911AF4678800B49B4A /* Album.m in Sources */,
@@ -1206,6 +1251,7 @@
 				DB0BE1FD1AF467C400B49B4A /* NavigationSideCell.m in Sources */,
 				236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */,
 				DB0BE24C1AF4909B00B49B4A /* UIImage+ImageEffects.m in Sources */,
+				23B0C79A1B10111F00D60CC3 /* UploadProfilePhotoTableViewController.swift in Sources */,
 				DB571C981AF340A2005CAB77 /* ViewController.m in Sources */,
 				DB0BE1561AF4460200B49B4A /* RMParallaxItem.swift in Sources */,
 				DB0BE20D1AF48D7300B49B4A /* CMCache.m in Sources */,
@@ -1219,6 +1265,7 @@
 				DB5C82801AF5AE4700A8F57E /* UIViewController+AMSlideMenu.m in Sources */,
 				DB0BE1781AF4676A00B49B4A /* ADVAnimatedButton.m in Sources */,
 				DB5C82861AF5B19F00A8F57E /* LeftMenuVC.m in Sources */,
+				23B0C7971B100EC000D60CC3 /* WriteMyProfileTableViewController.swift in Sources */,
 				DB0BE1F31AF467C400B49B4A /* EventCell.m in Sources */,
 				DB0BE2581AF4AC7C00B49B4A /* DKCircleButton.m in Sources */,
 				DB0BE17B1AF4676A00B49B4A /* ADVProgressLayer.m in Sources */,
@@ -1229,6 +1276,8 @@
 				DB5C827A1AF5AE4700A8F57E /* AMSlideMenuContentSegue.m in Sources */,
 				DB5C827F1AF5AE4700A8F57E /* AMSlideMenuRightTableViewController.m in Sources */,
 				238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */,
+				23B0C79F1B10403400D60CC3 /* WriteProfileCells.swift in Sources */,
+				23B0C79B1B10111F00D60CC3 /* uploadPhotoCell.swift in Sources */,
 				DB0BE2521AF4909B00B49B4A /* UIKeyboardCoViewForMessenger.m in Sources */,
 				23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */,
 				DB0BE1FB1AF467C400B49B4A /* MetaCell.m in Sources */,
@@ -1245,9 +1294,10 @@
 				DB5C827D1AF5AE4700A8F57E /* AMSlideMenuMainViewController.m in Sources */,
 				23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */,
 				DB0BE1FF1AF467C400B49B4A /* TimelineCell.m in Sources */,
-				DB0BE15B1AF466AA00B49B4A /* PictureListViewController.m in Sources */,
+				23B0C7AA1B11E3DD00D60CC3 /* PictureListViewController.swift in Sources */,
 				DB0BE1571AF4460200B49B4A /* RMParallax.swift in Sources */,
 				DB5C827B1AF5AE4700A8F57E /* AMSlideMenuLeftMenuSegue.m in Sources */,
+				23B0C7A11B107C2600D60CC3 /* AddPhoneNumberViewController.swift in Sources */,
 				DB571C8F1AF340A2005CAB77 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

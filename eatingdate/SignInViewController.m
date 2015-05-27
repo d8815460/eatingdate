@@ -43,7 +43,6 @@
     [facebookButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
     facebookButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 16];
     facebookButton.backgroundColor = [UIColor colorWithRed:0.21 green: 0.30 blue: 0.55 alpha: 1.0];
-    [facebookButton addTarget:self action:@selector(dismiss) forControlEvents: UIControlEventTouchUpInside];
     
     
     NSMutableAttributedString* attributedText = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Don't have an account? Sign up", "登入畫面")];
@@ -57,7 +56,6 @@
     [noAccountButton setAttributedTitle:attributedText forState: UIControlStateNormal];
     [noAccountButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
     noAccountButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size:14];
-    [noAccountButton addTarget:self action:@selector(dismiss) forControlEvents: UIControlEventTouchUpInside];
     
     [signInButton setTitle:NSLocalizedString(@"Sign In", "登入畫面") forState: UIControlStateNormal];
     [signInButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
@@ -65,12 +63,10 @@
     signInButton.layer.borderWidth = 3;
     signInButton.layer.borderColor = [UIColor whiteColor].CGColor;
     signInButton.layer.cornerRadius = 5;
-    [signInButton addTarget:self action:@selector(dismiss) forControlEvents: UIControlEventTouchUpInside];
     
     [forgotPassword setTitle:NSLocalizedString(@"Forgot Password?", "登入畫面") forState: UIControlStateNormal];
     [forgotPassword setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
     forgotPassword.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 15];
-    [forgotPassword addTarget:self action:@selector(dismiss) forControlEvents: UIControlEventTouchUpInside];
     
     passwordContainer.backgroundColor = [UIColor clearColor];
     
@@ -86,7 +82,7 @@
     
     userContainer.backgroundColor = [UIColor clearColor];
     
-    userLabel.text = NSLocalizedString(@"Email", "登入畫面");
+    userLabel.text = NSLocalizedString(@"Phone", "登入畫面");
     userLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
     userLabel.textColor = [UIColor whiteColor];
     
@@ -94,7 +90,6 @@
     userTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
     userTextField.textColor = [UIColor whiteColor];
     
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,9 +155,11 @@
 }
 
 - (IBAction)signupButtonPressed:(id)sender {
+    
 }
 
 - (IBAction)forgotPasswordButtonPressed:(id)sender {
+    
 }
 
 - (IBAction)facebookLoginButtonPressed:(id)sender {
@@ -219,7 +216,6 @@
                 [user saveEventually:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
                         //轉場到 首頁 的畫面
-                        [MBProgressHUD hideHUDForView:self.view animated:NO];
                         
                         // Request new Publish Permissions
                         if ([FBSDKAccessToken currentAccessToken]) {
@@ -238,7 +234,10 @@
                     }
                 }];
             }else{
-                
+                //舊的用戶，直接轉場至首頁即可。
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
             }
         } else {
             NSLog(@"User logged in through Facebook!");
@@ -268,80 +267,14 @@
         
         if (user) {
             /* 暫時先不處理朋友資料，只要先存在本機就好
-            if (![user objectForKey:kPAPUserAlreadyAutoFollowedFacebookFriendsKey]) {
-                
-             
-                self.hud.labelText = NSLocalizedString(@"Following Friends", nil);
-                firstLaunch = YES;
-             
-                [user setObject:@YES forKey:kPAPUserAlreadyAutoFollowedFacebookFriendsKey];
-                
-                // find common Facebook friends already using Anypic
-                PFQuery *facebookFriendsQuery = [PFUser query];
-                [facebookFriendsQuery whereKey:kPAPUserFacebookIDKey containedIn:facebookIds];
-                
-                // auto-follow Parse employees
-                //                PFQuery *autoFollowAccountsQuery = [PFUser query];
-                //                [autoFollowAccountsQuery whereKey:kPAPUserFacebookIDKey containedIn:kPAPAutoFollowAccountFacebookIds];
-                
-                // combined query
-                PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:facebookFriendsQuery, nil]];
-                
-                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    
-                    NSArray *anypicFriends = objects;
-                    
-                    if (!error) {
-                        [anypicFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
-                            PFObject *joinActivity = [PFObject objectWithClassName:kPAPActivityClassKey];
-                            [joinActivity setObject:user forKey:kPAPActivityFromUserKey];
-                            [joinActivity setObject:newFriend forKey:kPAPActivityToUserKey];
-                            [joinActivity setObject:kPAPActivityTypeJoined forKey:kPAPActivityTypeKey];
-                            
-                            PFACL *joinACL = [PFACL ACL];
-                            [joinACL setPublicReadAccess:YES];
-                            joinActivity.ACL = joinACL;
-                            
-                            // make sure our join activity is always earlier than a follow
-                            [joinActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                [CMUtility followUserInBackground:newFriend block:^(BOOL succeeded, NSError *error) {
-                                    // This block will be executed once for each friend that is followed.
-                                    // We need to refresh the timeline when we are following at least a few friends
-                                    // Use a timer to avoid refreshing innecessarily
-                                    if (self.autoFollowTimer) {
-                                        [self.autoFollowTimer invalidate];
-                                    }
-                                    
-                                    self.autoFollowTimer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(autoFollowTimerFired:) userInfo:nil repeats:NO];
-                                }];
-                            }];
-                        }];
-                    }
-                    
-                    if (!error) {
-                        [MBProgressHUD hideHUDForView:self.view animated:NO];
-                        if (anypicFriends.count > 0) {
-                            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-                            self.hud.dimBackground = YES;
-                            self.hud.labelText = NSLocalizedString(@"Following Friends", nil);
-                        } else {
-                            
-                        }
-                    }
-                }];
-            }
-            PFACL *ACL = [PFACL ACL];
-            [ACL setPublicReadAccess:YES];
-            user.ACL = ACL;
-            
-            [user saveEventually];
             */
         } else {
             /*登出*/
 //            [(AppDelegate*)[[UIApplication sharedApplication] delegate] logOut];
         }
     } else {
-        self.hud.labelText = NSLocalizedString(@"Creating Profile", nil);
+        _hud.labelText = NSLocalizedString(@"正在創建用戶資料", nil);
+        
         NSString *facebookId = [result objectForKey:@"id"];
         NSString *facebookName = [result objectForKey:@"name"];
         //新增用戶資料 名字、姓氏、性別、地區(用Graph API的代號)
@@ -400,9 +333,7 @@
             
             [[PFUser currentUser] saveEventually:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    [[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                        
-                    }];
+                    [self performSegueWithIdentifier:@"addPhone" sender:nil];
                 }
             }];
         }
@@ -427,7 +358,7 @@
         }
     }
 }
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -435,5 +366,5 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
- */
+
 @end

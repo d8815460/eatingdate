@@ -23,6 +23,8 @@
 @property (nonatomic, strong) PFObject * restaurantCategory;    //餐廳類別
 @property (nonatomic, strong) NSString * restaurantName;        //餐廳名稱
 @property (nonatomic, strong) NSString * restaurantAddress;     //餐廳地址
+@property (nonatomic, strong) NSString * administrativeArea;    //餐廳的縣市
+@property (nonatomic, strong) NSString * city;                  //餐廳的市區
 @property (nonatomic, strong) PFGeoPoint*restaurantGeo;         //餐廳經緯度
 @property (nonatomic, strong) NSString * restaurantPhone;       //餐廳電話
 @property (nonatomic, strong) NSString * restaurantMinCost;     //最低消費

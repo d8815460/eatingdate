@@ -11,28 +11,29 @@
 
 @interface SignInViewController : UIViewController <UITextFieldDelegate, FBSDKGraphRequestConnectionDelegate>
 {
-    IBOutlet UILabel* titleLabel;
     
-    IBOutlet UIButton* facebookButton;
+    IBOutlet UILabel *titleLabel;
     
-    IBOutlet UIImageView* bgImageView;
+    IBOutlet UIButton *facebookButton;
     
-    IBOutlet UIButton* noAccountButton;
-    IBOutlet UIButton* signInButton;
+    IBOutlet UIImageView *bgImageView;
     
-    IBOutlet UIButton* forgotPassword;
+    IBOutlet UIButton *noAccountButton;
+    IBOutlet UIButton *signInButton;
     
-    IBOutlet UIView* passwordContainer;
-    IBOutlet UILabel* passwordLabel;
-    IBOutlet UITextField* passwordTextField;
-    IBOutlet UIView* passwordUnderline;
+    IBOutlet UIButton *forgotPassword;
     
-    IBOutlet UIView* userContainer;
-    IBOutlet UILabel* userLabel;
-    IBOutlet UITextField* userTextField;
-    IBOutlet UIView* userUnderline;
-
+    IBOutlet UIView *passwordContainer;
+    IBOutlet UILabel *passwordLabel;
+    IBOutlet UITextField *passwordTextField;
+    IBOutlet UIView *passwordUnderline;
+    
+    IBOutlet UIView *userContainer;
+    IBOutlet UILabel *userLabel;
+    IBOutlet UITextField *userTextField;
+    IBOutlet UIView *userUnderline;
     IBOutlet UIActivityIndicatorView *activityIndicator;
+
 }
 @property (nonatomic, assign) id<FBSDKGraphRequestConnectionDelegate> delegate;
 

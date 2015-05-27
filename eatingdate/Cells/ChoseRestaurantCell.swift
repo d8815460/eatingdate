@@ -24,6 +24,10 @@ class ChoseRestaurantCell: PFTableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var minCostLabel: UILabel!
     @IBOutlet weak var choseButton: UIButton!
+    var administrativeArea: UILabel! = UILabel()
+    var city: UILabel! = UILabel()
+    
+    
     var task:WriteTask!
     var restaurantObject:PFObject!
     var delegate:ChoseRestaurantCellDelegate?
@@ -44,7 +48,16 @@ class ChoseRestaurantCell: PFTableViewCell {
     @IBAction func selectButtonPressed(sender: AnyObject) {
         println("我選了這一家")
         
-        self.task.restaurant = self.restaurantObject
+        self.task.restaurant            = self.restaurantObject
+        self.task.restaurantAddress     = self.restaurantObject["address"] as! String
+        self.task.restaurantGeo         = self.restaurantObject["geo"]  as! PFGeoPoint
+        self.task.restaurantCategory    = self.restaurantObject["category"] as! PFObject
+        self.task.restaurantMinCost     = self.restaurantObject["minCost"]  as! String
+        self.task.restaurantName        = self.restaurantObject["name"] as! String
+        self.task.restaurantPhone       = self.restaurantObject["phone"] as! String
+        self.task.administrativeArea    = self.restaurantObject["administrativeArea"] as! String
+        self.task.city                  = self.restaurantObject["city"] as! String
+        
         delegate?.didSelectedRestaurant()
     }
 }

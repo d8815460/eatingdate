@@ -221,6 +221,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func randomNumber(range: Range<Int> = 1...6) -> Int {
+        let min = range.startIndex
+        let max = range.endIndex
+        return Int(arc4random_uniform(UInt32(max - min))) + min
+    }
+    
     func processSignUp(){
 //        self.signUpView?.signUpButton?.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
         /* 自訂的UI才有 emailTextField
@@ -250,6 +256,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //因為Facebook註冊登錄，預設user欄位不是電話號碼，所以得另外存一個phone
         user["phone"] = userTextField.text
         
+        //OTP驗證
+        //隨機亂碼
+        let valueCodeNumber = randomNumber(range: 1000...9999)
+        user["phoneCode"] = valueCodeNumber
+        
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
@@ -257,11 +268,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.signUpInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
                 //註冊成功，讓我們開始使用這個App吧
-                
-                //開始轉場，看要轉到哪裡去，填寫基本資料
-                self.performSegueWithIdentifier("wProfile", sender: self)
+                //雲端代碼
+                let number = "number"
+                let phoneCode = "phoneCode"
+                let variable = self.userTextField.text.toInt()
+                let userPhoneNumber = "+886\(variable!)"
+                let params = [number:userPhoneNumber, phoneCode:valueCodeNumber]
+                PFCloud.callFunctionInBackground("inviteWithTwilio", withParameters: params as [NSObject : AnyObject]) { (response: AnyObject?, error: NSError?) -> Void in
+                    if error == nil {
+                        println("簡訊已經送出")
+                        //開始轉頁
+                        //開始轉場，看要轉到哪裡去，進行手機驗證
+                        self.performSegueWithIdentifier("phone", sender: self)
+                    }else{
+                        
+                    }
+                }
             }else{
-                
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidden = true
                 

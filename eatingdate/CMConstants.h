@@ -61,6 +61,36 @@ extern NSString *const kPAPEditPhotoViewControllerUserInfoCommentKey;
 extern NSString *const kPAPInstallationUserKey;
 extern NSString *const kPAPInstallationChannelsKey;
 
+
+#pragma mark - Post Date Class
+// ***************** 發布任務暫存 ****************************
+
+//約會任務單主key
+extern NSString *const kPostDateClassesKey;     //主Key
+//table
+extern NSString *const kDateObjectId;
+extern NSString *const kDateFromUser;           //誰發起約會單
+extern NSString *const kDateType;               //約會形式（我請客，誰請我）
+extern NSString *const kDateTitle;              //約會主題
+extern NSString *const kDatePicMedium;          //發布約會背景照片（大）
+extern NSString *const kDatePicSmall;           //發布約會背景照片（小）
+extern NSString *const kDateRestaurant;         //發布約會的餐廳
+extern NSString *const kDateTime;               //約會的時間
+extern NSString *const kDateRestaurantCategory; //餐廳類別
+extern NSString *const kDateRestaurantName;     //餐廳名稱
+extern NSString *const kDateRestaurantAddress;  //餐廳地址
+extern NSString *const kDateRestaurantAdministrativeArea;//縣市
+extern NSString *const kDateRestaurantCity;     //市區
+extern NSString *const kDateRestaurantGeo;      //餐廳經緯度
+extern NSString *const kDateRestaurantPhone;    //餐廳電話
+extern NSString *const kDateRestaurantMinCost;  //餐廳最低消費
+extern NSString *const kDateGameType;           //馬上約或指定約或發布約
+extern NSString *const kDatePeopleAskNumber;    //報名人數
+extern NSString *const kDateToUser;             //最後決定約會的人選
+extern NSString *const kDatePostCost;           //約會單花費的信用額度
+extern NSString *const kIsTVIP;                 //是否用TVIP身份發佈
+
+
 #pragma mark - PFObject Activity Class
 // Class key
 extern NSString *const kPAPActivityClassKey;
@@ -278,30 +308,7 @@ extern NSString *const tasksSyncNewFormat;
 extern NSString *const WriteTaskFile;
 
 
-// ***************** 發布任務暫存 ****************************
 
-//約會任務單主key
-extern NSString *const kPostDateClassesKey;     //主Key
-//table
-extern NSString *const kDateObjectId;
-extern NSString *const kDateFromUser;           //誰發起約會單
-extern NSString *const kDateType;               //約會形式（我請客，誰請我）
-extern NSString *const kDateTitle;              //約會主題
-extern NSString *const kDatePicMedium;          //發布約會背景照片（大）
-extern NSString *const kDatePicSmall;           //發布約會背景照片（小）
-extern NSString *const kDateRestaurant;         //發布約會的餐廳
-extern NSString *const kDateTime;               //約會的時間
-extern NSString *const kDateRestaurantCategory; //餐廳類別
-extern NSString *const kDateRestaurantName;     //餐廳名稱
-extern NSString *const kDateRestaurantAddress;  //餐廳地址
-extern NSString *const kDateRestaurantGeo;      //餐廳經緯度
-extern NSString *const kDateRestaurantPhone;    //餐廳電話
-extern NSString *const kDateRestaurantMinCost;  //餐廳最低消費
-extern NSString *const kDateGameType;           //馬上約或指定約或發布約
-extern NSString *const kDatePeopleAskNumber;    //報名人數
-extern NSString *const kDateToUser;             //最後決定約會的人選
-extern NSString *const kDatePostCost;           //約會單花費的信用額度
-extern NSString *const kIsTVIP;                 //是否用TVIP身份發佈
 
 
 #pragma mark - Cached Photo Attributes
