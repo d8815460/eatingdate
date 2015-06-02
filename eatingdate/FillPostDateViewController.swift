@@ -24,6 +24,7 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var dateTypeSegmented: UISegmentedControl!
     
+    var isUploadPhoto:Bool!
     
     
     
@@ -39,6 +40,9 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        isUploadPhoto = false
+        
         //暫存的約會任務單
         self.task = WriteTask.sharedWriteTask() as! WriteTask
         
@@ -76,7 +80,7 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         println("will appear \(self.task.restaurant)")
         self.table.reloadData()
         
-        if self.task.restaurant != nil && self.task.dateTime != nil && self.task.dateTitle != nil {
+        if self.task.restaurant != nil && self.task.dateTime != nil && self.task.dateTitle != nil && isUploadPhoto == true{
             self.nextButton.hidden = false
         }
     }
@@ -225,6 +229,7 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         cell.uploadPhotoView.image = image
         cell.addPhotoButton.setTitle("", forState: .Normal)
         cell.addLabel.text = ""
+        isUploadPhoto = true
         
         //要將照片壓縮成兩個大小，以利儲存到WriteTask的picMedium & picSmall
         var medium = image.thumbnailImage(640, transparentBorder: 0, cornerRadius: 0, interpolationQuality: kCGInterpolationHigh)
@@ -471,6 +476,11 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
         self.performSegueWithIdentifier("TVIPPost", sender: self)
     }
     
+    @IBAction func dismissButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
+    }
     
     
     

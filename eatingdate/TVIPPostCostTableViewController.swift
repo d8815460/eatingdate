@@ -11,6 +11,7 @@ import UIKit
 class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var toturialLabelView: UIView!
     @IBOutlet weak var postCostTextField: UITextField!
+    @IBOutlet weak var postCostLabel: UILabel!
     @IBOutlet weak var tvipLabel: UILabel!
     var task: WriteTask!
     var hud:MBProgressHUD!
@@ -24,6 +25,7 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.postCostLabel.text = "誠意值"
         
         self.task = WriteTask.sharedWriteTask() as! WriteTask
         
@@ -31,6 +33,8 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
         self.tvipLabel.text = "☑︎使用TVIP身份發佈（最低1000%）"
         self.tvipLabel.textColor = UIColor(red: 211.0/255.0, green: 83.0/255.0, blue: 19.0/255.0, alpha: 1.0)
         self.task.isTVIP = NSNumber(bool: true)   //0=false, 1=true
+        
+        self.postCostTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,20 +47,38 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 2 {
             if self.tvipLabel.text == "☑︎使用TVIP身份發佈（最低1000%）" {
-                self.tvipLabel.text = "☐使用TVIP身份發佈（最低1000%）"
-                self.tvipLabel.textColor = UIColor(red: 211.0/255.0, green: 83.0/255.0, blue: 19.0/255.0, alpha: 1.0)
-                self.task.isTVIP = NSNumber(bool: true)   //0=false, 1=true
-            }else if self.tvipLabel.text == "☐使用TVIP身份發佈（最低1000%）"{
-                self.tvipLabel.text = "☑︎使用TVIP身份發佈（最低1000%）"
+                self.tvipLabel.text = "◻︎使用TVIP身份發佈（最低1000%）"
                 self.tvipLabel.textColor = UIColor(red: 79.0/255.0, green: 131.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+                self.task.isTVIP = NSNumber(bool: true)   //0=false, 1=true
+            }else if self.tvipLabel.text == "◻︎使用TVIP身份發佈（最低1000%）"{
+                self.tvipLabel.text = "☑︎使用TVIP身份發佈（最低1000%）"
+                self.tvipLabel.textColor = UIColor(red: 211.0/255.0, green: 83.0/255.0, blue: 19.0/255.0, alpha: 1.0)
                 self.task.isTVIP = NSNumber(bool: true)   //0=false, 1=true
             }
         }
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+        if count(newString) > 4 {
+            println("\(count(newString))")
+            textField.text = "9999"
+        }else if count(newString) < 2 {
+           
+        }
+        return true
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
         var number = textField.text.toInt()
-        self.task.postCost = NSNumber(integer: number!)
+        if number < 100 {
+            self.task.postCost = 100
+            self.postCostTextField.text = "100"
+        }else{
+            self.task.postCost = NSNumber(integer: number!)
+        }
+        
         println("我花了 \(self.task.postCost) 點數")
     }
     
@@ -105,6 +127,25 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
     }
     */
     @IBAction func postButtonPressed(sender: AnyObject) {
+        if postCostTextField.text.toInt() < 100 {
+            let alertController = UIAlertController(title: "誠意值最低100",
+                message: "請輸入至少100",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "確定",
+                style: UIAlertActionStyle.Default,
+                handler: nil)
+            )
+            // Display alert
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        
+        self.view.endEditing(true)
+        
+        
+        
         self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.hud.labelText = "準備發佈約會，請稍候"
         self.hud.dimBackground = true
@@ -154,7 +195,7 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
             savePostObject[kDateToUser] = self.task.toUser
         }
         if self.task.postCost != nil {
-            savePostObject[kDatePostCost] = self.task.postCost
+            savePostObject[kDatePostCost] = self.postCostTextField.text.toInt()
         }
         if self.task.restaurantMinCost != nil {
             savePostObject[kDateRestaurantMinCost] = self.task.restaurantMinCost

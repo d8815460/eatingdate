@@ -9,12 +9,19 @@
 import UIKit
 import MobileCoreServices
 
+protocol UploadProfilePhotoDelegate
+{
+    func finishButtonPressed()
+}
+
 class UploadProfilePhotoTableViewController: UITableViewController, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate {
     
     @IBOutlet var nextButton: UIButton!
     var picker:UIImagePickerController = UIImagePickerController()
     var popover:UIPopoverController! = nil
     var hud:MBProgressHUD!
+    
+    var delegate:UploadProfilePhotoDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -369,7 +376,9 @@ class UploadProfilePhotoTableViewController: UITableViewController, UIImagePicke
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
+            //要通知登入畫面 dismissViewController
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.presentToHomePage()
         })
     }
     

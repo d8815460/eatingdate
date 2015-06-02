@@ -104,7 +104,7 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         self.loadingViewEnabled = false
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         
-        println("objects = \(self.objects)")
+//        println("objects = \(self.objects)")
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {

@@ -29,6 +29,10 @@
 		23B0C7AA1B11E3DD00D60CC3 /* PictureListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */; };
 		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
 		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
+		23D78E061B1983AA00EF5FB8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D78E041B1983AA00EF5FB8 /* Fabric.framework */; };
+		23D78E071B1983AA00EF5FB8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D78E051B1983AA00EF5FB8 /* Crashlytics.framework */; };
+		23D78E0A1B19CA9D00EF5FB8 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D78E091B19CA9D00EF5FB8 /* DatePickerDialog.swift */; };
+		23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23D7BA9B1B1B4BE7007DE1E1 /* Address.plist */; };
 		23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */; };
 		23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */; };
 		23DEEFBA1B08B7D700273EC2 /* MalePostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */; };
@@ -180,6 +184,10 @@
 		23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureListViewController.swift; sourceTree = "<group>"; };
 		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		23D78E041B1983AA00EF5FB8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		23D78E051B1983AA00EF5FB8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		23D78E091B19CA9D00EF5FB8 /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
+		23D7BA9B1B1B4BE7007DE1E1 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVIPPostCostTableViewController.swift; sourceTree = "<group>"; };
 		23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FemalePostCostTableViewController.swift; sourceTree = "<group>"; };
 		23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalePostCostTableViewController.swift; sourceTree = "<group>"; };
@@ -384,10 +392,12 @@
 				DB0BE1401AF3878B00B49B4A /* libsqlite3.0.dylib in Frameworks */,
 				DB0BE1301AF37FF900B49B4A /* AudioToolbox.framework in Frameworks */,
 				DB0BE12E1AF37FF000B49B4A /* CFNetwork.framework in Frameworks */,
+				23D78E071B1983AA00EF5FB8 /* Crashlytics.framework in Frameworks */,
 				DB0BE12C1AF37FE500B49B4A /* CoreGraphics.framework in Frameworks */,
 				DB0BE12A1AF37FDD00B49B4A /* CoreLocation.framework in Frameworks */,
 				DB0BE1281AF37FD500B49B4A /* QuartzCore.framework in Frameworks */,
 				DB0BE1261AF37FC400B49B4A /* Security.framework in Frameworks */,
+				23D78E061B1983AA00EF5FB8 /* Fabric.framework in Frameworks */,
 				DB0BE1241AF37FB900B49B4A /* StoreKit.framework in Frameworks */,
 				DB0BE1221AF37FB100B49B4A /* SystemConfiguration.framework in Frameworks */,
 				DB0BE1201AF37FA400B49B4A /* Accounts.framework in Frameworks */,
@@ -487,6 +497,14 @@
 			name = "發布約會及餐廳";
 			sourceTree = "<group>";
 		};
+		23D78E081B19CA9200EF5FB8 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				23D78E091B19CA9D00EF5FB8 /* DatePickerDialog.swift */,
+			);
+			name = PickerView;
+			sourceTree = "<group>";
+		};
 		23DEEFB41B08B73E00273EC2 /* 30.2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +528,8 @@
 		B531A574E6A49508C955958C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23D78E041B1983AA00EF5FB8 /* Fabric.framework */,
+				23D78E051B1983AA00EF5FB8 /* Crashlytics.framework */,
 				DB0BE1441AF387B200B49B4A /* System Framewroks */,
 				DB0BE13F1AF3878B00B49B4A /* libsqlite3.0.dylib */,
 				DB0BE11B1AF37F8700B49B4A /* libz.dylib */,
@@ -950,6 +970,7 @@
 		DB571C8C1AF340A2005CAB77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				23D7BA9B1B1B4BE7007DE1E1 /* Address.plist */,
 				DBFFBDEE1AF6387D003127DB /* simpleMenuButton.png */,
 				DBFFBDEF1AF6387D003127DB /* simpleMenuButton@2x.png */,
 				DB571C8D1AF340A2005CAB77 /* Info.plist */,
@@ -979,6 +1000,7 @@
 		DB5C82661AF5A4B000A8F57E /* 0.0註冊與登入 */ = {
 			isa = PBXGroup;
 			children = (
+				23D78E081B19CA9200EF5FB8 /* PickerView */,
 				DB1C9E141AFAD94E000DED5B /* SignUpViewController.swift */,
 				DB1C9E121AFAD927000DED5B /* ForgotPasswordViewController.swift */,
 				DB5C82671AF5A4BC00A8F57E /* SignInViewController.h */,
@@ -1089,7 +1111,7 @@
 				TargetAttributes = {
 					DB571C881AF340A2005CAB77 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = CHX656NT89;
+						DevelopmentTeam = D3QVFELAEF;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1098,6 +1120,7 @@
 					};
 					DB571CA41AF340A2005CAB77 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = D3QVFELAEF;
 						TestTargetID = DB571C881AF340A2005CAB77;
 					};
 				};
@@ -1129,6 +1152,7 @@
 				DB571C9B1AF340A2005CAB77 /* Main.storyboard in Resources */,
 				DB571CA01AF340A2005CAB77 /* LaunchScreen.xib in Resources */,
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
+				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
 				DBFFBDF01AF6387D003127DB /* simpleMenuButton.png in Resources */,
 				DB571C9D1AF340A2005CAB77 /* Images.xcassets in Resources */,
 			);
@@ -1185,7 +1209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "./Fabric.framework/run a903f72a6ffdd06539302df50101d05b48d830ea 039b2c50ea29ef03f71f5cb93b598bfdfe4a19a23054f66cdddd13275803e599";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1253,6 +1277,7 @@
 				DB0BE24C1AF4909B00B49B4A /* UIImage+ImageEffects.m in Sources */,
 				23B0C79A1B10111F00D60CC3 /* UploadProfilePhotoTableViewController.swift in Sources */,
 				DB571C981AF340A2005CAB77 /* ViewController.m in Sources */,
+				23D78E0A1B19CA9D00EF5FB8 /* DatePickerDialog.swift in Sources */,
 				DB0BE1561AF4460200B49B4A /* RMParallaxItem.swift in Sources */,
 				DB0BE20D1AF48D7300B49B4A /* CMCache.m in Sources */,
 				DB5C828A1AF5BF1200A8F57E /* ProfileViewController.m in Sources */,
@@ -1357,8 +1382,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHUN I CHEN (YBYCBZQ67P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHUN I CHEN (YBYCBZQ67P)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1380,7 +1405,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1402,8 +1427,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHUN I CHEN (YBYCBZQ67P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHUN I CHEN (YBYCBZQ67P)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1418,7 +1443,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1431,7 +1456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1441,7 +1466,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "eatingdate/eatingdate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1454,7 +1479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chi Ming Kuo (YX24X8T4H8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1464,7 +1489,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33455648-5ce3-4814-816a-beca296975bc";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "eatingdate/eatingdate-Bridging-Header.h";
 			};
 			name = Release;
@@ -1473,6 +1498,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1484,6 +1511,7 @@
 				INFOPLIST_FILE = eatingdateTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eatingdate.app/eatingdate";
 			};
 			name = Debug;
@@ -1492,6 +1520,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1499,6 +1529,7 @@
 				INFOPLIST_FILE = eatingdateTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eatingdate.app/eatingdate";
 			};
 			name = Release;

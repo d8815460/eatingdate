@@ -30,18 +30,31 @@
     }
     
     
+    
     bgImageView.image = [UIImage imageNamed: @"profile-bg"];
-    profileImageView.image = [UIImage imageNamed:@"profile-pic-1"];
+    if (![PFUser currentUser]) {
+        profileImageView.image = [UIImage imageNamed:@"profile-pic-1"];
+    }else{
+        PFFile *profile = [[PFUser currentUser] objectForKey:kPAPUserProfilePicMediumKey];
+        [profile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            profileImageView.image = [UIImage imageWithData:data];
+        }];
+    }
     profileImageView.layer.cornerRadius = 30;
     profileImageView.clipsToBounds = true;
     
     nameLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
     nameLabel.textColor =  [UIColor whiteColor];
-    nameLabel.text = @"John Hoylett";
+    if (![PFUser currentUser]) {
+        nameLabel.text = @"尚未登入";
+    }else{
+        nameLabel.text = [[PFUser currentUser] objectForKey:kPAPUserDisplayNameKey];
+    }
+    
     
     locationLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 12];
     locationLabel.textColor =  [UIColor whiteColor];
-    locationLabel.text = @"London, UK";
+    locationLabel.text = @"台北市, 大安區";
     
     locationImageView.image = [UIImage imageNamed:@"location"];
     

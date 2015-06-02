@@ -45,5 +45,12 @@ class PictureListViewController: UIViewController {
     */
 
     @IBAction func postDateButtonPressed(sender: AnyObject) {
+        let userCurrent = PFUser.currentUser()
+        if userCurrent != nil {
+            self.performSegueWithIdentifier("showPost", sender: self)
+        }else {
+            self.performSegueWithIdentifier("signIn", sender: self)
+        }
+        
     }
 }

@@ -14,9 +14,11 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addPhoneButton: UIButton!
     var hud:MBProgressHUD!
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        activityIndicatorView.hidden = true
         // Do any additional setup after loading the view.
         addPhoneButton.hidden = true
         addPhoneField.delegate = self
@@ -49,12 +51,19 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addPhoneNumberButtonPressed(sender: AnyObject) {
+        
+        activityIndicatorView.hidden = false
+        activityIndicatorView.startAnimating()
+        
         //先確認用戶手機號碼總共有十碼，而且是09開頭的
         self.addPhoneField.resignFirstResponder()
         
         if count(self.addPhoneField.text) == 10 || self.addPhoneField.text.hasPrefix("09")  {
             
         } else {
+            activityIndicatorView.stopAnimating()
+            activityIndicatorView.hidden = true
+            
             let alertController = UIAlertController(title: "電話號碼錯誤",
                 message: "請輸入台灣本地的行動電話",
                 preferredStyle: UIAlertControllerStyle.Alert
@@ -92,6 +101,10 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             
             user.saveInBackgroundWithBlock({ (success, error:NSError?) -> Void in
                 if success {
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    self.activityIndicatorView.hidden = true
+                    
                     //開始雲端程式碼，傳送簡訊至用戶手機
                     PFCloud.callFunctionInBackground("inviteWithTwilio", withParameters: params as [NSObject : AnyObject]) { (response: AnyObject?, error: NSError?) -> Void in
                         if error == nil {

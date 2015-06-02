@@ -8,18 +8,25 @@
 
 import UIKit
 
-class WriteMyProfileTableViewController: UITableViewController, UITextFieldDelegate, UIActionSheetDelegate {
+extension Int {
+    var days:Int {
+        return 60*60*24*self
+    }
+    
+    var years:Int {
+        return 60*60*24*365*self
+    }
+    
+    var ago:NSDate{
+        return NSDate().dateByAddingTimeInterval(-Double(self))
+    }
+}
+
+class WriteMyProfileTableViewController: UITableViewController, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     
     @IBOutlet var firstNameField: UITextField!
     @IBOutlet var lastNameField: UITextField!
-    @IBOutlet var workField: UITextField!
-    @IBOutlet var livePlaceLabel: UILabel!
-    @IBOutlet var genderLabel: UILabel!
-    @IBOutlet var birthdayLabel: UILabel!
-    @IBOutlet var heightLabel: UILabel!
-    @IBOutlet var educationalLabel: UILabel!
-    @IBOutlet var emotionalStatusLabel: UILabel!
     @IBOutlet var nextStepButton: UIButton!
     
     override func viewDidLoad() {
@@ -35,9 +42,6 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
         
         lastNameField.tag = 100
         firstNameField.tag = 101
-        workField.tag = 102
-        
-        
         
         self.navigationController?.navigationBarHidden = false
         self.navigationItem.hidesBackButton = true
@@ -66,13 +70,10 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
             firstNameField.becomeFirstResponder()
             
         }else if textField.tag == 101 {
-            //跳下一個，職業
-            workField.becomeFirstResponder()
-            
-        }else if textField.tag == 102 {
-            //跳居住地，選擇模式，等同於選擇 table cell = index 3
-            workField.resignFirstResponder()
-            nextStepButton.hidden = false
+            //跳下一個，性別
+            self.view.endEditing(true)
+            let index:NSIndexPath! = NSIndexPath(forRow: 2, inSection: 0)
+            tableView(self.tableView, didSelectRowAtIndexPath: index)
         }
         
         return true
@@ -83,7 +84,7 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 8
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -96,37 +97,59 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var cell:UITableViewCell!
         
-        if indexPath.row > 2 {
-            cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! WriteProfileCells
-        }
+        /*
+        0.姓氏
+        1.名字
+        2.性別
+        3.居住地
+        4.出生年月日
+        5.身高
+        6.體型
+        7.職業
+        */
         
-        if indexPath.row == 3 {
-            //性別
-            /* Supports UIAlert Controller */
-            if( controllerAvailable()){
-                handleIOS8(cell as! WriteProfileCells)
-            } else {
-                var actionSheet:UIActionSheet
-                actionSheet = UIActionSheet(title: "選擇性別", delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: "我是男性", otherButtonTitles: "我是女性")
-                actionSheet.delegate = self
-                actionSheet.showInView(self.view)
-                /* Implement the delegate for actionSheet */
-            }
+        if indexPath.row > 1 {
+            var cell:WriteProfileCells!
             
-        } else if indexPath.row == 4 {
-            //居住地
-        } else if indexPath.row == 5 {
-            //生日
-        } else if indexPath.row == 6 {
-            //身高
-        } else if indexPath.row == 7 {
-            //學歷
-        } else if indexPath.row == 8 {
-            //感情狀態
+            cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! WriteProfileCells
+            
+            if indexPath.row == 2 {
+                //性別
+                /* Supports UIAlert Controller */
+                if( controllerAvailable()){
+                    handleIOS8(cell)
+                } else {
+                    var actionSheet:UIActionSheet
+                    actionSheet = UIActionSheet(title: "選擇性別", delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: "我是男性", otherButtonTitles: "我是女性")
+                    actionSheet.delegate = self
+                    actionSheet.showInView(self.view)
+                    /* Implement the delegate for actionSheet */
+                }
+            } else if indexPath.row == 3 {
+                //居住地
+                
+            } else if indexPath.row == 4 {
+                //出生年月日
+                DatePickerDialog().show(title: "選擇出生日期", doneButtonTitle: "確定", cancelButtonTitle: "取消", defaultDate: 25.years.ago, datePickerMode: .Date, callback: { (date) -> Void in
+                    println("\(date)")
+                    var dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "MM/dd/yyyy"   // 資料庫的規劃是 月份/日期/年份
+                    let birthday = dateFormatter.stringFromDate(date)
+                    println("\(birthday)")
+                    
+                    cell.detailLabel.text = "\(birthday)"
+                })
+            } else if indexPath.row == 5 {
+                //身高
+            } else if indexPath.row == 6 {
+                //體型
+            } else if indexPath.row == 7 {
+                //職業
+            }
+        }else{
+            var cell:UITableViewCell!
         }
-        
     }
 
     
@@ -153,8 +176,14 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
     
     func choseGender(cell:WriteProfileCells, gender:String!){
         cell.detailLabel.text = "\(gender)"
+        
+        //選完性別之後，跳下一個選擇居住地
+        let index:NSIndexPath! = NSIndexPath(forRow: 3, inSection: 0)
+        tableView(self.tableView, didSelectRowAtIndexPath: index)
+        
+        
         //選完性別之後，就先顯示 下一步
-        self.nextStepButton.hidden = false
+//        self.nextStepButton.hidden = false
     }
     
     func controllerAvailable() -> Bool {

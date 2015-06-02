@@ -82,7 +82,7 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         self.loadingViewEnabled = false
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         
-        println("objects = \(self.objects)")
+//        println("objects = \(self.objects)")
     }
     
     
@@ -99,7 +99,7 @@ class MainPostDateTableViewController: PFQueryTableViewController {
                     cell.progressView.hidden = true
                 }
                 cell.progressView.setProgress(( Float(percentDone) / 100.0), animated: true);
-                cell.bgImageView.image = UIImage(named: "img_ctn_box")
+//                cell.bgImageView.image = UIImage(named: "img_ctn_box")
             })
         }
         
@@ -117,8 +117,10 @@ class MainPostDateTableViewController: PFQueryTableViewController {
                 if let userGender:String! = fromUser[kPAPUserFacebookGenderKey] as? String {
                     if userGender == "male"{
                         cell.nameLabel.text = "\(userName!)先生"
+                        cell.sexImageView.image = UIImage(named: "icon_ctn_man")
                     }else{
                         cell.nameLabel.text = "\(userName!)小姐"
+                        cell.sexImageView.image = UIImage(named: "icon_ctn_women")
                     }
                 }
             }
