@@ -189,6 +189,15 @@ class MainPostDateTableViewController: PFQueryTableViewController {
                 }
             }
             
+            //年齡
+            if let years:NSDate! = fromUser[kPAPUserFacebookBirthdayKey] as? NSDate {
+                if years != nil {
+                    cell.sexLabel.text = self.stringForTimeIntervalFromDate(years!, toDateNow: NSDate())
+                }else{
+                    cell.sexLabel.text = "0 Y"
+                }
+            }
+            
             //餐廳姓名
             if let Restaurant:String! = object?[kDateRestaurantName] as? String {
                 cell.restaurantLabel.text = Restaurant!
@@ -246,6 +255,27 @@ class MainPostDateTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.headerView
     }
+    
+    
+    //計算年齡
+    func stringForTimeIntervalFromDate(birthDay:NSDate, toDateNow:NSDate) -> String? {
+        
+        var calendar:NSCalendar! = NSCalendar.currentCalendar()
+        let ageComponents = calendar.components(.CalendarUnitYear,
+            fromDate: birthDay,
+            toDate: toDateNow,
+            options: nil)
+        let age = ageComponents.year
+        
+        if age > 0 {
+            return "\(age) Y"
+        }else{
+            return "0 Y"
+        }
+        
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

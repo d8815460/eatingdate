@@ -126,7 +126,7 @@ static inline NSCalendarUnit NSCalendarUnitFromString(NSString *string) {
     NSString *string = nil;
     BOOL isApproximate = NO;
     for (NSString *unitName in [NSArray arrayWithObjects:@"year", @"month", @"week", @"day", @"hour", @"minute", @"second", nil]) {
-        NSNumber *number = [NSNumber numberWithInteger:abs([[components valueForKey:unitName] integerValue])];
+        NSNumber *number = [NSNumber numberWithInteger:labs([[components valueForKey:unitName] integerValue])];
         if ([number integerValue]) {
             if (!string) {
                 string = [NSString stringWithFormat:@"%@ %@", number, [self localizedStringForNumber:[number integerValue] ofCalendarUnit:NSCalendarUnitFromString(unitName)]];
