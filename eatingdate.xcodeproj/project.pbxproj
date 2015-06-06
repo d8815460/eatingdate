@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2317A5F21B22D803008672C0 /* OneShotLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317A5F11B22D803008672C0 /* OneShotLocationManager.swift */; };
 		233328551B1F23A300833F08 /* Province.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328521B1F23A300833F08 /* Province.m */; };
 		233328561B1F23A300833F08 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328541B1F23A300833F08 /* City.m */; };
 		233328581B1F260E00833F08 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 233328571B1F260E00833F08 /* area.plist */; };
@@ -161,6 +162,7 @@
 		09448ABFC1D04C21ABCB76A0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		0B0D2DC7EA608B6634039FD3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		128C34AE763AC0129DD65798 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2317A5F11B22D803008672C0 /* OneShotLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneShotLocationManager.swift; sourceTree = "<group>"; };
 		233328511B1F23A300833F08 /* Province.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Province.h; sourceTree = "<group>"; };
 		233328521B1F23A300833F08 /* Province.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Province.m; sourceTree = "<group>"; };
 		233328531B1F23A300833F08 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				DBFFBDE81AF62313003127DB /* MainVC.m */,
 				23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */,
 				23B0C7A31B11B9A100D60CC3 /* MainPostDateTableViewController.swift */,
+				2317A5F11B22D803008672C0 /* OneShotLocationManager.swift */,
 			);
 			name = "1.0首頁約會清單";
 			sourceTree = "<group>";
@@ -1279,6 +1282,7 @@
 				DB0BE17D1AF4676A00B49B4A /* ADVTabSegmentControl.m in Sources */,
 				DB0BE1F71AF467C400B49B4A /* ProductImageCell.m in Sources */,
 				DB0BE2511AF4909B00B49B4A /* UIKeyboardCoView.m in Sources */,
+				2317A5F21B22D803008672C0 /* OneShotLocationManager.swift in Sources */,
 				DB0BE2441AF4909B00B49B4A /* JSONKit.m in Sources */,
 				DB5C827E1AF5AE4700A8F57E /* AMSlideMenuRightMenuSegue.m in Sources */,
 				23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */,

@@ -12,8 +12,8 @@ class MainPostDateTableViewController: PFQueryTableViewController {
 
     @IBOutlet weak var headerView: PFTableViewCell!
     
-    
-    
+    //取得用戶的經緯座標
+    var manager: OneShotLocationManager?
     
     // Initialise the PFQueryTable tableview
     override init(style: UITableViewStyle, className: String?) {
@@ -60,6 +60,45 @@ class MainPostDateTableViewController: PFQueryTableViewController {
             })
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        manager = OneShotLocationManager()
+        manager!.fetchWithCompletion {location, error in
+            
+            // fetch location or an error
+            if let loc = location {
+                //上傳用戶的所在經緯度
+                var currentUser = PFUser.currentUser()
+                let Geo:PFGeoPoint = PFGeoPoint(location: loc)
+                currentUser?[kPAPParseLocationKey] = Geo
+                
+                var postACL = PFACL()
+                postACL.setPublicReadAccess(true)
+                currentUser?.ACL = postACL
+                
+                currentUser?.saveEventually({ (success, error) -> Void in
+                    if success {
+                        println("upload user location success!")
+                    }else{
+                        println("\(error?.localizedFailureReason)")
+                    }
+                })
+            } else if let err = error {
+                println("\(err.localizedDescription)")
+            }
+            
+            // destroy the object immediately to save memory
+            self.manager = nil
+        }
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,7 +120,7 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
         query.includeKey("fromUser")
-        query.includeKey("restaurant")
+        query.includeKey(kDateRestaurant)
         
         //過期的就不要顯示
         query.whereKey("dateTime", greaterThan: NSDate())
@@ -175,6 +214,20 @@ class MainPostDateTableViewController: PFQueryTableViewController {
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "HH:mm"
                 cell.dateTimeLabel.text = dateFormatter.stringFromDate(dateTime!)
+            }
+            
+            //約會單的地點
+            if let restaurant:PFObject! = object?[kDateRestaurant] as? PFObject{
+                if let AArea:String! = restaurant?[kDateRestaurantAdministrativeArea] as? String{
+                    if let City:String! = restaurant?[kDateRestaurantCity] as? String{
+                        cell.locationLabel.text = "\(AArea!) \(City!)"
+                    }else{
+                        cell.locationLabel.text = "\(AArea!)"
+                    }
+                    
+                }else{
+                    
+                }
             }
         }
         

@@ -109,6 +109,7 @@ NSString *const kPAPUserFacebookEmailKey                        = @"email";
 NSString *const kPAPUserFacebookLocalsKey                       = @"fbLocale";
 NSString *const kPAPUserFacebookFirstNameKey                    = @"fbFirstName";
 NSString *const kPAPUserFacebookLastNameKey                     = @"fbLastName";
+NSString *const kPAPUserFacebookLocation                        = @"location";
 NSString *const kPAPUserMaxPostQuotaKey                         = @"postQuota";
 NSString *const kPAPUserMaxReceiveQuotaKey                      = @"receiveQuota";
 NSString *const kPAPUserFrequencyKey                            = @"frequency";
