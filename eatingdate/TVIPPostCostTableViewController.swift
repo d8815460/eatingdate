@@ -78,8 +78,6 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
         }else{
             self.task.postCost = NSNumber(integer: number!)
         }
-        
-        println("我花了 \(self.task.postCost) 點數")
     }
     
     /*
@@ -127,6 +125,9 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
     }
     */
     @IBAction func postButtonPressed(sender: AnyObject) {
+        
+        self.view.endEditing(true)
+        
         if postCostTextField.text.toInt() < 100 {
             let alertController = UIAlertController(title: "誠意值最低100",
                 message: "請輸入至少100",
@@ -142,7 +143,7 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
         }
         
         
-        self.view.endEditing(true)
+        
         
         
         
@@ -194,7 +195,7 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
         if self.task.toUser != nil {
             savePostObject[kDateToUser] = self.task.toUser
         }
-        if self.task.postCost != nil {
+        if postCostTextField.text.toInt() != nil {
             savePostObject[kDatePostCost] = self.postCostTextField.text.toInt()
         }
         if self.task.restaurantMinCost != nil {
@@ -284,7 +285,13 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
                             
                             if channelSet.count > 0 {
                                 //推播內容
-                                var alert:String! = "先生(小姐)發起在\(savePostObject[kDateRestaurantName])的約會"
+                                var alert:String!
+                                let userName = PFUser.currentUser()?.objectForKey(kPAPUserFacebookLastNameKey)! as! String
+                                if PFUser.currentUser()?.objectForKey(kPAPUserFacebookGenderKey)! as! String == "male" {
+                                    alert = "\(userName)先生希望一起在\(savePostObject[kDateRestaurantName])共度美好時光"
+                                }else if PFUser.currentUser()?.objectForKey("gender")! as! String == "female" {
+                                    alert = "\(userName)小姐希望一起在\(savePostObject[kDateRestaurantName])共度美好時光"
+                                }
                                 
                                 var data:NSDictionary! = NSDictionary(objectsAndKeys:
                                     alert!, kAPNSAlertKey,

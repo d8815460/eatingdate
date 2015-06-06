@@ -37,6 +37,30 @@
     return sharedWriteTaskManagerInstance;
 }
 
+-(void)releaseThisTask:(WriteTask *)task{
+    task.objectId = nil;
+    task.fromUser = nil;
+    task.dateType = nil;
+    task.dateTitle = nil;
+    task.picMedium = nil;
+    task.picSmall = nil;
+    task.restaurant = nil;
+    task.dateTime = nil;
+    task.restaurantCategory = nil;
+    task.restaurantName = nil;
+    task.restaurantAddress = nil;
+    task.administrativeArea = nil;
+    task.city = nil;
+    task.restaurantGeo = nil;
+    task.restaurantPhone = nil;
+    task.restaurantMinCost = nil;
+    task.gameType = nil;
+    task.peopleAskNumber = nil;
+    task.toUser = nil;
+    task.postCost = nil;
+    task.isTVIP = nil;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.objectId              forKey:kDateObjectId];

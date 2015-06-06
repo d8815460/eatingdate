@@ -256,6 +256,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //因為Facebook註冊登錄，預設user欄位不是電話號碼，所以得另外存一個phone
         user["phone"] = userTextField.text
         
+        //吃飯點數500點
+        user["myPoint"] = 500
+        
         //OTP驗證
         //隨機亂碼
         let valueCodeNumber = randomNumber(range: 1000...9999)

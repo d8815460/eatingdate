@@ -48,6 +48,17 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.headerView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
+        
+        // Get the user from a non-authenticated method
+        if PFUser.currentUser() != nil {
+            var query = PFUser.query()
+            let current = PFUser.currentUser()
+            query?.whereKey("objectId", equalTo: current!.objectId!)
+            query?.getFirstObjectInBackgroundWithBlock({ (userAgain, error) -> Void in
+                println("currentUser = \(userAgain)")
+                PFUser.currentUser() == userAgain
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +83,10 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         query.includeKey("fromUser")
         query.includeKey("restaurant")
         
+        //過期的就不要顯示
+        query.whereKey("dateTime", greaterThan: NSDate())
+        
+        
         query.addAscendingOrder("postCost")
         query.orderByAscending("dateTime")
         
@@ -91,25 +106,35 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         
         if let picMediumFile = object?[kDatePicMedium] as? PFFile {
             picMediumFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
-                cell.bgImageView.image = UIImage(data: imageData!)
+                if imageData != nil {
+                    cell.bgImageView.image = UIImage(data: imageData!)
+                }else{
+                    cell.bgImageView.image = UIImage(named: "img_ctn_box")
+                    cell.progressView.hidden = true
+                }
+                
             }, progressBlock: { (percentDone: Int32) -> Void in
                 if percentDone < 100 && percentDone != 0 {
                     cell.progressView.hidden = false
                 }else{
                     cell.progressView.hidden = true
                 }
-                cell.progressView.setProgress(( Float(percentDone) / 100.0), animated: true);
-//                cell.bgImageView.image = UIImage(named: "img_ctn_box")
+                cell.progressView.setProgress(( Float(percentDone) / 100.0), animated: true)
             })
         }
         
         if object?[kDateFromUser] != nil {
             let fromUser = object?[kDateFromUser] as! PFUser
             if let picProfilePhotoFile: PFFile! = fromUser[kPAPUserProfilePicMediumKey] as? PFFile {
-                picProfilePhotoFile!.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
-                    cell.profileImageView.image = UIImage(data: imageData!)
-                })
-                
+                if picProfilePhotoFile != nil {
+                    picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
+                        if error != nil {
+                            
+                        }else{
+                            cell.profileImageView.image = UIImage(data: imageDate!)
+                        }
+                    })
+                }
             }
             
             // 姓氏＋先生/小姐
@@ -132,7 +157,12 @@ class MainPostDateTableViewController: PFQueryTableViewController {
             
             //誠意值
             if let cost:NSNumber! = object?[kDatePostCost] as? NSNumber {
-                cell.sinceritygoodLabel.text = "誠意\(cost!)%"
+                if cost != nil{
+                    cell.sinceritygoodLabel.text = "誠意\(cost!)%"
+                }else{
+                    cell.sinceritygoodLabel.text = "無誠意"
+                }
+                
             }
             
             //我請客/誰請我

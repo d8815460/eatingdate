@@ -22,12 +22,20 @@ extension Int {
     }
 }
 
-class WriteMyProfileTableViewController: UITableViewController, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class WriteMyProfileTableViewController: UITableViewController, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     
     @IBOutlet var firstNameField: UITextField!
     @IBOutlet var lastNameField: UITextField!
     @IBOutlet var nextStepButton: UIButton!
+    
+    var infoArray:NSMutableArray!
+    var provincesArray:NSMutableArray!
+    var citiesArray:NSMutableArray!
+    var areasArray:NSMutableArray!
+    
+    var provinceIndex:Int!
+    var cityIndex:Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +62,28 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
         self.navigationItem.titleView = label
         label.text = "請輸入基本資料"
         label.sizeToFit()
+        
+        /*
+        //導入出生地點
+        let temp:NSArray! = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("area", ofType: "plist")!)
+        
+        temp.enumerateObjectsUsingBlock { (object, index, stop) -> Void in
+            var province:Province! = Province(dic: object as! [NSObject : AnyObject])
+            println("province  = \(province.province)")
+            self.infoArray.addObject(province)
+            self.provincesArray.addObject(province.province)
+        }
+        
+        var province:Province! = self.infoArray[provinceIndex] as! Province
+        var c:City!
+        for c in province.cityArray! {
+            self.citiesArray.addObject(c.city)
+            var s:NSString!
+            for s in c.areasArray! {
+                self.areasArray.addObject(s)
+            }
+        }
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,6 +158,7 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
                 }
             } else if indexPath.row == 3 {
                 //居住地
+                self.choseMyLocation()
                 
             } else if indexPath.row == 4 {
                 //出生年月日
@@ -151,7 +182,42 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
             var cell:UITableViewCell!
         }
     }
-
+    
+    func choseMyLocation() {
+        println("選取地點")
+    }
+    
+    
+    // MARK: - UIPickerViewerDelegate
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 3
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return self.provincesArray.count
+        case 1:
+            return self.citiesArray.count
+        case 2:
+            return self.areasArray.count
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        switch component {
+        case 0:
+            return self.provincesArray.objectAtIndex(row) as! String
+        case 1:
+            return self.citiesArray.objectAtIndex(row) as! String
+        case 2:
+            return self.areasArray.objectAtIndex(row) as! String
+        default:
+            return ""
+        }
+    }
     
     
     func handleIOS8(cell:WriteProfileCells!){

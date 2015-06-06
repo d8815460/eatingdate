@@ -12,3 +12,6 @@
 #import "CMCache.h"
 #import "WriteTask.h"
 #import "UIImage+ResizeAdditions.h"
+#import "Province.h"
+#import "City.h"
+#import "PrefixHeader.pch"

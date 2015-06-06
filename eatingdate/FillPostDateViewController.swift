@@ -64,10 +64,27 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
             }else if gender == "female" {
                 dateTypeSegmented.selectedSegmentIndex = 1
                 self.task.dateType = "誰請我"
+                self.nextButton.setBackgroundImage(self.imageWithColor(UIColor(red: 214.0/255.0, green: 123.0/255.0, blue: 144.0/255.0, alpha: 1.0)), forState: UIControlState.Normal)
+                self.nextButton.setBackgroundImage(self.imageWithColor(UIColor(red: 214.0/255.0, green: 123.0/255.0, blue: 144.0/255.0, alpha: 1.0)), forState: UIControlState.Selected)
+                self.nextButton.setBackgroundImage(self.imageWithColor(UIColor(red: 214.0/255.0, green: 123.0/255.0, blue: 144.0/255.0, alpha: 1.0)), forState: UIControlState.Highlighted)
             }
         }
     }
     
+    
+    func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, self.nextButton.frame.size.width, self.nextButton.frame.height)
+        UIGraphicsBeginImageContext(rect.size)
+        let context:CGContextRef = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -472,8 +489,25 @@ class FillPostDateViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
         
-        //先轉場至TVIP
-        self.performSegueWithIdentifier("TVIPPost", sender: self)
+        let user = PFUser.currentUser()
+        if user?["isTVIP"]?.boolValue == true {
+            //先轉場至TVIP
+            self.performSegueWithIdentifier("TVIPPost", sender: self)
+        }else{
+            if user?[kPAPUserFacebookGenderKey] as! String == "male" {
+                //如果是男生 manPost
+                self.performSegueWithIdentifier("manPost", sender: self)
+            }else{
+                //如果是女生 femalePost
+                self.performSegueWithIdentifier("femalePost", sender: self)
+            }
+        }
+        
+        
+        
+        
+        
+        
     }
     
     @IBAction func dismissButtonPressed(sender: AnyObject) {

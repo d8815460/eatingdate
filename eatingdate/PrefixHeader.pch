@@ -32,3 +32,4 @@
 #define mainLightBlueColor [UIColor colorWithRed:5.0f/255 green:133.0/255 blue:255.0/255 alpha:1.0f]
 #define mainTableViewBGColor [UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0f]
 #define mainGreenViewBGColor [UIColor colorWithRed:27.0/255 green:132.0f/255 blue:73.0/255 alpha:1.0f]
+#define femaleColor [UIColor colorWithRed:214.0/255 green:123.0f/255 blue:144.0/255 alpha:1.0f]

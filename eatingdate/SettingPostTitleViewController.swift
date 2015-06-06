@@ -22,6 +22,17 @@ class SettingPostTitleViewController: UIViewController, UITextViewDelegate {
 
         // Do any additional setup after loading the view.
         
+        //判斷男生女生，女生就要改Button的顏色
+        if let gender:String = PFUser.currentUser()?.objectForKey("gender") as? String {
+            if gender == "male" {
+                //預設顏色
+            }else if gender == "female" {
+                doneButton.setBackgroundImage(self.imageWithColor(UIColor(red: 214.0/255.0, green: 123.0/255.0, blue: 144.0/255.0, alpha: 1.0)), forState: UIControlState.Normal)
+                doneButton.setBackgroundImage(self.imageWithColor(UIColor(red: 214.0/255.0, green: 123.0/255.0, blue: 144.0/255.0, alpha: 1.0)), forState: UIControlState.Selected)
+                doneButton.setBackgroundImage(self.imageWithColor(UIColor(red: 214.0/255.0, green: 123.0/255.0, blue: 144.0/255.0, alpha: 1.0)), forState: UIControlState.Highlighted)
+            }
+        }
+        
         self.doneButton.setTitle("完成", forState: UIControlState.Normal)
         
         self.textView2.delegate = self
@@ -37,6 +48,20 @@ class SettingPostTitleViewController: UIViewController, UITextViewDelegate {
         self.textView2.becomeFirstResponder()
     }
 
+    func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, self.doneButton.frame.size.width, self.doneButton.frame.height)
+        UIGraphicsBeginImageContext(rect.size)
+        let context:CGContextRef = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,6 +95,14 @@ class SettingPostTitleViewController: UIViewController, UITextViewDelegate {
                 }
             }
             return true
+        }
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        if textView.text.isEmpty{
+            placeholderLabel.hidden = false
+        }else{
+            placeholderLabel.hidden = true
         }
     }
     

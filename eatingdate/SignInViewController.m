@@ -208,6 +208,8 @@
                 [userDefaults synchronize];
                 [user setObject:privateChannelName forKey:kPAPUserPrivateChannelKey];
                 
+                //吃飯點數500點
+                [user setObject:[NSNumber numberWithInt:500] forKey:@"myPoint"];
                 
                 PFACL *ACL = [PFACL ACL];
                 [ACL setPublicReadAccess:YES];
@@ -241,6 +243,10 @@
             }
         } else {
             NSLog(@"User logged in through Facebook!");
+            //舊的用戶，直接轉場至首頁即可。
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         }
     }];
 }

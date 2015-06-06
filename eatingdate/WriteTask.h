@@ -54,4 +54,7 @@
 +(id)sharedWriteTask;
 
 +(id)initWriteTasks;
+
+-(void)releaseThisTask:(WriteTask *)task;
+
 @end
