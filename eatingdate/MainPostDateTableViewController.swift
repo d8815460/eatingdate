@@ -197,48 +197,58 @@ class MainPostDateTableViewController: PFQueryTableViewController {
                     cell.sexLabel.text = "0 Y"
                 }
             }
-            
-            //餐廳姓名
-            if let Restaurant:String! = object?[kDateRestaurantName] as? String {
-                cell.restaurantLabel.text = Restaurant!
-            }
-            
-            //誠意值
-            if let cost:NSNumber! = object?[kDatePostCost] as? NSNumber {
-                if cost != nil{
-                    cell.sinceritygoodLabel.text = "誠意\(cost!)%"
-                }else{
-                    cell.sinceritygoodLabel.text = "無誠意"
-                }
-                
-            }
-            
-            //我請客/誰請我
-            if let dateType:String! = object?[kDateType] as? String {
-                cell.whoTreatLabel.text = "\(dateType!)"
-            }
-            
-            //約會時間
-            if let dateTime:NSDate! = object?[kDateTime] as? NSDate {
-                var dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                cell.dateTimeLabel.text = dateFormatter.stringFromDate(dateTime!)
-            }
-            
-            //約會單的地點
-            if let restaurant:PFObject! = object?[kDateRestaurant] as? PFObject{
-                if let AArea:String! = restaurant?[kDateRestaurantAdministrativeArea] as? String{
-                    if let City:String! = restaurant?[kDateRestaurantCity] as? String{
-                        cell.locationLabel.text = "\(AArea!) \(City!)"
-                    }else{
-                        cell.locationLabel.text = "\(AArea!)"
-                    }
-                    
-                }else{
-                    
-                }
+        }
+        
+        //餐廳姓名
+        if let Restaurant:String! = object?[kDateRestaurantName] as? String {
+            cell.restaurantLabel.text = Restaurant!
+        }
+        
+        //誠意值
+        if let cost:NSNumber! = object?[kDatePostCost] as? NSNumber {
+            if cost != nil{
+                cell.sinceritygoodLabel.text = "誠意\(cost!)%"
+            }else{
+                cell.sinceritygoodLabel.text = "無誠意"
             }
         }
+        
+        //被觀看次數
+        if let beenLooked:NSNumber! = object?[kDateBeenLookedAmount] as? NSNumber {
+            if beenLooked != nil {
+                cell.beenLookedLabel.text = "\(beenLooked!)"
+            }else{
+                cell.beenLookedLabel.text = "0"
+            }
+        }
+        
+        //我請客/誰請我
+        if let dateType:String! = object?[kDateType] as? String {
+            cell.whoTreatLabel.text = "\(dateType!)"
+        }
+        
+        //約會時間
+        if let dateTime:NSDate! = object?[kDateTime] as? NSDate {
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            cell.dateTimeLabel.text = dateFormatter.stringFromDate(dateTime!)
+        }
+        
+        //約會單的地點
+        if let restaurant:PFObject! = object?[kDateRestaurant] as? PFObject{
+            if let AArea:String! = restaurant?[kDateRestaurantAdministrativeArea] as? String{
+                if let City:String! = restaurant?[kDateRestaurantCity] as? String{
+                    cell.locationLabel.text = "\(AArea!) \(City!)"
+                }else{
+                    cell.locationLabel.text = "\(AArea!)"
+                }
+                
+            }else{
+                
+            }
+        }
+        
+        
         
         
         return cell
@@ -256,6 +266,33 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         return self.headerView
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //被點擊的物件，該篇約會文的觀看次數要+1
+        var cell:PostDateCell!
+        cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! PostDateCell
+        
+        //該篇貼文物件 
+        var object = self.objects![indexPath.row] as! PFObject
+        println("貼文物件 = \(object.objectId)")
+        let oldLooked = cell.beenLookedLabel.text?.toInt()
+        let beenLooked = (oldLooked! + 1)
+        
+        cell.beenLookedLabel.text = "\(beenLooked)"
+        
+        object[kDateBeenLookedAmount] = beenLooked
+        
+        var postACL = PFACL()
+        postACL.setPublicReadAccess(true)
+        postACL.setPublicWriteAccess(true)
+        
+        object.ACL = postACL
+        object.saveEventually({ (success, error) -> Void in
+            //如果是男生 manPost
+            self.performSegueWithIdentifier("moreDetail", sender: object)
+        })
+        
+    }
+    
     
     //計算年齡
     func stringForTimeIntervalFromDate(birthDay:NSDate, toDateNow:NSDate) -> String? {
@@ -268,11 +305,10 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         let age = ageComponents.year
         
         if age > 0 {
-            return "\(age) Y"
+            return "\(age)y"
         }else{
-            return "0 Y"
+            return "0y"
         }
-        
     }
     
     
@@ -311,14 +347,18 @@ class MainPostDateTableViewController: PFQueryTableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "moreDetail" {
+            let PostDateNv = segue.destinationViewController as! UINavigationController
+            let VC = PostDateNv.viewControllers[0] as! PostDateDetailTableViewController
+            VC.detailItem = sender
+        }
     }
-    */
-
 }

@@ -31,6 +31,7 @@
 		23B0C7A61B11DB1400D60CC3 /* PostDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */; };
 		23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */; };
 		23B0C7AA1B11E3DD00D60CC3 /* PictureListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */; };
+		23B30D6D1B2505C50021C972 /* PostDateDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */; };
 		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
 		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
 		23D78E061B1983AA00EF5FB8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D78E041B1983AA00EF5FB8 /* Fabric.framework */; };
@@ -192,6 +193,7 @@
 		23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateCell.swift; sourceTree = "<group>"; };
 		23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateHeaderView.swift; sourceTree = "<group>"; };
 		23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureListViewController.swift; sourceTree = "<group>"; };
+		23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateDetailTableViewController.swift; sourceTree = "<group>"; };
 		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23D78E041B1983AA00EF5FB8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -427,7 +429,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		236580FB1AFDEC88008BC27D /* 2.0發佈約流程 */ = {
+		236580FB1AFDEC88008BC27D /* 3.0發佈約流程 */ = {
 			isa = PBXGroup;
 			children = (
 				23A9658A1B057B0D00DBADE1 /* 約會單的類 */,
@@ -437,7 +439,7 @@
 				23DEEFB41B08B73E00273EC2 /* 30.2 */,
 				236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */,
 			);
-			name = "2.0發佈約流程";
+			name = "3.0發佈約流程";
 			sourceTree = "<group>";
 		};
 		238665AF1AFF678B00745655 /* 30.1.2選擇餐廳 */ = {
@@ -494,6 +496,14 @@
 				23B0C79E1B10403400D60CC3 /* WriteProfileCells.swift */,
 			);
 			name = "填寫個人基本資料cells";
+			sourceTree = "<group>";
+		};
+		23B30D6B1B25056A0021C972 /* 2.0約會清單 */ = {
+			isa = PBXGroup;
+			children = (
+				23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */,
+			);
+			name = "2.0約會清單";
 			sourceTree = "<group>";
 		};
 		23B4284C1B079D2100181D1A /* 發布約會及餐廳 */ = {
@@ -965,7 +975,8 @@
 				DB5C82811AF5B19100A8F57E /* 左右菜單 */,
 				DB5C82661AF5A4B000A8F57E /* 0.0註冊與登入 */,
 				DB0BE1581AF4669B00B49B4A /* 1.0首頁約會清單 */,
-				236580FB1AFDEC88008BC27D /* 2.0發佈約流程 */,
+				23B30D6B1B25056A0021C972 /* 2.0約會清單 */,
+				236580FB1AFDEC88008BC27D /* 3.0發佈約流程 */,
 				DB0BE1531AF445F500B49B4A /* RMParallax */,
 				DB0BE1511AF445A800B49B4A /* IntroViewController.swift */,
 				DB571C901AF340A2005CAB77 /* AppDelegate.h */,
@@ -1289,6 +1300,7 @@
 				DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */,
 				DB0BE2481AF4909B00B49B4A /* RCSwitch.m in Sources */,
 				DB0BE2471AF4909B00B49B4A /* MyFile.m in Sources */,
+				23B30D6D1B2505C50021C972 /* PostDateDetailTableViewController.swift in Sources */,
 				DB0BE24F1AF4909B00B49B4A /* UIImage+Utils.m in Sources */,
 				DB0BE1FD1AF467C400B49B4A /* NavigationSideCell.m in Sources */,
 				236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */,

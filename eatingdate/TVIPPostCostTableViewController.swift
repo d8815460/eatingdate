@@ -63,9 +63,9 @@ class TVIPPostCostTableViewController: UITableViewController, UITextFieldDelegat
         
         if count(newString) > 4 {
             println("\(count(newString))")
-            textField.text = "9999"
+            textField.text = "999"
         }else if count(newString) < 2 {
-           
+            
         }
         return true
     }

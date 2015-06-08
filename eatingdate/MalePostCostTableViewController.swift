@@ -63,7 +63,7 @@ class MalePostCostTableViewController: UITableViewController, UITextFieldDelegat
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
-        if count(newString) > 3 {
+        if count(newString) > 4 {
             println("\(count(newString))")
             textField.text = "999"
         }else if count(newString) < 2 {

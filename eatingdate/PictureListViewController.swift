@@ -51,6 +51,5 @@ class PictureListViewController: UIViewController {
         }else {
             self.performSegueWithIdentifier("signIn", sender: self)
         }
-        
     }
 }
