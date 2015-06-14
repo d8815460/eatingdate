@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
-class PostDateDetailTableViewController: PFQueryTableViewController {
+class PostDateDetailTableViewController: PFQueryTableViewController, UICollectionViewDelegate, UICollectionViewDataSource{
 
     var detailItem:AnyObject!
+    var Geo:PFGeoPoint!
+    var friends:NSArray!
+    
+    @IBOutlet weak var actionCell: UITableViewCell!
     
     // Initialise the PFQueryTable tableview
     override init(style: UITableViewStyle, className: String?) {
@@ -35,6 +40,9 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
         self.loadingViewEnabled = false
     }
     
+    //取得用戶的經緯座標
+    var manager: OneShotLocationManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,9 +52,42 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        println("get detail = \(detailItem)")
+        manager = OneShotLocationManager()
+        manager?.fetchWithCompletion({ (location, error) -> () in
+            if let loc = location {
+                self.Geo = PFGeoPoint(location: loc)
+            } else if let err = error {
+                println("\(error?.localizedDescription)")
+            }
+        })
+        
+        //取得該約會單目前的報名人。
+        var askAmount:PFQuery! = PFQuery(className: kAskDateClassesKey)
+        askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem)
+        let currentUser = detailItem?[kDateFromUser] as! PFUser
+        askAmount.whereKey(kAskFromUser, notEqualTo: currentUser)
+        askAmount.whereKey(kAskToUser, equalTo: currentUser)
+        
+        askAmount.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            
+            if error != nil {
+                println("get any error \(error)")
+            }else{
+                self.friends = objects
+                
+                //重新整理tableview reload
+                self.tableView.reloadData()
+            }
+        }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,14 +111,27 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell!
         var cell0:PostDateCell!
+        var cell1:ActionCell!
+        var cell2:MapCell!
+        var cell3:AskCell!
         
         if indexPath.row == 0{
             cell0 = tableView.dequeueReusableCellWithIdentifier("PostDateCell", forIndexPath: indexPath) as! PostDateCell
         }else if indexPath.row == 11 {
-            cell = tableView.dequeueReusableCellWithIdentifier("actionCell", forIndexPath: indexPath) as! UITableViewCell
+            cell1 = tableView.dequeueReusableCellWithIdentifier("actionCell", forIndexPath: indexPath) as! ActionCell
         }else if indexPath.row == 12 {
             cell = tableView.dequeueReusableCellWithIdentifier("attentionCell", forIndexPath: indexPath) as! UITableViewCell
-        }else{
+        }else if indexPath.row == 7 {
+            cell2 = tableView.dequeueReusableCellWithIdentifier("mapCell", forIndexPath: indexPath) as! MapCell
+        }else if indexPath.row == 8 {
+            if self.friends != nil || self.friends.count > 0{
+                cell3 = tableView.dequeueReusableCellWithIdentifier("askCell", forIndexPath: indexPath) as! AskCell
+                
+            }else{
+                //使用一般cell即可
+            }
+        }
+        else{
             cell = tableView.dequeueReusableCellWithIdentifier("BasicCell", forIndexPath: indexPath) as! UITableViewCell
         }
         
@@ -236,14 +290,51 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
             }
         } else if indexPath.row == 7 {
             //地址
-            cell.textLabel?.text = "地址"
+            cell2.titleLabel?.text = "地址"
             if let res:String! = detailItem?[kDateRestaurantAddress] as? String {
-                cell.detailTextLabel?.text = res!
+                cell2.detailLabel?.text = res!
             }
+            
+            //1
+            let rGeo = detailItem?[kDateRestaurantGeo] as! PFGeoPoint
+            let RestaurantLocation = CLLocationCoordinate2D(latitude: rGeo.latitude, longitude: rGeo.longitude)
+            //2
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            let region = MKCoordinateRegionMake(RestaurantLocation, span)
+            cell2.map.setRegion(region, animated: true)
+            
+            //3
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = RestaurantLocation
+            
+            if let res:String! = detailItem?[kDateRestaurantPhone] as? String {
+                annotation.title = res!
+            }
+            cell2.map.addAnnotation(annotation)
+            
+            //距離你多遠
+            let caseLoc:CLLocation = CLLocation(latitude: rGeo.latitude, longitude: rGeo.longitude)
+            if self.Geo != nil {
+                let userLoc:CLLocation = CLLocation(latitude: self.Geo.latitude, longitude: self.Geo.longitude)
+                let mLabel = userLoc.distanceFromLocation(caseLoc)
+                cell2.distanceLabel.text = String(format:"%.0fm", mLabel)
+            }else{
+                cell2.distanceLabel.text = "無法取得用戶位置"
+            }
+            
+            return cell2
         } else if indexPath.row == 8 {
             //報名人數
-            cell.textLabel?.text = "報名人數"
-            cell.detailTextLabel?.text = ""
+            cell3.titleLabel.text = "報名人數"
+            if self.friends.count > 0 {
+                cell3.askCountLabel?.text = "\(friends.count)/5"
+            }else{
+                cell3.askCountLabel?.text = "0/5"
+            }
+            cell3.friendsCollectionView.delegate = self
+            cell3.friendsCollectionView.dataSource = self
+            cell3.friendsCollectionView.backgroundColor = UIColor.clearColor()
+            return cell3
         } else if indexPath.row == 9 {
             //報名截止倒數
             cell.textLabel?.text = "報名截止倒數"
@@ -256,6 +347,15 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
             }
         } else if indexPath.row == 11 {
             //修改或報名
+            let fromUser = detailItem?[kDateFromUser] as! PFUser
+            if let objectId:String! = fromUser.objectId {
+                if objectId == PFUser.currentUser()?.objectId! {
+                    cell1.askOrModifyButton.setTitle("修改", forState: UIControlState.Normal)
+                }else{
+                    cell1.askOrModifyButton.setTitle("報名", forState: UIControlState.Normal)
+                }
+            }
+            return cell1
         } else if indexPath.row == 12 {
             //注意事項
         }
@@ -269,7 +369,21 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
             return 93
         } else if indexPath.row == 12 {
             return 220
-        } else{
+        } else if indexPath.row == 7 {
+            return 213
+        } else if indexPath.row == 8 {
+            if self.friends != nil {
+                if self.friends.count == 0{
+                    //使用一般cell即可
+                    return 48
+                }else{
+                    return 96
+                }
+            }else{
+                return 48
+            }
+            
+        }else{
             return 48
         }
         
@@ -297,6 +411,108 @@ class PostDateDetailTableViewController: PFQueryTableViewController {
             
         })
     }
+    
+    
+    // MARK: - action
+    
+    @IBAction func askOrModifyButtonPressed(sender: AnyObject) {
+        let fromUser = detailItem?[kDateFromUser] as! PFUser
+        if let objectId:String! = fromUser.objectId {
+            
+            if objectId == PFUser.currentUser()?.objectId! {
+                //可以修改
+                
+            }else{
+                //確認當前用戶是否已經報名過，如果已經報名過，就提示，否則就新增報名
+                var askAmount:PFQuery! = PFQuery(className: kAskDateClassesKey)
+                askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem)
+                let currentUser = PFUser.currentUser()!
+                askAmount.whereKey(kAskFromUser, equalTo: currentUser)
+                
+                askAmount.getFirstObjectInBackgroundWithBlock({ (askObject, error) -> Void in
+                    if error != nil {
+                        //新增報名
+                        //儲存報名資料
+                        var savePostObject = PFObject(className: kAskDateClassesKey)
+                        savePostObject[kAskFromUser] = PFUser.currentUser()
+                        savePostObject[kAskToUser] = fromUser
+                        savePostObject[kAskDateFromPostDate] = self.detailItem as! PFObject
+                        
+                        var ACL = PFACL()
+                        ACL.setPublicReadAccess(true)
+                        ACL.setPublicWriteAccess(true)
+                        savePostObject.ACL = ACL
+                        
+                        savePostObject.saveEventually({ (success, error) -> Void in
+                            let alertController = UIAlertController(title: "完成報名",
+                                message: "請靜候佳音",
+                                preferredStyle: UIAlertControllerStyle.Alert
+                            )
+                            alertController.addAction(UIAlertAction(title: "確定",
+                                style: UIAlertActionStyle.Default,
+                                handler: nil)
+                            )
+                            // Display alert
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        })
+                        
+                    }else{
+                        //已經報名過
+                        let alertController = UIAlertController(title: "您過去曾報名",
+                            message: "請靜候佳音",
+                            preferredStyle: UIAlertControllerStyle.Alert
+                        )
+                        alertController.addAction(UIAlertAction(title: "確定",
+                            style: UIAlertActionStyle.Default,
+                            handler: nil)
+                        )
+                        // Display alert
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                })
+                
+                
+            }
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! UICollectionViewCell
+        let imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
+        if self.friends.count > 0 {
+            println("self.friend = \(self.friends.objectAtIndex(indexPath.row))")
+            var dateObject:PFObject! = self.friends.objectAtIndex(indexPath.row) as! PFObject
+            var fromUser:PFUser! = dateObject[kDateFromUser] as! PFUser
+            if fromUser != nil {
+                var query = PFUser.query()
+                query?.getObjectInBackgroundWithId(fromUser.objectId!, block: { (fromuser, error) -> Void in
+                    
+                    if let picProfilePhotoFile: PFFile! = fromuser![kPAPUserProfilePicMediumKey] as? PFFile {
+                        if picProfilePhotoFile != nil {
+                            picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
+                                if error != nil {
+                                    
+                                }else{
+                                    imageView.image = UIImage(data: imageDate!)
+                                }
+                            })
+                        }
+                    }
+                })
+                
+            }
+        }
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.friends.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(46, 46)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

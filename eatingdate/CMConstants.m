@@ -260,6 +260,15 @@ NSString *const tasksSyncNewFormat = @"tasksSyncNewFormat";
 //案子存檔路徑
 NSString *const WriteTaskFile = @"WriteTaskFile.txt";
 
+#pragma mark - 報名
+//約會報名主key
+NSString *const kAskDateClassesKey      = @"Date";              //主Key
+//table
+NSString *const kAskDateFromPostDate    = @"fromPostDate";      //哪個約會單
+NSString *const kAskFromUser            = @"fromUser";          //誰報名
+NSString *const kAskToUser              = @"toUser";            //報名誰的約會
+NSString *const kIsLike                 = @"isLike";            //決定人選
+NSString *const kIsCancel               = @"isCancel";          //報名者是否取消
 
 //約會任務單key
 NSString *const kPostDateClassesKey     = @"PostDate";          //主Key

@@ -11,7 +11,9 @@
 		233328551B1F23A300833F08 /* Province.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328521B1F23A300833F08 /* Province.m */; };
 		233328561B1F23A300833F08 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328541B1F23A300833F08 /* City.m */; };
 		233328581B1F260E00833F08 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 233328571B1F260E00833F08 /* area.plist */; };
+		23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23631E581B2663EB00EDDF75 /* ActionCell.swift */; };
 		236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */; };
+		23759AB21B2718E900C5127F /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23759AB11B2718E900C5127F /* MapCell.swift */; };
 		238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */; };
 		238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */; };
 		238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */; };
@@ -41,6 +43,7 @@
 		23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */; };
 		23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */; };
 		23DEEFBA1B08B7D700273EC2 /* MalePostCostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */; };
+		23F2FE2B1B2C65C500594204 /* AskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F2FE2A1B2C65C500594204 /* AskCell.swift */; };
 		23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */; };
 		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
@@ -169,7 +172,9 @@
 		233328531B1F23A300833F08 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		233328541B1F23A300833F08 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		233328571B1F260E00833F08 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		23631E581B2663EB00EDDF75 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillPostDateViewController.swift; sourceTree = "<group>"; };
+		23759AB11B2718E900C5127F /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantViewController.swift; sourceTree = "<group>"; };
 		238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryCell.swift; sourceTree = "<group>"; };
 		238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRestaurantTableViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +208,7 @@
 		23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVIPPostCostTableViewController.swift; sourceTree = "<group>"; };
 		23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FemalePostCostTableViewController.swift; sourceTree = "<group>"; };
 		23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalePostCostTableViewController.swift; sourceTree = "<group>"; };
+		23F2FE2A1B2C65C500594204 /* AskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskCell.swift; sourceTree = "<group>"; };
 		23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDatePhotoCell.swift; path = ../PostDatePhotoCell.swift; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -502,6 +508,9 @@
 			isa = PBXGroup;
 			children = (
 				23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */,
+				23631E581B2663EB00EDDF75 /* ActionCell.swift */,
+				23759AB11B2718E900C5127F /* MapCell.swift */,
+				23F2FE2A1B2C65C500594204 /* AskCell.swift */,
 			);
 			name = "2.0約會清單";
 			sourceTree = "<group>";
@@ -1261,6 +1270,7 @@
 				23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */,
 				DB0BE1791AF4676A00B49B4A /* ADVGradientButton.m in Sources */,
 				DB0BE2011AF467C400B49B4A /* PictureCell.m in Sources */,
+				23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */,
 				DB0BE2491AF4909B00B49B4A /* RCSwitchOnOff.m in Sources */,
 				DB0BE1521AF445A800B49B4A /* IntroViewController.swift in Sources */,
 				DB0BE2501AF4909B00B49B4A /* TPKeyboardAvoidingScrollView.m in Sources */,
@@ -1269,6 +1279,7 @@
 				DB0BE1951AF4678800B49B4A /* Person.m in Sources */,
 				23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */,
 				DB0BE1F61AF467C400B49B4A /* ProductCell.m in Sources */,
+				23F2FE2B1B2C65C500594204 /* AskCell.swift in Sources */,
 				DB0BE1FC1AF467C400B49B4A /* NavigationFullCell.m in Sources */,
 				DB0BE1991AF4678800B49B4A /* ViewInfo.m in Sources */,
 				DB0BE1921AF4678800B49B4A /* DataPointCollection.m in Sources */,
@@ -1299,6 +1310,7 @@
 				23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */,
 				DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */,
 				DB0BE2481AF4909B00B49B4A /* RCSwitch.m in Sources */,
+				23759AB21B2718E900C5127F /* MapCell.swift in Sources */,
 				DB0BE2471AF4909B00B49B4A /* MyFile.m in Sources */,
 				23B30D6D1B2505C50021C972 /* PostDateDetailTableViewController.swift in Sources */,
 				DB0BE24F1AF4909B00B49B4A /* UIImage+Utils.m in Sources */,

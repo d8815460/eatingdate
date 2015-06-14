@@ -14,6 +14,7 @@ class MainPostDateTableViewController: PFQueryTableViewController {
     
     //取得用戶的經緯座標
     var manager: OneShotLocationManager?
+    var distance:String!
     
     // Initialise the PFQueryTable tableview
     override init(style: UITableViewStyle, className: String?) {
@@ -50,15 +51,15 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         self.headerView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
         
         // Get the user from a non-authenticated method
-        if PFUser.currentUser() != nil {
-            var query = PFUser.query()
-            let current = PFUser.currentUser()
-            query?.whereKey("objectId", equalTo: current!.objectId!)
-            query?.getFirstObjectInBackgroundWithBlock({ (userAgain, error) -> Void in
-                println("currentUser = \(userAgain)")
-                PFUser.currentUser() == userAgain
-            })
-        }
+//        if PFUser.currentUser() != nil {
+//            var query = PFUser.query()
+//            let current = PFUser.currentUser()
+//            query?.whereKey("objectId", equalTo: current!.objectId!)
+//            query?.getFirstObjectInBackgroundWithBlock({ (userAgain, error) -> Void in
+//                println("currentUser = \(userAgain)")
+//                PFUser.currentUser() == userAgain
+//            })
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,6 +98,10 @@ class MainPostDateTableViewController: PFQueryTableViewController {
             // destroy the object immediately to save memory
             self.manager = nil
         }
+        
+        //餐廳的距離
+        
+        //報名的人數
         
     }
 
@@ -281,14 +286,16 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         
         object[kDateBeenLookedAmount] = beenLooked
         
+        //如果是男生 manPost
+        self.performSegueWithIdentifier("moreDetail", sender: object)
+        
         var postACL = PFACL()
         postACL.setPublicReadAccess(true)
         postACL.setPublicWriteAccess(true)
         
         object.ACL = postACL
         object.saveEventually({ (success, error) -> Void in
-            //如果是男生 manPost
-            self.performSegueWithIdentifier("moreDetail", sender: object)
+            
         })
         
     }

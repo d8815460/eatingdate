@@ -62,6 +62,17 @@ extern NSString *const kPAPInstallationUserKey;
 extern NSString *const kPAPInstallationChannelsKey;
 
 
+#pragma mark - 報名
+//約會報名主key
+extern NSString *const kAskDateClassesKey;         //主Key
+//table
+extern NSString *const kAskDateFromPostDate;        //哪個約會單
+extern NSString *const kAskFromUser;                //誰報名
+extern NSString *const kAskToUser;                  //報名誰的約會
+extern NSString *const kIsLike;                     //決定人選
+extern NSString *const kIsCancel;                   //報名者是否取消
+
+
 #pragma mark - Post Date Class
 // ***************** 發布任務暫存 ****************************
 
