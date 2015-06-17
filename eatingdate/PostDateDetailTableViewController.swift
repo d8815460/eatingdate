@@ -476,6 +476,17 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row == 8 {
+            if self.friends.count > 0 {
+//                self.performSegueWithIdentifier("choseTa", sender: detailItem)
+            }
+        }
+    }
+    
+
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! UICollectionViewCell
         let imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
@@ -487,13 +498,14 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 var query = PFUser.query()
                 query?.getObjectInBackgroundWithId(fromUser.objectId!, block: { (fromuser, error) -> Void in
                     
-                    if let picProfilePhotoFile: PFFile! = fromuser![kPAPUserProfilePicMediumKey] as? PFFile {
+                    if let picProfilePhotoFile: PFFile! = fromuser![kPAPUserProfilePicSmallKey] as? PFFile {
                         if picProfilePhotoFile != nil {
                             picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
                                 if error != nil {
                                     
                                 }else{
                                     imageView.image = UIImage(data: imageDate!)
+                                    imageView.layer.cornerRadius = 23
                                 }
                             })
                         }
@@ -511,6 +523,10 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(46, 46)
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("choseTa", sender: detailItem)
     }
     
     /*
@@ -548,14 +564,17 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        let view = segue.destinationViewController as! ChosseTaTableViewController
+        view.detailItem = detailItem
+        
     }
-    */
+
 
 }

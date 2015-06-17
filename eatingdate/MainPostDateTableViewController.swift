@@ -272,31 +272,38 @@ class MainPostDateTableViewController: PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //被點擊的物件，該篇約會文的觀看次數要+1
-        var cell:PostDateCell!
-        cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! PostDateCell
-        
-        //該篇貼文物件 
-        var object = self.objects![indexPath.row] as! PFObject
-        println("貼文物件 = \(object.objectId)")
-        let oldLooked = cell.beenLookedLabel.text?.toInt()
-        let beenLooked = (oldLooked! + 1)
-        
-        cell.beenLookedLabel.text = "\(beenLooked)"
-        
-        object[kDateBeenLookedAmount] = beenLooked
-        
-        //如果是男生 manPost
-        self.performSegueWithIdentifier("moreDetail", sender: object)
-        
-        var postACL = PFACL()
-        postACL.setPublicReadAccess(true)
-        postACL.setPublicWriteAccess(true)
-        
-        object.ACL = postACL
-        object.saveEventually({ (success, error) -> Void in
+        //如果當前用物沒有登入，就不能使用
+        if PFUser.currentUser() == nil {
+            //轉場登入畫面
+            self.performSegueWithIdentifier("signIn", sender: self)
             
-        })
+        }else {
+            //被點擊的物件，該篇約會文的觀看次數要+1
+            var cell:PostDateCell!
+            cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! PostDateCell
+            
+            //該篇貼文物件
+            var object = self.objects![indexPath.row] as! PFObject
+            println("貼文物件 = \(object.objectId)")
+            let oldLooked = cell.beenLookedLabel.text?.toInt()
+            let beenLooked = (oldLooked! + 1)
+            
+            cell.beenLookedLabel.text = "\(beenLooked)"
+            
+            object[kDateBeenLookedAmount] = beenLooked
+            
+            //如果是男生 manPost
+            self.performSegueWithIdentifier("moreDetail", sender: object)
+            
+            var postACL = PFACL()
+            postACL.setPublicReadAccess(true)
+            postACL.setPublicWriteAccess(true)
+            
+            object.ACL = postACL
+            object.saveEventually({ (success, error) -> Void in
+                
+            })
+        }
         
     }
     

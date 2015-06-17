@@ -28,4 +28,7 @@ class AskCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func whoAskMeButtonPressed(sender: AnyObject) {
+        
+    }
 }

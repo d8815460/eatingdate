@@ -293,6 +293,8 @@ NSString *const kDatePeopleAskNumber    = @"peopleAskNumber";   //報名人數
 NSString *const kDateToUser             = @"toUser";            //最後決定約會的人選
 NSString *const kDatePostCost           = @"postCost";          //約會單花費的信用額度
 NSString *const kIsTVIP                 = @"isTVIP";            //是否用TVIP身份發佈
+NSString *const kIsVIP                  = @"isVIP";             //是不是VIP
+NSString *const kIsGVIP                 = @"isGVIP";            //是不是GVIP
 NSString *const kDateBeenLookedAmount   = @"beenLookedAmount";  //該篇貼文被觀看的次數
 
 #pragma mark - Cached 任務 Attributes

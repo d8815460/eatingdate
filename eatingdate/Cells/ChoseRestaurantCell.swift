@@ -52,7 +52,9 @@ class ChoseRestaurantCell: PFTableViewCell {
         self.task.restaurantAddress     = self.restaurantObject["address"] as! String
         self.task.restaurantGeo         = self.restaurantObject["geo"]  as! PFGeoPoint
         self.task.restaurantCategory    = self.restaurantObject["category"] as! PFObject
-        self.task.restaurantMinCost     = self.restaurantObject["minCost"]  as! String
+        if self.restaurantObject["minCost"] != nil {
+            self.task.restaurantMinCost     = self.restaurantObject["minCost"]  as! String
+        }
         self.task.restaurantName        = self.restaurantObject["name"] as! String
         self.task.restaurantPhone       = self.restaurantObject["phone"] as! String
         self.task.administrativeArea    = self.restaurantObject["administrativeArea"] as! String

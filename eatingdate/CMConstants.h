@@ -100,6 +100,8 @@ extern NSString *const kDatePeopleAskNumber;    //報名人數
 extern NSString *const kDateToUser;             //最後決定約會的人選
 extern NSString *const kDatePostCost;           //約會單花費的信用額度
 extern NSString *const kIsTVIP;                 //是否用TVIP身份發佈
+extern NSString *const kIsVIP;                  //是不是VIP
+extern NSString *const kIsGVIP;                 //是不是GVIP
 extern NSString *const kDateBeenLookedAmount;   //該篇貼文被觀看的次數
 
 

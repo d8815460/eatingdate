@@ -36,6 +36,8 @@
 		23B30D6D1B2505C50021C972 /* PostDateDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */; };
 		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
 		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
+		23B9B1F11B30D33B007DA769 /* ChosseTaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B9B1F01B30D33B007DA769 /* ChosseTaTableViewController.swift */; };
+		23B9B1F31B30D5C4007DA769 /* ChoseTaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B9B1F21B30D5C4007DA769 /* ChoseTaCell.swift */; };
 		23D78E061B1983AA00EF5FB8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D78E041B1983AA00EF5FB8 /* Fabric.framework */; };
 		23D78E071B1983AA00EF5FB8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D78E051B1983AA00EF5FB8 /* Crashlytics.framework */; };
 		23D78E0A1B19CA9D00EF5FB8 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D78E091B19CA9D00EF5FB8 /* DatePickerDialog.swift */; };
@@ -201,6 +203,8 @@
 		23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateDetailTableViewController.swift; sourceTree = "<group>"; };
 		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		23B9B1F01B30D33B007DA769 /* ChosseTaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChosseTaTableViewController.swift; sourceTree = "<group>"; };
+		23B9B1F21B30D5C4007DA769 /* ChoseTaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseTaCell.swift; sourceTree = "<group>"; };
 		23D78E041B1983AA00EF5FB8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		23D78E051B1983AA00EF5FB8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		23D78E091B19CA9D00EF5FB8 /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
@@ -507,6 +511,7 @@
 		23B30D6B1B25056A0021C972 /* 2.0約會清單 */ = {
 			isa = PBXGroup;
 			children = (
+				23B9B1EF1B30D301007DA769 /* 2.1決定人選 */,
 				23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */,
 				23631E581B2663EB00EDDF75 /* ActionCell.swift */,
 				23759AB11B2718E900C5127F /* MapCell.swift */,
@@ -524,6 +529,15 @@
 				238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */,
 			);
 			name = "發布約會及餐廳";
+			sourceTree = "<group>";
+		};
+		23B9B1EF1B30D301007DA769 /* 2.1決定人選 */ = {
+			isa = PBXGroup;
+			children = (
+				23B9B1F01B30D33B007DA769 /* ChosseTaTableViewController.swift */,
+				23B9B1F21B30D5C4007DA769 /* ChoseTaCell.swift */,
+			);
+			name = "2.1決定人選";
 			sourceTree = "<group>";
 		};
 		23D78E081B19CA9200EF5FB8 /* PickerView */ = {
@@ -1262,6 +1276,7 @@
 				DBFFBDE91AF62313003127DB /* MainVC.m in Sources */,
 				DB0BE2101AF48D7300B49B4A /* Utils.m in Sources */,
 				DB5C82871AF5B19F00A8F57E /* RightMenuVC.m in Sources */,
+				23B9B1F11B30D33B007DA769 /* ChosseTaTableViewController.swift in Sources */,
 				DB0BE1961AF4678800B49B4A /* Product.m in Sources */,
 				DB0BE2461AF4909B00B49B4A /* MinnaOpenGraphRequest.m in Sources */,
 				23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */,
@@ -1277,6 +1292,7 @@
 				23B0C7951B0F7F1F00D60CC3 /* PhoneVerifiedViewController.swift in Sources */,
 				23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */,
 				DB0BE1951AF4678800B49B4A /* Person.m in Sources */,
+				23B9B1F31B30D5C4007DA769 /* ChoseTaCell.swift in Sources */,
 				23DEEFB61B08B7B700273EC2 /* TVIPPostCostTableViewController.swift in Sources */,
 				DB0BE1F61AF467C400B49B4A /* ProductCell.m in Sources */,
 				23F2FE2B1B2C65C500594204 /* AskCell.swift in Sources */,
