@@ -8,10 +8,11 @@
 
 import UIKit
 
-class PictureListViewController: UIViewController {
+class PictureListViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var contentViewForTable: UIView!
     @IBOutlet weak var postDateButton: UIButton!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     var mainTable:MainPostDateTableViewController!
     let mainStoryboard:UIStoryboard! = UIStoryboard(name: "Main", bundle: nil)
@@ -26,6 +27,19 @@ class PictureListViewController: UIViewController {
         
         self.contentViewForTable.addSubview(self.mainTable.view)
         
+        
+        self.followScrollView(self.contentViewForTable, usingTopConstraint: self.topConstraint, withDelay: 65.0)
+        self.setShouldScrollWhenContentFits(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.showNavBarAnimated(false)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.showNavBarAnimated(false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +47,6 @@ class PictureListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 

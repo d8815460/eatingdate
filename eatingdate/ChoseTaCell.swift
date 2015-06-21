@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ChoseTaCellDelegate {
+    func didSelectedTa(userTa: PFUser!)
+}
+
 class ChoseTaCell: PFTableViewCell {
 
     @IBOutlet weak var photoView: UIImageView!
@@ -18,6 +22,10 @@ class ChoseTaCell: PFTableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var choseButton: UIButton!
+    
+    
+    var userTa:PFUser!
+    var delegate:ChoseTaCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,4 +39,7 @@ class ChoseTaCell: PFTableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func choseTaButtonPressed(sender: AnyObject) {
+        delegate?.didSelectedTa(userTa)
+    }
 }

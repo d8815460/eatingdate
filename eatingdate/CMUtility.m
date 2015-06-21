@@ -51,7 +51,7 @@ typedef enum {
         [likeActivity setObject:kPAPActivityTypeLike forKey:kPAPActivityTypeKey];
         [likeActivity setObject:[PFUser currentUser] forKey:kPAPActivityFromUserKey];
 //        [likeActivity setObject:[photo objectForKey:kTaskOwner_User] forKey:kPAPActivityToUserKey];
-        [likeActivity setObject:photo forKey:kPAPActivityPhotoKey];
+        [likeActivity setObject:photo forKey:kPAPActivityDateKey];
         
         PFACL *likeACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [likeACL setPublicReadAccess:YES];
@@ -129,7 +129,7 @@ typedef enum {
 
 + (void)unlikePhotoInBackground:(id)photo block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
     PFQuery *queryExistingLikes = [PFQuery queryWithClassName:kPAPActivityClassKey];
-    [queryExistingLikes whereKey:kPAPActivityPhotoKey equalTo:photo];
+    [queryExistingLikes whereKey:kPAPActivityDateKey equalTo:photo];
     [queryExistingLikes whereKey:kPAPActivityTypeKey equalTo:kPAPActivityTypeLike];
     [queryExistingLikes whereKey:kPAPActivityFromUserKey equalTo:[PFUser currentUser]];
     [queryExistingLikes setCachePolicy:kPFCachePolicyNetworkOnly];
@@ -186,17 +186,35 @@ typedef enum {
 
 + (PFQuery *)queryForActivitiesOnPhoto:(PFObject *)photo cachePolicy:(PFCachePolicy)cachePolicy {
     PFQuery *queryLikes = [PFQuery queryWithClassName:kPAPActivityClassKey];
-    [queryLikes whereKey:kPAPActivityPhotoKey equalTo:photo];
+    [queryLikes whereKey:kPAPActivityDateKey equalTo:photo];
     [queryLikes whereKey:kPAPActivityTypeKey equalTo:kPAPActivityTypeLike];
     
     PFQuery *queryComments = [PFQuery queryWithClassName:kPAPActivityClassKey];
-    [queryComments whereKey:kPAPActivityPhotoKey equalTo:photo];
+    [queryComments whereKey:kPAPActivityDateKey equalTo:photo];
     [queryComments whereKey:kPAPActivityTypeKey equalTo:kPAPActivityTypeComment];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryLikes,queryComments,nil]];
     [query setCachePolicy:cachePolicy];
     [query includeKey:kPAPActivityFromUserKey];
-    [query includeKey:kPAPActivityPhotoKey];
+    [query includeKey:kPAPActivityDateKey];
+    
+    return query;
+}
+
++ (PFQuery *)queryForActivitiesOnDate:(PFObject *)date cachePolicy:(PFCachePolicy)cachePolicy {
+    PFQuery *queryAskers = [PFQuery queryWithClassName:kPAPActivityClassKey];
+    [queryAskers whereKey:@"fromDate" equalTo:date];
+    [queryAskers whereKey:@"type" equalTo:@"ask"];
+    
+    PFQuery *queryComments = [PFQuery queryWithClassName:kPAPActivityClassKey];
+    [queryComments whereKey:@"fromDate" equalTo:date];
+    [queryComments whereKey:@"type" equalTo:@"comment"];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryAskers, queryComments, nil]];
+    [query fromLocalDatastore];
+//    [query setCachePolicy:cachePolicy];
+    [query includeKey:kPAPActivityFromUserKey];
+    [query includeKey:@"fromDate"];
     
     return query;
 }
@@ -575,7 +593,7 @@ typedef enum {
                                             [channelSets addObject:privateChannelName];
                                         }
                                         PFObject *activity = [PFObject objectWithClassName:kPAPActivityClassKey];
-                                        [activity setObject:cases forKey:kPAPActivityPhotoKey];
+                                        [activity setObject:cases forKey:kPAPActivityDateKey];
                                         [activity setObject:[PFUser currentUser] forKey:kPAPActivityFromUserKey];
                                         [activity setObject:[helperList objectForKey:@"userID"] forKey:kPAPActivityToUserKey];
                                         [activity setObject:kPAPActivityTypeOwnerDidntCheckHelper forKey:kPAPActivityTypeKey];
@@ -602,7 +620,7 @@ typedef enum {
                                                           kPAPPushPayloadPayloadTypeActivityKey, kPAPPushPayloadPayloadTypeKey, //"a" , "p"
                                                           kPAPActivityTypeOwnerDidntCheckHelper, kPAPPushPayloadActivityTypeKey,//"fail" , "t"
                                                           [[PFUser currentUser] objectId], kPAPPushPayloadFromUserObjectIdKey,  //"業主用戶ID” , "fu"
-                                                          cases.objectId, kPAPPushPayloadPhotoObjectIdKey,                     //"CaseID" , "ca"
+                                                          cases.objectId, kPAPPushPayloadPostDateObjectIdKey,                     //"CaseID" , "ca"
                                                           @"Increment",kAPNSBadgeKey,
                                                           @"action", @"tw.taiwan8.CUSTOM_BROADCAST",
                                                           nil];
@@ -654,7 +672,7 @@ typedef enum {
                                         [channelSets addObject:privateChannelName];
                                         
                                         PFObject *activity = [PFObject objectWithClassName:kPAPActivityClassKey];
-                                        [activity setObject:cases forKey:kPAPActivityPhotoKey];
+                                        [activity setObject:cases forKey:kPAPActivityDateKey];
                                         [activity setObject:[PFUser currentUser] forKey:kPAPActivityFromUserKey];
                                         [activity setObject:[helperList objectForKey:@"userID"] forKey:kPAPActivityToUserKey];
                                         [activity setObject:kPAPActivityTypeOwnerDidntCheckHelper forKey:kPAPActivityTypeKey];
@@ -683,7 +701,7 @@ typedef enum {
                                                       kPAPPushPayloadPayloadTypeActivityKey, kPAPPushPayloadPayloadTypeKey, //"a" , "p"
                                                       kPAPActivityTypeOwnerDidntCheckHelper, kPAPPushPayloadActivityTypeKey,//"fail" , "t"
                                                       [[PFUser currentUser] objectId], kPAPPushPayloadFromUserObjectIdKey,  //"業主用戶ID” , "fu"
-                                                      cases.objectId, kPAPPushPayloadPhotoObjectIdKey,                     //"CaseID" , "ca"
+                                                      cases.objectId, kPAPPushPayloadPostDateObjectIdKey,                     //"CaseID" , "ca"
                                                       @"Increment",kAPNSBadgeKey,
                                                       @"action", @"tw.taiwan8.CUSTOM_BROADCAST",
                                                       nil];

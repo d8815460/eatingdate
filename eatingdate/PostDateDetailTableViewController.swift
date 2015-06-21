@@ -61,36 +61,118 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             }
         })
         
-        //取得該約會單目前的報名人。
-        var askAmount:PFQuery! = PFQuery(className: kAskDateClassesKey)
-        askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem)
-        let currentUser = detailItem?[kDateFromUser] as! PFUser
-        askAmount.whereKey(kAskFromUser, notEqualTo: currentUser)
-        askAmount.whereKey(kAskToUser, equalTo: currentUser)
+        self.friends = NSArray()
+        self.loadFriends()
         
-        askAmount.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            
-            if error != nil {
-                println("get any error \(error)")
-            }else{
-                self.friends = objects
+        //加入手勢辨識
+        var upSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        var downSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        var rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        
+        upSwipe.delegate = self
+        downSwipe.delegate = self
+        leftSwipe.delegate = self
+        rightSwipe.delegate = self
+        
+        upSwipe.direction = UISwipeGestureRecognizerDirection.Up
+        downSwipe.direction = UISwipeGestureRecognizerDirection.Down
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        
+        self.tableView.addGestureRecognizer(upSwipe)
+        self.tableView.addGestureRecognizer(downSwipe)
+        self.tableView.addGestureRecognizer(leftSwipe)
+        self.tableView.addGestureRecognizer(rightSwipe)
+        
+//        self.followScrollView(self.tableView, withDelay: 65.0)
+//        self.setShouldScrollWhenContentFits(true)
+//        self.setUseSuperview(false)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    func loadFriends () {
+        //取得該約會單目前的報名人。
+        var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(detailItem as! PFObject)
+        
+        if attributesForDate != nil {
+            self.friends = CMCache.sharedCache().askersForDate(detailItem as! PFObject)
+            self.tableView.reloadData()
+        }else{
+            //如果沒有，就要update the cache.
+            objc_sync_enter(self)
+            // do something
+            var query:PFQuery = CMUtility.queryForActivitiesOnDate(detailItem as! PFObject, cachePolicy: PFCachePolicy.CacheThenNetwork)
+            query.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]?, error:NSError?) -> Void in
+                if error != nil {
+                    return
+                }
                 
-                //重新整理tableview reload
-                self.tableView.reloadData()
-            }
+                let askers:NSMutableArray! = NSMutableArray()
+                let commenters:NSMutableArray! = NSMutableArray()
+                var isAskedByCurrentuser = false
+                
+                if let allActivities = objects as? [PFObject] {
+                    //取得所有請求約會的人、以及留言
+                    for activity:PFObject in allActivities {
+                        if (activity.objectForKey("type")! as! String == "ask" && activity.objectForKey("fromUser") != nil){
+                            askers.addObject(activity.objectForKey("fromUser")!)
+                            if activity.objectForKey("fromUser")?.objectId == PFUser.currentUser()?.objectId {
+                                isAskedByCurrentuser = true
+                            }
+                        } else if (activity.objectForKey("type")! as! String == "comment" && activity.objectForKey("fromUser") != nil) {
+                            commenters.addObject(activity.objectForKey("fromUser")!)
+                        }
+                    }
+                    
+                    CMCache.sharedCache().setAttributesForDate(self.detailItem as! PFObject, askers: askers as NSArray as [AnyObject], commenters: commenters as NSArray as [AnyObject], askedByCurrentUser: isAskedByCurrentuser)
+                    
+                    self.friends = askers as NSArray
+                    self.tableView.reloadData()
+                }
+            })
+            objc_sync_exit(self);
         }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // MARK: - 手勢辨識
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .Up) {
+            println("Swipe Up")
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+        
+        if (sender.direction == .Down) {
+            println("Swipe Down")
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+//            self.navigationController?.showNavBarAnimated(true)
+        }
+        
+        if (sender.direction == .Left) {
+            println("Swipe Left")
+        }
+        
+        if (sender.direction == .Right) {
+            println("Swipe Right")
+        }
     }
 
     // MARK: - Table view data source
@@ -130,6 +212,12 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             }else{
                 //使用一般cell即可
             }
+        }else if indexPath.row == 9 {
+            cell = tableView.dequeueReusableCellWithIdentifier("BasicCellRed", forIndexPath: indexPath) as! UITableViewCell
+        }else if indexPath.row == 5 {
+            cell = tableView.dequeueReusableCellWithIdentifier("BasicCellRed2", forIndexPath: indexPath) as! UITableViewCell
+        }else if indexPath.row == 2 {
+            cell = tableView.dequeueReusableCellWithIdentifier("BasicCellRed3", forIndexPath: indexPath) as! UITableViewCell
         }
         else{
             cell = tableView.dequeueReusableCellWithIdentifier("BasicCell", forIndexPath: indexPath) as! UITableViewCell
@@ -246,6 +334,21 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 }
             }
             
+            var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(detailItem! as! PFObject)
+            if attributesForDate != nil {
+                cell0.askLabel.text = "\(CMCache.sharedCache().askCountForDate(detailItem! as! PFObject))/5"
+            }else{
+                //沒有緩存資料
+                var askAmount:PFQuery! = PFQuery(className: kAskDateListClassesKey)
+                askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem!)
+                askAmount.findObjectsInBackgroundWithBlock({ (askers, error) -> Void in
+                    CMCache.sharedCache().setAttributesForDate(self.detailItem! as! PFObject, askers: askers, commenters: NSArray() as [AnyObject], askedByCurrentUser: false)
+                    
+                    cell0.askLabel.text = "\(askers!.count)/5"
+                })
+                
+            }
+            
             return cell0
             
         } else if indexPath.row == 1 {
@@ -338,7 +441,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 9 {
             //報名截止倒數
             cell.textLabel?.text = "報名截止倒數"
-            cell.detailTextLabel?.text = ""
+            cell.detailTextLabel?.text = self.stringForTimeIntervalFromDateNow(NSDate(), toDateDay: detailItem?[kDateTime]! as! NSDate)
         } else if indexPath.row == 10 {
             //報名者所需支付誠意值
             cell.textLabel?.text = "報名者所需支付誠意值"
@@ -372,21 +475,19 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 7 {
             return 213
         } else if indexPath.row == 8 {
-            if self.friends != nil {
-                if self.friends.count == 0{
-                    //使用一般cell即可
-                    return 48
-                }else{
+            //顯示大頭照與否
+            let fromUser = detailItem?[kDateFromUser] as! PFUser
+            if let objectId:String! = fromUser.objectId {
+                if objectId == PFUser.currentUser()?.objectId! {
                     return 96
+                }else{
+                    return 48
                 }
-            }else{
-                return 48
             }
-            
         }else{
             return 48
         }
-        
+        return 48
     }
 
     //計算年齡
@@ -406,6 +507,31 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         }
     }
 
+    //計算倒數時間
+    func stringForTimeIntervalFromDateNow(fromDateNow:NSDate, toDateDay:NSDate) -> String? {
+        
+        //倒數到約會時間的前12小時
+        let newDate = toDateDay.dateByAddingTimeInterval(-60*60*12)
+        
+        var calendar:NSCalendar! = NSCalendar.currentCalendar()
+        let dayComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute,
+            fromDate: fromDateNow,
+            toDate: newDate,
+            options: nil)
+        
+        let year = dayComponents.year
+        let month = dayComponents.month
+        let day = dayComponents.day
+        let hour = dayComponents.hour
+        let min = dayComponents.minute
+        
+        println("\(year), \(month), \(day), \(hour), \(min)")
+        
+        return "\(day)D \(hour)H \(min)M"
+    }
+    
+    
+    
     @IBAction func dismiss(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             
@@ -424,39 +550,11 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 
             }else{
                 //確認當前用戶是否已經報名過，如果已經報名過，就提示，否則就新增報名
-                var askAmount:PFQuery! = PFQuery(className: kAskDateClassesKey)
-                askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem)
-                let currentUser = PFUser.currentUser()!
-                askAmount.whereKey(kAskFromUser, equalTo: currentUser)
-                
-                askAmount.getFirstObjectInBackgroundWithBlock({ (askObject, error) -> Void in
-                    if error != nil {
-                        //新增報名
-                        //儲存報名資料
-                        var savePostObject = PFObject(className: kAskDateClassesKey)
-                        savePostObject[kAskFromUser] = PFUser.currentUser()
-                        savePostObject[kAskToUser] = fromUser
-                        savePostObject[kAskDateFromPostDate] = self.detailItem as! PFObject
-                        
-                        var ACL = PFACL()
-                        ACL.setPublicReadAccess(true)
-                        ACL.setPublicWriteAccess(true)
-                        savePostObject.ACL = ACL
-                        
-                        savePostObject.saveEventually({ (success, error) -> Void in
-                            let alertController = UIAlertController(title: "完成報名",
-                                message: "請靜候佳音",
-                                preferredStyle: UIAlertControllerStyle.Alert
-                            )
-                            alertController.addAction(UIAlertAction(title: "確定",
-                                style: UIAlertActionStyle.Default,
-                                handler: nil)
-                            )
-                            // Display alert
-                            self.presentViewController(alertController, animated: true, completion: nil)
-                        })
-                        
-                    }else{
+                var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(detailItem as! PFObject)
+                if attributesForDate != nil {
+                    //當前用戶是否已經報過名？
+                    if CMCache.sharedCache().isDateAskedByCurrentUser(detailItem as! PFObject) {
+                        //報過名
                         //已經報名過
                         let alertController = UIAlertController(title: "您過去曾報名",
                             message: "請靜候佳音",
@@ -468,10 +566,201 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                         )
                         // Display alert
                         self.presentViewController(alertController, animated: true, completion: nil)
+                    }else{
+                        //沒報過名，確認人數是否超過五人，超過就不能報名，沒超過才能報名
+                        if CMCache.sharedCache().askCountForDate(detailItem as! PFObject).intValue < 5 {
+                            //還能報名
+                            //新增報名
+                            //儲存報名資料
+                            var savePostObject = PFObject(className: kAskDateListClassesKey)
+                            savePostObject[kAskFromUser] = PFUser.currentUser()
+                            savePostObject[kAskToUser] = fromUser
+                            savePostObject[kAskDateFromPostDate] = self.detailItem as! PFObject
+                            
+                            var ACL = PFACL()
+                            ACL.setPublicReadAccess(true)
+                            ACL.setPublicWriteAccess(true)
+                            savePostObject.ACL = ACL
+                            
+                            savePostObject.saveEventually({ (success, error) -> Void in
+                                let alertController = UIAlertController(title: "完成報名",
+                                    message: "請靜候佳音",
+                                    preferredStyle: UIAlertControllerStyle.Alert
+                                )
+                                alertController.addAction(UIAlertAction(title: "確定",
+                                    style: UIAlertActionStyle.Default,
+                                    handler: nil)
+                                )
+                                // Display alert
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                                self.loadFriends()
+                                
+                                CMCache.sharedCache().setDateIsAskedByCurrentUser(self.detailItem as! PFObject, asked: true)
+                            })
+                            
+                            //另外要儲存Activities
+                            var activities = PFObject(className: kPAPActivityClassKey)
+                            activities[kPAPActivityDateKey]     = self.detailItem as! PFObject
+                            activities[kPAPActivityTypeKey] = kPAPActivityTypeAsk
+                            activities[kPAPActivityFromUserKey] = PFUser.currentUser()
+                            activities[kPAPActivityToUserKey]   = fromUser
+                            
+                            activities.ACL = ACL
+                            
+                            activities.saveEventually({ (success, error) -> Void in
+                                if success {
+                                    //推播
+                                    let privateChannelName:String! = fromUser.objectForKey(kPAPUserPrivateChannelKey) as! String
+                                    if privateChannelName.isEmpty {
+                                        
+                                    }else{
+                                        let user = PFUser.currentUser()
+                                        let userName: String! = user?.objectForKey(kPAPUserFacebookLastNameKey) as! String
+                                        let postDate: PFObject! = self.detailItem as! PFObject
+                                        let data:Dictionary<String, String> = ["\(userName!) 報名您的約會." : kAPNSAlertKey,
+                                            kPAPPushPayloadPayloadTypeActivityKey : kPAPPushPayloadPayloadTypeKey,
+                                            kPAPPushPayloadActivityAskKey : kPAPPushPayloadActivityTypeKey,
+                                            user!.objectId! : kPAPPushPayloadFromUserObjectIdKey,
+                                            postDate.objectId! : kPAPPushPayloadPostDateObjectIdKey]
+                                        
+                                        let push:PFPush = PFPush()
+                                        push.setChannel(privateChannelName)
+                                        push.setData(data)
+                                        push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                                            
+                                        })
+                                    }
+                                    
+                                }
+                            })
+                            
+                        } else {
+                            //不能報名
+                            //已經額滿
+                            let alertController = UIAlertController(title: "已經額滿",
+                                message: "請參考其他的約會",
+                                preferredStyle: UIAlertControllerStyle.Alert
+                            )
+                            alertController.addAction(UIAlertAction(title: "確定",
+                                style: UIAlertActionStyle.Default,
+                                handler: nil)
+                            )
+                            // Display alert
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        }
                     }
-                })
-                
-                
+                }else{
+                    //沒有緩存資料
+                    var askAmount:PFQuery! = PFQuery(className: kAskDateListClassesKey)
+                    askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem)
+                    
+                    //先確定現在報名人數是不是已經達到上限5人，若達上線就表示不能報名了
+                    askAmount.countObjectsInBackgroundWithBlock({ (count, error) -> Void in
+                        if error == nil {
+                            if count < 5 {
+                                //還能報名
+                                let currentUser = PFUser.currentUser()!
+                                askAmount.whereKey(kAskFromUser, equalTo: currentUser)
+                                
+                                askAmount.getFirstObjectInBackgroundWithBlock({ (askObject, error) -> Void in
+                                    if error != nil {
+                                        //新增報名
+                                        //儲存報名資料
+                                        var savePostObject = PFObject(className: kAskDateListClassesKey)
+                                        savePostObject[kAskFromUser] = PFUser.currentUser()
+                                        savePostObject[kAskToUser] = fromUser
+                                        savePostObject[kAskDateFromPostDate] = self.detailItem as! PFObject
+                                        
+                                        var ACL = PFACL()
+                                        ACL.setPublicReadAccess(true)
+                                        ACL.setPublicWriteAccess(true)
+                                        savePostObject.ACL = ACL
+                                        
+                                        savePostObject.saveEventually({ (success, error) -> Void in
+                                            
+                                            if success {
+                                                let alertController = UIAlertController(title: "完成報名",
+                                                    message: "請靜候佳音",
+                                                    preferredStyle: UIAlertControllerStyle.Alert
+                                                )
+                                                alertController.addAction(UIAlertAction(title: "確定",
+                                                    style: UIAlertActionStyle.Default,
+                                                    handler: nil)
+                                                )
+                                                // Display alert
+                                                self.presentViewController(alertController, animated: true, completion: nil)
+                                                self.loadFriends()
+                                                
+                                                CMCache.sharedCache().setDateIsAskedByCurrentUser(self.detailItem as! PFObject, asked: true)
+                                            }
+                                            
+                                        })
+                                        
+                                        //另外要儲存Activities
+                                        var activities = PFObject(className: kPAPActivityClassKey)
+                                        activities[kPAPActivityDateKey]     = self.detailItem as! PFObject
+                                        activities[kPAPActivityTypeKey] = kPAPActivityTypeAsk
+                                        activities[kPAPActivityFromUserKey] = PFUser.currentUser()
+                                        activities[kPAPActivityToUserKey]   = fromUser
+                                        
+                                        activities.ACL = ACL
+                                        
+                                        activities.saveEventually({ (success, error) -> Void in
+                                            if success {
+                                                //推播
+                                                let privateChannelName:String! = fromUser.objectForKey(kPAPUserPrivateChannelKey) as! String
+                                                if privateChannelName.isEmpty {
+                                                    
+                                                }else{
+                                                    let user = PFUser.currentUser()
+                                                    let userName: String! = user?.objectForKey(kPAPUserFacebookLastNameKey) as! String
+                                                    let postDate: PFObject! = self.detailItem as! PFObject
+                                                    let data:Dictionary<String, String> = ["\(userName!) 報名您的約會" : kAPNSAlertKey,
+                                                        kPAPPushPayloadPayloadTypeActivityKey : kPAPPushPayloadPayloadTypeKey,
+                                                        kPAPPushPayloadActivityAskKey : kPAPPushPayloadActivityTypeKey,
+                                                        user!.objectId! : kPAPPushPayloadFromUserObjectIdKey,
+                                                        postDate.objectId! : kPAPPushPayloadPostDateObjectIdKey]
+                                                    
+                                                    let push:PFPush = PFPush()
+                                                    push.setChannel(privateChannelName)
+                                                    push.setData(data)
+                                                    push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                                                        
+                                                    })
+                                                }
+                                                
+                                            }
+                                        })
+                                    }else{
+                                        //已經報名過
+                                        let alertController = UIAlertController(title: "您過去曾報名",
+                                            message: "請靜候佳音",
+                                            preferredStyle: UIAlertControllerStyle.Alert
+                                        )
+                                        alertController.addAction(UIAlertAction(title: "確定",
+                                            style: UIAlertActionStyle.Default,
+                                            handler: nil)
+                                        )
+                                        // Display alert
+                                        self.presentViewController(alertController, animated: true, completion: nil)
+                                    }
+                                })
+                            }else{
+                                //已經額滿
+                                let alertController = UIAlertController(title: "已經額滿",
+                                    message: "請參考其他的約會",
+                                    preferredStyle: UIAlertControllerStyle.Alert
+                                )
+                                alertController.addAction(UIAlertAction(title: "確定",
+                                    style: UIAlertActionStyle.Default,
+                                    handler: nil)
+                                )
+                                // Display alert
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                            }
+                        }
+                    })
+                }
             }
         }
     }
@@ -482,6 +771,9 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             if self.friends.count > 0 {
 //                self.performSegueWithIdentifier("choseTa", sender: detailItem)
             }
+        } else if indexPath.row == 5 {
+            //餐廳詳細資料
+            self.performSegueWithIdentifier("detail", sender: detailItem!)
         }
     }
     
@@ -571,8 +863,13 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        let view = segue.destinationViewController as! ChosseTaTableViewController
-        view.detailItem = detailItem
+        if segue.identifier == "choseTa" {
+            let view = segue.destinationViewController as! ChosseTaTableViewController
+            view.detailItem = detailItem
+        } else if segue.identifier == "detail" {
+            let view = segue.destinationViewController as! RestaurantDetailTableViewController
+            view.detailItem = detailItem
+        }
         
     }
 

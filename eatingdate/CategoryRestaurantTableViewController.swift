@@ -87,11 +87,12 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
-//        if self.objects?.count == 0 {
-//            
-//        }else{
-//            query.fromLocalDatastore()
-//        }
+        query.includeKey("photoLibrary")
+        if self.objects?.count == 0 {
+            
+        }else{
+            query.fromLocalDatastore()
+        }
         query.orderByAscending("createdAt")
         if keywork != nil {
             println("有搜尋到嗎")
@@ -135,6 +136,43 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         if let city = object?["city"] as? String {
             cell.city.text = "\(city)"
         }
+        
+        // Configure the cell...
+        //確認餐廳的照片
+        var photosquery:PFQuery! = PFQuery(className: "RestaurantPhotoLibrary")
+        photosquery.whereKey("restaurant", equalTo: object!)
+        photosquery.getFirstObjectInBackgroundWithBlock { (photos, error) -> Void in
+            let imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
+            if let picProfilePhotoFile: PFFile! = photos?[kDatePicSmall] as? PFFile {
+                if picProfilePhotoFile != nil {
+                    picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
+                        if error != nil {
+                            
+                        }else{
+                            cell.photo.image = UIImage(data: imageDate!)
+                            cell.photo.layer.cornerRadius = 42
+                        }
+                    })
+                }
+            }
+        }
+        
+    
+//        let photoLibrary:PFObject = object?["photoLibrary"] as! PFObject
+//        
+//        let imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
+//        if let picProfilePhotoFile: PFFile! = photoLibrary[kDatePicSmall] as? PFFile {
+//            if picProfilePhotoFile != nil {
+//                picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
+//                    if error != nil {
+//                        
+//                    }else{
+//                        cell.photo.image = UIImage(data: imageDate!)
+//                        cell.photo.layer.cornerRadius = 42
+//                    }
+//                })
+//            }
+//        }
         
         cell.choseButton.setTitle("選這家", forState: UIControlState.Normal)
         cell.delegate = self

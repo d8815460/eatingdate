@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2317A5F21B22D803008672C0 /* OneShotLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317A5F11B22D803008672C0 /* OneShotLocationManager.swift */; };
+		232199711B368644008B8050 /* RestaurantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232199701B368644008B8050 /* RestaurantDetailTableViewController.swift */; };
+		232199731B36865A008B8050 /* ParallaxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232199721B36865A008B8050 /* ParallaxTableViewController.swift */; };
+		232199761B369B29008B8050 /* commentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232199751B369B29008B8050 /* commentCell.swift */; };
+		232199791B36AAC2008B8050 /* UIViewController+ScrollingNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 232199781B36AAC2008B8050 /* UIViewController+ScrollingNavbar.m */; };
 		233328551B1F23A300833F08 /* Province.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328521B1F23A300833F08 /* Province.m */; };
 		233328561B1F23A300833F08 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328541B1F23A300833F08 /* City.m */; };
 		233328581B1F260E00833F08 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 233328571B1F260E00833F08 /* area.plist */; };
@@ -169,6 +173,11 @@
 		0B0D2DC7EA608B6634039FD3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		128C34AE763AC0129DD65798 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2317A5F11B22D803008672C0 /* OneShotLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneShotLocationManager.swift; sourceTree = "<group>"; };
+		232199701B368644008B8050 /* RestaurantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewController.swift; sourceTree = "<group>"; };
+		232199721B36865A008B8050 /* ParallaxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxTableViewController.swift; sourceTree = "<group>"; };
+		232199751B369B29008B8050 /* commentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentCell.swift; sourceTree = "<group>"; };
+		232199771B36AAC2008B8050 /* UIViewController+ScrollingNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ScrollingNavbar.h"; sourceTree = "<group>"; };
+		232199781B36AAC2008B8050 /* UIViewController+ScrollingNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ScrollingNavbar.m"; sourceTree = "<group>"; };
 		233328511B1F23A300833F08 /* Province.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Province.h; sourceTree = "<group>"; };
 		233328521B1F23A300833F08 /* Province.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Province.m; sourceTree = "<group>"; };
 		233328531B1F23A300833F08 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
@@ -439,6 +448,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2321996F1B3685FB008B8050 /* 2.5餐廳詳細資料 */ = {
+			isa = PBXGroup;
+			children = (
+				232199741B369B0F008B8050 /* Cells */,
+				232199721B36865A008B8050 /* ParallaxTableViewController.swift */,
+				232199701B368644008B8050 /* RestaurantDetailTableViewController.swift */,
+			);
+			name = "2.5餐廳詳細資料";
+			sourceTree = "<group>";
+		};
+		232199741B369B0F008B8050 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				232199751B369B29008B8050 /* commentCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		236580FB1AFDEC88008BC27D /* 3.0發佈約流程 */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +492,7 @@
 			children = (
 				238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */,
 				23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */,
+				23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */,
 			);
 			name = "30.1.2.1 餐廳資料庫";
 			sourceTree = "<group>";
@@ -557,7 +585,6 @@
 			children = (
 				23DEEFB51B08B7B700273EC2 /* TVIPPostCostTableViewController.swift */,
 				23DEEFB71B08B7C700273EC2 /* FemalePostCostTableViewController.swift */,
-				23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */,
 				23DEEFB91B08B7D700273EC2 /* MalePostCostTableViewController.swift */,
 			);
 			name = 30.2;
@@ -999,6 +1026,7 @@
 				DB5C82661AF5A4B000A8F57E /* 0.0註冊與登入 */,
 				DB0BE1581AF4669B00B49B4A /* 1.0首頁約會清單 */,
 				23B30D6B1B25056A0021C972 /* 2.0約會清單 */,
+				2321996F1B3685FB008B8050 /* 2.5餐廳詳細資料 */,
 				236580FB1AFDEC88008BC27D /* 3.0發佈約流程 */,
 				DB0BE1531AF445F500B49B4A /* RMParallax */,
 				DB0BE1511AF445A800B49B4A /* IntroViewController.swift */,
@@ -1006,6 +1034,8 @@
 				DB571C911AF340A2005CAB77 /* AppDelegate.m */,
 				DB571C961AF340A2005CAB77 /* ViewController.h */,
 				DB571C971AF340A2005CAB77 /* ViewController.m */,
+				232199771B36AAC2008B8050 /* UIViewController+ScrollingNavbar.h */,
+				232199781B36AAC2008B8050 /* UIViewController+ScrollingNavbar.m */,
 				DB571C991AF340A2005CAB77 /* Main.storyboard */,
 				DB571C9C1AF340A2005CAB77 /* Images.xcassets */,
 				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
@@ -1280,6 +1310,7 @@
 				DB0BE1961AF4678800B49B4A /* Product.m in Sources */,
 				DB0BE2461AF4909B00B49B4A /* MinnaOpenGraphRequest.m in Sources */,
 				23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */,
+				232199711B368644008B8050 /* RestaurantDetailTableViewController.swift in Sources */,
 				DB0BE1F51AF467C400B49B4A /* CategoryCell.m in Sources */,
 				DB0BE24B1AF4909B00B49B4A /* UIImage+AlphaAdditions.m in Sources */,
 				23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */,
@@ -1301,6 +1332,7 @@
 				DB0BE1921AF4678800B49B4A /* DataPointCollection.m in Sources */,
 				DB0BE24A1AF4909B00B49B4A /* TTTTimeIntervalFormatter.m in Sources */,
 				DB0BE17C1AF4676A00B49B4A /* ADVSegmentedControl.m in Sources */,
+				232199791B36AAC2008B8050 /* UIViewController+ScrollingNavbar.m in Sources */,
 				23B0C7A41B11B9A100D60CC3 /* MainPostDateTableViewController.swift in Sources */,
 				DB5C828D1AF5C96F00A8F57E /* AccountViewController.m in Sources */,
 				DB0BE24E1AF4909B00B49B4A /* UIImage+RoundedCornerAdditions.m in Sources */,
@@ -1360,6 +1392,8 @@
 				DB5C827F1AF5AE4700A8F57E /* AMSlideMenuRightTableViewController.m in Sources */,
 				238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */,
 				23B0C79F1B10403400D60CC3 /* WriteProfileCells.swift in Sources */,
+				232199731B36865A008B8050 /* ParallaxTableViewController.swift in Sources */,
+				232199761B369B29008B8050 /* commentCell.swift in Sources */,
 				23B0C79B1B10111F00D60CC3 /* uploadPhotoCell.swift in Sources */,
 				DB0BE2521AF4909B00B49B4A /* UIKeyboardCoViewForMessenger.m in Sources */,
 				23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */,

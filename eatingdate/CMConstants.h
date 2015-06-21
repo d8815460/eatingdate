@@ -64,13 +64,13 @@ extern NSString *const kPAPInstallationChannelsKey;
 
 #pragma mark - 報名
 //約會報名主key
-extern NSString *const kAskDateClassesKey;         //主Key
+extern NSString *const kAskDateListClassesKey;         //主Key
 //table
 extern NSString *const kAskDateFromPostDate;        //哪個約會單
 extern NSString *const kAskFromUser;                //誰報名
 extern NSString *const kAskToUser;                  //報名誰的約會
-extern NSString *const kIsLike;                     //決定人選
-extern NSString *const kIsCancel;                   //報名者是否取消
+extern NSString *const kAskIsLike;                     //決定人選
+extern NSString *const kAskIsCancel;                   //報名者是否取消
 
 
 #pragma mark - Post Date Class
@@ -114,7 +114,7 @@ extern NSString *const kPAPActivityTypeKey;
 extern NSString *const kPAPActivityFromUserKey;
 extern NSString *const kPAPActivityToUserKey;
 extern NSString *const kPAPActivityCommentKey;
-extern NSString *const kPAPActivityPhotoKey;
+extern NSString *const kPAPActivityDateKey;
 extern NSString *const kPAPActivityIsReadedKey;
 
 // Type values
@@ -125,11 +125,17 @@ extern NSString *const kPAPActivityTypeOwnerDidntCheckHelper; //確定選擇其�
 extern NSString *const kPAPActivityTypeJoined;             //加入，通知好友我也安裝了
 extern NSString *const kPAPActivityTypeSpan;               //封鎖
 extern NSString *const kPAPActivityTypeLike;               //喜歡
+extern NSString *const kPAPActivityTypeAsk;                  //某人報名約會
+extern NSString *const kPAPActivityTypeAnswer;        //發起者決定你
+extern NSString *const kPAPActivityTypeReject;        //發起者拒絕你
+extern NSString *const kPAPActivityTypeSend;          //發起約會單
+extern NSString *const kPAPActivityTypecomment;       //某人留言給你
+extern NSString *const kPAPActivityTypeBlock;         //某人檢舉你
 extern NSString *const kPAPActivityTypeRate;               //評價
 extern NSString *const kPAPActivityTypeComment;            //留言
 extern NSString *const kPAPActivityTypeFollow;             //跟隨
-extern NSString *const kPAPActivityTypeReject;             //取消接案
-extern NSString *const kPAPActivityTypePassCheck;           //通過驗證
+extern NSString *const kPAPActivityTypeCancel;             //取消報名
+extern NSString *const kPAPActivityTypePassCheck;          //通過驗證
 extern NSString *const kPAPPushPayloadActivitySMSKey;
 extern NSString *const kPAPPushPayloadActivitySMSResultKey;
 
@@ -266,13 +272,14 @@ extern NSString *const kPAPPushPayloadActivityOwnerDidntCheckHelpKey;
 extern NSString *const kPAPPushPayloadActivityIAmInstallKey;
 extern NSString *const kPAPPushPayloadActivityBlockKey;
 extern NSString *const kPAPPushPayloadActivityLikeKey;
+extern NSString *const kPAPPushPayloadActivityAskKey;
 extern NSString *const kPAPPushPayloadActivityRatingKey;
 extern NSString *const kPAPPushPayloadActivityCommentKey;
 extern NSString *const kPAPPushPayloadActivityFollowKey;
 
 extern NSString *const kPAPPushPayloadFromUserObjectIdKey;
 extern NSString *const kPAPPushPayloadToUserObjectIdKey;
-extern NSString *const kPAPPushPayloadPhotoObjectIdKey;
+extern NSString *const kPAPPushPayloadPostDateObjectIdKey;
 
 
 
@@ -327,12 +334,13 @@ extern NSString *const WriteTaskFile;
 
 #pragma mark - Cached Photo Attributes
 // keys
-extern NSString *const kPAPPhotoAttributesIsLikedByCurrentUserKey;
+extern NSString *const kPAPPhotoAttributesIsAskedByCurrentUserKey;
 extern NSString *const kPAPPhotoAttributesIsReadedByCurrentUserKey;
 extern NSString *const kPAPPhotoAttributesLikeCountKey;
 extern NSString *const kPAPPhotoAttributesLikersKey;
 extern NSString *const kPAPPhotoAttributesCommentCountKey;
 extern NSString *const kPAPPhotoAttributesCommentersKey;
+extern NSString *const kPAPPhotoAttributesIsLikedByThisPeople;
 
 #pragma mark - Cached User Attributes
 // keys

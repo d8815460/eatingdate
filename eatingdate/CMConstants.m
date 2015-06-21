@@ -68,7 +68,7 @@ NSString *const kPAPActivityTypeKey         = @"type";
 NSString *const kPAPActivityFromUserKey     = @"fromUser";
 NSString *const kPAPActivityToUserKey       = @"toUser";
 NSString *const kPAPActivityCommentKey      = @"comment";
-NSString *const kPAPActivityPhotoKey        = @"caseID";
+NSString *const kPAPActivityDateKey         = @"fromDate";
 NSString *const kPAPActivityIsReadedKey     = @"isReaded";
 
 // Type values
@@ -79,10 +79,16 @@ NSString *const kPAPActivityTypeOwnerDidntCheckHelper= @"fail";         //確定
 NSString *const kPAPActivityTypeJoined              = @"joined";        //加入，通知好友我也安裝了
 NSString *const kPAPActivityTypeSpan                = @"span";          //封鎖
 NSString *const kPAPActivityTypeLike                = @"like";          //喜歡
+NSString *const kPAPActivityTypeAsk                 = @"ask";           //報名約會
+NSString *const kPAPActivityTypeAnswer              = @"answer";        //發起者決定你
+NSString *const kPAPActivityTypeReject              = @"reject";        //發起者拒絕你
+NSString *const kPAPActivityTypeSend                = @"send";          //發起約會單
+NSString *const kPAPActivityTypecomment             = @"comment";       //某人留言給你
+NSString *const kPAPActivityTypeBlock               = @"block";         //某人檢舉你
 NSString *const kPAPActivityTypeRate                = @"rating";        //評價
 NSString *const kPAPActivityTypeComment             = @"comment";       //留言
 NSString *const kPAPActivityTypeFollow              = @"follow";        //跟隨
-NSString *const kPAPActivityTypeReject              = @"reject";        //取消接案
+NSString *const kPAPActivityTypeCancel              = @"cancel";        //取消報名
 NSString *const kPAPActivityTypePassCheck           = @"pass";
 
 
@@ -157,6 +163,7 @@ NSString *const kPAPPushPayloadActivityOwnerDidntCheckHelpKey = @"fail";    //�
 NSString *const kPAPPushPayloadActivityIAmInstallKey        = @"joined";     //當前用戶通知好友
 NSString *const kPAPPushPayloadActivityBlockKey             = @"span";     //封鎖
 NSString *const kPAPPushPayloadActivityLikeKey              = @"like";     //喜歡
+NSString *const kPAPPushPayloadActivityAskKey               = @"ask";       //報名
 NSString *const kPAPPushPayloadActivityRatingKey            = @"rating";     //評價
 NSString *const kPAPPushPayloadActivityCommentKey           = @"comment";     //留言
 NSString *const kPAPPushPayloadActivityFollowKey            = @"follow";     //跟隨
@@ -165,7 +172,7 @@ NSString *const kPAPPushPayloadActivitySMSResultKey         = @"result";     // 
 
 NSString *const kPAPPushPayloadFromUserObjectIdKey          = @"fu";
 NSString *const kPAPPushPayloadToUserObjectIdKey            = @"tu";
-NSString *const kPAPPushPayloadPhotoObjectIdKey             = @"ca";
+NSString *const kPAPPushPayloadPostDateObjectIdKey          = @"pd";
 
 
 
@@ -262,13 +269,13 @@ NSString *const WriteTaskFile = @"WriteTaskFile.txt";
 
 #pragma mark - 報名
 //約會報名主key
-NSString *const kAskDateClassesKey      = @"Date";              //主Key
+NSString *const kAskDateListClassesKey      = @"DateList";              //主Key
 //table
 NSString *const kAskDateFromPostDate    = @"fromPostDate";      //哪個約會單
 NSString *const kAskFromUser            = @"fromUser";          //誰報名
 NSString *const kAskToUser              = @"toUser";            //報名誰的約會
-NSString *const kIsLike                 = @"isLike";            //決定人選
-NSString *const kIsCancel               = @"isCancel";          //報名者是否取消
+NSString *const kAskIsLike                 = @"isLike";            //決定人選
+NSString *const kAskIsCancel               = @"isCancel";          //報名者是否取消
 
 //約會任務單key
 NSString *const kPostDateClassesKey     = @"PostDate";          //主Key
@@ -299,12 +306,13 @@ NSString *const kDateBeenLookedAmount   = @"beenLookedAmount";  //該篇貼文�
 
 #pragma mark - Cached 任務 Attributes
 // keys
-NSString *const kPAPPhotoAttributesIsLikedByCurrentUserKey = @"isLikedByCurrentUser";
+NSString *const kPAPPhotoAttributesIsAskedByCurrentUserKey = @"isAskedByCurrentUser";
 NSString *const kPAPPhotoAttributesIsReadedByCurrentUserKey = @"isReadedByCurrentUser";
 NSString *const kPAPPhotoAttributesLikeCountKey            = @"likeCount";
 NSString *const kPAPPhotoAttributesLikersKey               = @"likers";
 NSString *const kPAPPhotoAttributesCommentCountKey         = @"commentCount";
 NSString *const kPAPPhotoAttributesCommentersKey           = @"commenters";
+NSString *const kPAPPhotoAttributesIsLikedByThisPeople     = @"isLikedByThisPeople";
 
 #pragma mark - Cached User Attributes
 // keys

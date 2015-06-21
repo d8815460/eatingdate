@@ -54,6 +54,7 @@ class HotRestaurantTableViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
+        query.includeKey("photoLibrary")
         query.orderByAscending("createdAt")
         return query
     }
@@ -85,6 +86,25 @@ class HotRestaurantTableViewController: PFQueryTableViewController {
         }
         if let miniCost = object?["minCost"] as? String {
             cell.minCostLabel.text = "最低消費 \(miniCost)"
+        }
+        
+        //確認餐廳的照片
+        var photosquery:PFQuery! = PFQuery(className: "RestaurantPhotoLibrary")
+        photosquery.whereKey("restaurant", equalTo: object!)
+        photosquery.getFirstObjectInBackgroundWithBlock { (photos, error) -> Void in
+            let imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
+            if let picProfilePhotoFile: PFFile! = photos?[kDatePicSmall] as? PFFile {
+                if picProfilePhotoFile != nil {
+                    picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
+                        if error != nil {
+                            
+                        }else{
+                            cell.photo.image = UIImage(data: imageDate!)
+                            cell.photo.layer.cornerRadius = 42
+                        }
+                    })
+                }
+            }
         }
         
         cell.choseButton.setTitle("選這家", forState: UIControlState.Normal)

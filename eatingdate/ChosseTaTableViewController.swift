@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChosseTaTableViewController: PFQueryTableViewController {
+class ChosseTaTableViewController: PFQueryTableViewController, ChoseTaCellDelegate {
 
     var detailItem:AnyObject!
     
@@ -19,7 +19,7 @@ class ChosseTaTableViewController: PFQueryTableViewController {
         super.init(style: style, className: className)
         
         // Configure the PFQueryTableView
-        self.parseClassName = kAskDateClassesKey
+        self.parseClassName = kAskDateListClassesKey
         self.textKey = "text"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
@@ -30,7 +30,7 @@ class ChosseTaTableViewController: PFQueryTableViewController {
         super.init(coder: aDecoder)
         
         // Configure the PFQueryTableView
-        self.parseClassName = kAskDateClassesKey
+        self.parseClassName = kAskDateListClassesKey
         self.textKey = "text"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
@@ -56,7 +56,7 @@ class ChosseTaTableViewController: PFQueryTableViewController {
 
     override func queryForTable() -> PFQuery {
         //取得該約會單目前的報名人。
-        var askQuery:PFQuery! = PFQuery(className: kAskDateClassesKey)
+        var askQuery:PFQuery! = PFQuery(className: kAskDateListClassesKey)
         askQuery.whereKey(kAskDateFromPostDate, equalTo: detailItem)
         let currentUser = detailItem?[kDateFromUser] as! PFUser
         askQuery.whereKey(kAskFromUser, notEqualTo: currentUser)
@@ -85,8 +85,11 @@ class ChosseTaTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cell:ChoseTaCell! = tableView.dequeueReusableCellWithIdentifier("ChoseTaCell", forIndexPath: indexPath) as! ChoseTaCell
         
+        cell.delegate = self
+        
         // Configure the cell...
         let fromUser:PFUser = object?[kDateFromUser] as! PFUser
+        cell.userTa = fromUser
         
         let imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
         if let picProfilePhotoFile: PFFile! = fromUser[kPAPUserProfilePicMediumKey] as? PFFile {
@@ -140,6 +143,19 @@ class ChosseTaTableViewController: PFQueryTableViewController {
         //地點
         cell.locationLabel.text = "未知地點" //這裏需要修改？
         
+        //是否已經選擇
+        if let isLike:Bool! = object?[kAskIsLike] as? Bool {
+            if isLike != nil {
+                cell.choseButton.enabled = false
+                if isLike == true {
+                    cell.choseButton.setTitle("已答應", forState: UIControlState.Normal)
+                }else{
+                    cell.choseButton.setTitle("已拒絕", forState: UIControlState.Normal)
+                }
+            }
+        }
+        
+        
         return cell
     }
     
@@ -158,6 +174,112 @@ class ChosseTaTableViewController: PFQueryTableViewController {
             return "\(age)y"
         }else{
             return "0y"
+        }
+    }
+    
+    
+    // Mark: ChoseTaDelegate
+    func didSelectedTa(userTa: PFUser!) {
+        println("我決定選他了\(userTa.objectId!)")
+        //因為只能選擇一個，所以選了一個，就要同時拒絕其他的用戶。
+        
+        var ACL = PFACL()
+        ACL.setPublicReadAccess(true)
+        ACL.setPublicWriteAccess(true)
+        
+        //取得該約會單目前的報名人。 = self.objects
+        for var i = 0; i < self.objects?.count; ++i {
+            let date:PFObject! = self.objects?[i] as! PFObject
+            if date?[kAskFromUser] as! PFUser == userTa {
+                //選擇對象
+                date[kAskIsLike] = true
+                
+                date.ACL = ACL
+                
+                date.saveEventually({ (success, error) -> Void in
+                    //接下來是儲存動態＋推播
+                })
+                
+                //另外要儲存Activities
+                var activities = PFObject(className: kPAPActivityClassKey)
+                activities[kPAPActivityDateKey]     = self.detailItem as! PFObject
+                activities[kPAPActivityTypeKey] = kPAPActivityTypeAnswer
+                activities[kPAPActivityFromUserKey] = PFUser.currentUser()
+                activities[kPAPActivityToUserKey]   = userTa
+                
+                activities.ACL = ACL
+                
+                activities.saveEventually({ (success, error) -> Void in
+                    if success {
+                        //推播
+                        let privateChannelName:String! = userTa.objectForKey(kPAPUserPrivateChannelKey) as! String
+                        if privateChannelName.isEmpty {
+                            
+                        }else{
+                            let user = PFUser.currentUser()
+                            let userName: String! = user?.objectForKey(kPAPUserFacebookLastNameKey) as! String
+                            let postDate: PFObject! = self.detailItem as! PFObject
+                            let data:Dictionary<String, String> = ["\(userName!) 同意跟你約會" : kAPNSAlertKey,
+                                kPAPPushPayloadPayloadTypeActivityKey : kPAPPushPayloadPayloadTypeKey,
+                                kPAPPushPayloadActivityAskKey : kPAPPushPayloadActivityTypeKey,
+                                user!.objectId! : kPAPPushPayloadFromUserObjectIdKey,
+                                postDate.objectId! : kPAPPushPayloadPostDateObjectIdKey]
+                            
+                            let push:PFPush = PFPush()
+                            push.setChannel(privateChannelName)
+                            push.setData(data)
+                            push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                                
+                            })
+                        }
+                        
+                    }
+                })
+                
+            } else {
+                //拒絕對象
+                date[kAskIsLike] = false
+                
+                date.ACL = ACL
+                
+                date.saveEventually({ (success, error) -> Void in
+                    //接下來是儲存動態＋推播
+                })
+                
+                var activities = PFObject(className: kPAPActivityClassKey)
+                activities[kPAPActivityDateKey]     = self.detailItem as! PFObject
+                activities[kPAPActivityTypeKey] = kPAPActivityTypeReject
+                activities[kPAPActivityFromUserKey] = PFUser.currentUser()
+                activities[kPAPActivityToUserKey]   = userTa
+                
+                activities.ACL = ACL
+                
+                activities.saveEventually({ (success, error) -> Void in
+                    if success {
+                        //推播
+                        let privateChannelName:String! = userTa.objectForKey(kPAPUserPrivateChannelKey) as! String
+                        if privateChannelName.isEmpty {
+                            
+                        }else{
+                            let user = PFUser.currentUser()
+                            let userName: String! = user?.objectForKey(kPAPUserFacebookLastNameKey) as! String
+                            let postDate: PFObject! = self.detailItem as! PFObject
+                            let data:Dictionary<String, String> = ["\(userName!) 拒絕跟你約會" : kAPNSAlertKey,
+                                kPAPPushPayloadPayloadTypeActivityKey : kPAPPushPayloadPayloadTypeKey,
+                                kPAPPushPayloadActivityAskKey : kPAPPushPayloadActivityTypeKey,
+                                user!.objectId! : kPAPPushPayloadFromUserObjectIdKey,
+                                postDate.objectId! : kPAPPushPayloadPostDateObjectIdKey]
+                            
+                            let push:PFPush = PFPush()
+                            push.setChannel(privateChannelName)
+                            push.setData(data)
+                            push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                                
+                            })
+                        }
+                    }
+                })
+            }
         }
     }
     

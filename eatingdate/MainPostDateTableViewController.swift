@@ -50,16 +50,7 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         
         self.headerView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
         
-        // Get the user from a non-authenticated method
-//        if PFUser.currentUser() != nil {
-//            var query = PFUser.query()
-//            let current = PFUser.currentUser()
-//            query?.whereKey("objectId", equalTo: current!.objectId!)
-//            query?.getFirstObjectInBackgroundWithBlock({ (userAgain, error) -> Void in
-//                println("currentUser = \(userAgain)")
-//                PFUser.currentUser() == userAgain
-//            })
-//        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -110,6 +101,9 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
+    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -253,7 +247,24 @@ class MainPostDateTableViewController: PFQueryTableViewController {
             }
         }
         
+        //約會報名人數
+        CMCache.sharedCache()
         
+        
+        var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(object!)
+        if attributesForDate != nil {
+            cell.askLabel.text = "\(CMCache.sharedCache().askCountForDate(object!))/5"
+        }else{
+            //沒有緩存資料
+            var askAmount:PFQuery! = PFQuery(className: kAskDateListClassesKey)
+            askAmount.whereKey(kAskDateFromPostDate, equalTo: object!)
+            askAmount.findObjectsInBackgroundWithBlock({ (askers, error) -> Void in
+                CMCache.sharedCache().setAttributesForDate(object!, askers: askers, commenters: NSArray() as [AnyObject], askedByCurrentUser: false)
+                
+                cell.askLabel.text = "\(askers!.count)/5"
+            })
+            
+        }
         
         
         return cell

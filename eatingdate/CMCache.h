@@ -86,4 +86,23 @@
 
 //統計計算用戶的評價。
 + (void)CountUserAverageRating:(PFUser *)user Block:(void (^)(BOOL succeeded, NSArray *array))completionBlock;
+
+
+/**************************
+ eatingDate用
+ **************************/
+//把讀到的結果先chace到該約會單上
+- (void)setAttributesForDate:(PFObject *)date askers:(NSArray *)askers commenters:(NSArray *)commenters askedByCurrentUser:(BOOL)askedByCurrentUser;
+- (NSDictionary *)attributesForDate:(PFObject *)date;
+- (void)setThisPeopleIsLikedByDateOwner:(PFUser *)thisPeople thisDate:(PFObject *)date liked:(BOOL)liked;
+- (NSNumber *)askCountForDate:(PFObject *)date;
+- (NSNumber *)commentCountForDate:(PFObject *)date;
+- (NSArray *)askersForDate:(PFObject *)date;
+- (NSArray *)commentersForDate:(PFObject *)date;
+- (BOOL)isDateAskedByCurrentUser:(PFObject *)date;
+- (void)setDateIsAskedByCurrentUser:(PFObject *)date asked:(BOOL)asked;
+
+//計算報名約會的總人數
++ (void)askPostDateCountQuery:(PFQuery *)Date block:(void (^)(BOOL successed, NSArray *array))completionBlock;
+
 @end

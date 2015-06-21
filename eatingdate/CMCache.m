@@ -42,7 +42,7 @@
 
 - (void)setAttributesForPhoto:(PFObject *)photo likers:(NSArray *)likers commenters:(NSArray *)commenters likedByCurrentUser:(BOOL)likedByCurrentUser {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [NSNumber numberWithBool:likedByCurrentUser],kPAPPhotoAttributesIsLikedByCurrentUserKey,
+                                [NSNumber numberWithBool:likedByCurrentUser],kPAPPhotoAttributesIsAskedByCurrentUserKey,
                                 [NSNumber numberWithInt:(int)[likers count]],kPAPPhotoAttributesLikeCountKey,
                                 likers,kPAPPhotoAttributesLikersKey,
                                 [NSNumber numberWithInt:(int)[commenters count]],kPAPPhotoAttributesCommentCountKey,
@@ -96,14 +96,14 @@
 
 - (void)setPhotoIsLikedByCurrentUser:(PFObject *)photo liked:(BOOL)liked {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForPhoto:photo]];
-    [attributes setObject:[NSNumber numberWithBool:liked] forKey:kPAPPhotoAttributesIsLikedByCurrentUserKey];
+    [attributes setObject:[NSNumber numberWithBool:liked] forKey:kPAPPhotoAttributesIsAskedByCurrentUserKey];
     [self setAttributes:attributes forPhoto:photo];
 }
 
 - (BOOL)isPhotoLikedByCurrentUser:(PFObject *)photo {
     NSDictionary *attributes = [self attributesForPhoto:photo];
     if (attributes) {
-        return [[attributes objectForKey:kPAPPhotoAttributesIsLikedByCurrentUserKey] boolValue];
+        return [[attributes objectForKey:kPAPPhotoAttributesIsAskedByCurrentUserKey] boolValue];
     }
     
     return NO;
@@ -587,4 +587,99 @@
 - (NSString *)keyForUser:(PFUser *)user {
     return [NSString stringWithFormat:@"user_%@", [user objectId]];
 }
+
+/**************************
+ eatingDate用
+ **************************/
+//把讀到的結果先chace到該約會單上
+- (void)setAttributesForDate:(PFObject *)date askers:(NSArray *)askers commenters:(NSArray *)commenters askedByCurrentUser:(BOOL)askedByCurrentUser{
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithBool:askedByCurrentUser],kPAPPhotoAttributesIsAskedByCurrentUserKey,
+                                [NSNumber numberWithInt:(int)[askers count]],kPAPPhotoAttributesLikeCountKey,
+                                askers,kPAPPhotoAttributesLikersKey,
+                                [NSNumber numberWithInt:(int)[commenters count]],kPAPPhotoAttributesCommentCountKey,
+                                commenters,kPAPPhotoAttributesCommentersKey,
+                                nil];
+    
+    [self setAttributes:attributes forPhoto:date];
+}
+- (void)setThisPeopleIsLikedByDateOwner:(PFUser *)thisPeople thisDate:(PFObject *)date liked:(BOOL)liked{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForPhoto:date]];
+    [attributes setObject:[NSNumber numberWithBool:liked] forKey:kPAPPhotoAttributesIsAskedByCurrentUserKey];
+    [attributes setObject:thisPeople forKey:kPAPPhotoAttributesIsLikedByThisPeople];
+    [self setAttributes:attributes forPhoto:date];
+}
+- (NSDictionary *)attributesForDate:(PFObject *)date{
+    NSString *key = [self keyForPhoto:date];
+    return [self.cache objectForKey:key];
+}
+- (NSNumber *)askCountForDate:(PFObject *)date{
+    NSDictionary *attributes = [self attributesForPhoto:date];
+    if (attributes) {
+        return [attributes objectForKey:kPAPPhotoAttributesLikeCountKey];
+    }
+    
+    return [NSNumber numberWithInt:0];
+}
+- (NSNumber *)commentCountForDate:(PFObject *)date{
+    NSDictionary *attributes = [self attributesForPhoto:date];
+    if (attributes) {
+        return [attributes objectForKey:kPAPPhotoAttributesCommentCountKey];
+    }
+    
+    return [NSNumber numberWithInt:0];
+}
+- (NSArray *)askersForDate:(PFObject *)date{
+    NSDictionary *attributes = [self attributesForPhoto:date];
+    if (attributes) {
+        return [attributes objectForKey:kPAPPhotoAttributesLikersKey];
+    }
+    
+    return [NSArray array];
+}
+- (NSArray *)commentersForDate:(PFObject *)date{
+    NSDictionary *attributes = [self attributesForPhoto:date];
+    if (attributes) {
+        return [attributes objectForKey:kPAPPhotoAttributesCommentersKey];
+    }
+    
+    return [NSArray array];
+}
+
+- (BOOL)isDateAskedByCurrentUser:(PFObject *)date{
+    NSDictionary *attributes = [self attributesForPhoto:date];
+    if (attributes) {
+        return [[attributes objectForKey:kPAPPhotoAttributesIsAskedByCurrentUserKey] boolValue];
+    }
+    
+    return NO;
+}
+
+- (void)setDateIsAskedByCurrentUser:(PFObject *)date asked:(BOOL)asked{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForPhoto:date]];
+    [attributes setObject:[NSNumber numberWithBool:asked] forKey:kPAPPhotoAttributesIsAskedByCurrentUserKey];
+    [self setAttributes:attributes forPhoto:date];
+}
+
+//計算報名約會的總人數
++ (void)askPostDateCountQuery:(PFQuery *)Date block:(void (^)(BOOL successed, NSArray *array))completionBlock{
+    PFQuery *askQuery = [PFQuery queryWithClassName:kAskDateListClassesKey];
+    [askQuery whereKey:kAskDateFromPostDate equalTo:Date];
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    askQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    askQuery.limit = kPAWWallPostsSearch;
+    [askQuery orderByAscending:@"createdAt"];
+    [askQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(error == nil )
+        {
+            completionBlock(YES, objects);
+        }
+        else
+        {
+            completionBlock(NO, nil);
+        }
+    }];
+}
+
 @end

@@ -49,6 +49,10 @@
 
 + (PFQuery *)queryForActivitiesOnPhoto:(PFObject *)photo cachePolicy:(PFCachePolicy)cachePolicy;
 
+//從Activities Query該約會單所有的約會請求、留言訊息
++ (PFQuery *)queryForActivitiesOnDate:(PFObject *)date cachePolicy:(PFCachePolicy)cachePolicy;
+
+
 //用戶有一個有效的Facebook數據
 + (BOOL)userHasValidFacebookData:(PFUser *)user;
 //用戶有個人照片
