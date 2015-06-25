@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <IQKeyboardManager.h>
 
 @interface SignInViewController : UIViewController <UITextFieldDelegate, FBSDKGraphRequestConnectionDelegate>
 {

@@ -270,6 +270,15 @@
     [self.window makeKeyAndVisible];
 }
 
+#pragma mark - 轉場至登入畫面
+//轉場至登入畫面
+- (void)presentToLoginPage{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"loginNav"];
+    self.window.rootViewController = homeNav;
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
+}
 
 
 #pragma mark - MinnaListenerServerProtocol

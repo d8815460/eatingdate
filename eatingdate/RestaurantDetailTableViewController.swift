@@ -16,28 +16,28 @@ class RestaurantDetailTableViewController: ParallaxTableViewController {
     //取得用戶的經緯座標
     var manager: OneShotLocationManager?
     
-    // Initialise the PFQueryTable tableview
-    override init(style: UITableViewStyle, className: String?) {
-        super.init(style: style, className: className)
-        
-        // Configure the PFQueryTableView
-        self.parseClassName = "Restaurant"
-        self.textKey = "text"
-        self.pullToRefreshEnabled = true
-        self.paginationEnabled = false
-        self.loadingViewEnabled = false
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // Configure the PFQueryTableView
-        self.parseClassName = "Restaurant"
-        self.textKey = "text"
-        self.pullToRefreshEnabled = true
-        self.paginationEnabled = false
-        self.loadingViewEnabled = false
-    }
+//    // Initialise the PFQueryTable tableview
+//    override init(style: UITableViewStyle, className: String?) {
+//        super.init(style: style, className: className)
+//        
+//        // Configure the PFQueryTableView
+//        self.parseClassName = "Restaurant"
+//        self.textKey = "text"
+//        self.pullToRefreshEnabled = true
+//        self.paginationEnabled = false
+//        self.loadingViewEnabled = false
+//    }
+//    
+//    required init(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        
+//        // Configure the PFQueryTableView
+//        self.parseClassName = "Restaurant"
+//        self.textKey = "text"
+//        self.pullToRefreshEnabled = true
+//        self.paginationEnabled = false
+//        self.loadingViewEnabled = false
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +62,9 @@ class RestaurantDetailTableViewController: ParallaxTableViewController {
             if let loc = location {
                 self.Geo = PFGeoPoint(location: loc)
             } else if let err = error {
-                println("\(error?.localizedDescription)")
+                
             }
         })
-        
-        // Set the image:
-        self.imageView.image = UIImage(named: "image.jpg")
         
         // Set the appearance of the tableView
         self.view.backgroundColor = UIColor.blackColor()
@@ -86,14 +83,12 @@ class RestaurantDetailTableViewController: ParallaxTableViewController {
     }
 
     // MARK: - Table view data source
-    override func queryForTable() -> PFQuery {
-        var resQuery:PFQuery! = PFQuery(className: "Restaurant")
-        
-        println(" restaurant = \(detailItem?[kDateRestaurant]! as! PFObject)")
-        resQuery.whereKey(kDateRestaurant, equalTo: detailItem?[kDateRestaurant]! as! PFObject)
-        
-        return resQuery
-    }
+//    override func queryForTable() -> PFQuery {
+//        var resQuery:PFQuery! = PFQuery(className: "Restaurant")
+//        resQuery.whereKey(kDateRestaurant, equalTo: detailItem?[kDateRestaurant]! as! PFObject)
+//        
+//        return resQuery
+//    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.

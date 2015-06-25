@@ -9,7 +9,7 @@
 import UIKit
 import CoreImage
 
-class ParallaxTableViewController: PFQueryTableViewController {
+class ParallaxTableViewController: UITableViewController {
     
     // Create the UIImageView
     let imageView = UIImageView()

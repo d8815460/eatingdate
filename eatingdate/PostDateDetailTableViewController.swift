@@ -92,6 +92,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -146,6 +147,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         super.viewDidAppear(animated)
         
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -768,9 +770,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == 8 {
-            if self.friends.count > 0 {
-//                self.performSegueWithIdentifier("choseTa", sender: detailItem)
-            }
+            
         } else if indexPath.row == 5 {
             //餐廳詳細資料
             self.performSegueWithIdentifier("detail", sender: detailItem!)

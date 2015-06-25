@@ -39,8 +39,18 @@ class IntroViewController: UIViewController {
         userDefaults = NSUserDefaults.standardUserDefaults()
         if (userDefaults.objectForKey(firstTimeInstallKey) === true){
             //非第一次
+            
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.presentToHomePage()
+            
+            //確認是否有當前用戶，如果有，就直接到首頁，如果沒有就到登入頁面。
+            if PFUser.currentUser() != nil {
+                
+                appDelegate.presentToHomePage()
+            }else{
+                //還沒登入過
+                appDelegate.presentToLoginPage()
+            }
+            
         }else{
             userDefaults.setBool(true, forKey: firstTimeInstallKey)
             userDefaults.synchronize()

@@ -22,74 +22,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[IQKeyboardManager sharedManager] setEnable:true];
+    
     activityIndicator.hidden = true;
     
     bgImageView.image = [UIImage imageNamed:@"nav-bg-2"];
     bgImageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    titleLabel.text = NSLocalizedString(@"Sign In", "登入畫面");
+    titleLabel.text = NSLocalizedString(@"登入", "登入畫面");
     titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 45];
     titleLabel.textColor = [UIColor whiteColor];
     
-    /*先拔掉twitterButton
-    [twitterButton setTitle:NSLocalizedString(@"Sign in with Twitter", "登入畫面") forState: UIControlStateNormal];
-    [twitterButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
-    twitterButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 15];
-    twitterButton.backgroundColor = [UIColor colorWithRed:0.23 green: 0.43 blue: 0.88 alpha: 1.0];
-    [twitterButton addTarget:self action:@selector(dismiss) forControlEvents: UIControlEventTouchUpInside];
-    */
     
-    [facebookButton setTitle:NSLocalizedString(@"Sign in with Facebook", "登入畫面") forState: UIControlStateNormal];
+    [facebookButton setTitle:NSLocalizedString(@"使用Facebook登入", "登入畫面") forState: UIControlStateNormal];
     [facebookButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
     facebookButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 16];
     facebookButton.backgroundColor = [UIColor colorWithRed:0.21 green: 0.30 blue: 0.55 alpha: 1.0];
+    facebookButton.layer.cornerRadius = 5;
     
-    
-    NSMutableAttributedString* attributedText = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Don't have an account? Sign up", "登入畫面")];
-    
-    
-    [attributedText addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:NSMakeRange(10, 7)];
-    
-    
-    [attributedText addAttribute:NSForegroundColorAttributeName value: [UIColor whiteColor] range: NSMakeRange(0, attributedText.length)];
-    
-    [noAccountButton setAttributedTitle:attributedText forState: UIControlStateNormal];
+    [noAccountButton setTitle:NSLocalizedString(@"註冊", "登入畫面") forState:UIControlStateNormal];
     [noAccountButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
-    noAccountButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size:14];
+    noAccountButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size:16];
     
-    [signInButton setTitle:NSLocalizedString(@"Sign In", "登入畫面") forState: UIControlStateNormal];
+    [signInButton setTitle:NSLocalizedString(@"登入", "登入畫面") forState: UIControlStateNormal];
     [signInButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
-    signInButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 22];
-    signInButton.layer.borderWidth = 3;
-    signInButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    signInButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 16];
     signInButton.layer.cornerRadius = 5;
     
-    [forgotPassword setTitle:NSLocalizedString(@"Forgot Password?", "登入畫面") forState: UIControlStateNormal];
-    [forgotPassword setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
-    forgotPassword.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 15];
+    [forgotPassword setTitle:NSLocalizedString(@"忘記密碼？", "登入畫面") forState: UIControlStateNormal];
+    [forgotPassword setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
+    forgotPassword.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 14];
     
     passwordContainer.backgroundColor = [UIColor clearColor];
     
-    passwordLabel.text = NSLocalizedString(@"Password", "登入畫面");
-    passwordLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
+    passwordLabel.text = NSLocalizedString(@"密碼", "登入畫面");
+    passwordLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
     passwordLabel.textColor = [UIColor whiteColor];
     
     passwordTextField.text = @"";
-    passwordTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
-    passwordTextField.textColor = [UIColor whiteColor];
+    passwordTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
+    passwordTextField.textColor = [UIColor blackColor];
     passwordTextField.secureTextEntry = YES;
     passwordTextField.delegate = self;
+    passwordTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    passwordTextField.layer.borderWidth = 1;
+    passwordTextField.layer.cornerRadius = 5;
     
     userContainer.backgroundColor = [UIColor clearColor];
     
-    userLabel.text = NSLocalizedString(@"Phone", "登入畫面");
-    userLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
+    userLabel.text = NSLocalizedString(@"手機", "登入畫面");
+    userLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
     userLabel.textColor = [UIColor whiteColor];
     
     userTextField.text = @"";
-    userTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
-    userTextField.textColor = [UIColor whiteColor];
-    
+    userTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
+    userTextField.textColor = [UIColor blackColor];
+    userTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    userTextField.layer.borderWidth = 1;
+    userTextField.layer.cornerRadius = 5;
 }
 
 - (void)didReceiveMemoryWarning {
