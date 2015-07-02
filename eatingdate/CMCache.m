@@ -57,6 +57,11 @@
     return [self.cache objectForKey:key];
 }
 
+- (NSDictionary *)attributesForRestaurant:(PFObject *)restaurant {
+    NSString *key = [self keyForRestaurant:restaurant];
+    return [self.cache objectForKey:key];
+}
+
 - (NSNumber *)likeCountForPhoto:(PFObject *)photo {
     NSDictionary *attributes = [self attributesForPhoto:photo];
     if (attributes) {
@@ -570,6 +575,11 @@
     [self.cache setObject:attributes forKey:key];
 }
 
+- (void)setAttributes:(NSDictionary *)attributes forRestaurant:(PFObject *)restaurant {
+    NSString *key = [self keyForRestaurant:restaurant];
+    [self.cache setObject:attributes forKey:key];
+}
+
 - (void)setAttributes:(NSDictionary *)attributes forUser:(PFUser *)user {
     NSString *key = [self keyForUser:user];
     [self.cache setObject:attributes forKey:key];
@@ -582,6 +592,10 @@
 
 - (NSString *)keyForPhoto:(PFObject *)photo {
     return [NSString stringWithFormat:@"photo_%@", [photo objectId]];
+}
+
+- (NSString *)keyForRestaurant:(PFObject *)restaurant {
+    return [NSString stringWithFormat:@"restaurant_%@", [restaurant objectId]];
 }
 
 - (NSString *)keyForUser:(PFUser *)user {
@@ -680,6 +694,65 @@
             completionBlock(NO, nil);
         }
     }];
+}
+
+//餐廳資料
+- (void)setAttributesForRestaurant:(PFObject *)restaurant dates:(NSArray *)dates messagers:(NSArray *)messagers followedByCurrentUser:(BOOL)followedByCurrentUser{
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithBool:followedByCurrentUser],kPAPRestaurantAttributesIsFollowedByCurrentUserKey,
+                                [NSNumber numberWithInt:(int)[dates count]],kPAPRestaurantAttributesDateCountKey,
+                                dates, kPAPRestaurantAttributesDatesKey,
+                                [NSNumber numberWithInt:(int)[messagers count]],kPAPRestaurantAttributesMessengerCountKey,
+                                messagers, kPAPRestaurantAttributesMessengersKey,
+                                nil];
+    
+    [self setAttributes:attributes forRestaurant:restaurant];
+}
+
+- (void)setThisRestaurantIsFollowedByCurrentUser:(PFObject *)restaurant followed:(BOOL)followed{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForRestaurant:restaurant]];
+    [attributes setObject:[NSNumber numberWithBool:followed] forKey:kPAPRestaurantAttributesIsFollowedByCurrentUserKey];
+    [self setAttributes:attributes forRestaurant:restaurant];
+}
+- (NSNumber *)dateCountForRestaurant:(PFObject *)restaurant{
+    NSDictionary *attributes = [self attributesForRestaurant:restaurant];
+    if (attributes) {
+        return [attributes objectForKey:kPAPRestaurantAttributesDateCountKey];
+    }
+    
+    return [NSNumber numberWithInt:0];
+}
+- (NSNumber *)messagerCountForRestaurant:(PFObject *)restaurant{
+    NSDictionary *attributes = [self attributesForRestaurant:restaurant];
+    if (attributes) {
+        return [attributes objectForKey:kPAPRestaurantAttributesMessengerCountKey];
+    }
+    
+    return [NSNumber numberWithInt:0];
+}
+- (NSArray *)datesForRestaurant:(PFObject *)restaurant{
+    NSDictionary *attributes = [self attributesForRestaurant:restaurant];
+    if (attributes) {
+        return [attributes objectForKey:kPAPRestaurantAttributesDatesKey];
+    }
+    
+    return [NSArray array];
+}
+- (NSArray *)messagersForRestaurant:(PFObject *)restaurant{
+    NSDictionary *attributes = [self attributesForRestaurant:restaurant];
+    if (attributes) {
+        return [attributes objectForKey:kPAPRestaurantAttributesMessengersKey];
+    }
+    
+    return [NSArray array];
+}
+- (BOOL)isRestaurantFollowedByCurrentUser:(PFObject *)restaurant{
+    NSDictionary *attributes = [self attributesForRestaurant:restaurant];
+    if (attributes) {
+        return [[attributes objectForKey:kPAPRestaurantAttributesIsFollowedByCurrentUserKey] boolValue];
+    }
+    
+    return NO;
 }
 
 @end

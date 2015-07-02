@@ -12,6 +12,9 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var addPhoneField: UITextField!
     @IBOutlet weak var addPhoneButton: UIButton!
+    @IBOutlet var lawView: UIView!
+    @IBOutlet var agreeSegmented: UISegmentedControl!
+    
     var hud:MBProgressHUD!
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -20,10 +23,33 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         activityIndicatorView.hidden = true
         // Do any additional setup after loading the view.
-        addPhoneButton.hidden = true
+        addPhoneButton.userInteractionEnabled = false
+        addPhoneButton.setBackgroundImage(self.imageWithColor(UIColor.grayColor()), forState: UIControlState.Normal)
+        
         addPhoneField.delegate = self
+        addPhoneField.layer.borderColor = UIColor.blackColor().CGColor
+        addPhoneField.layer.borderWidth = 1
+        addPhoneField.layer.cornerRadius = 5
+        
+        lawView.layer
+        lawView.layer.borderColor = UIColor.redColor().CGColor
+        lawView.layer.borderWidth = 1
     }
 
+    func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, addPhoneButton.frame.size.width, addPhoneButton.frame.height)
+        UIGraphicsBeginImageContext(rect.size)
+        let context:CGContextRef = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,9 +60,11 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         
         if count(newString) > 10 || count(newString) < 10 {
             println("\(count(newString))")
-            addPhoneButton.hidden = true
+            addPhoneButton.userInteractionEnabled = false
+            addPhoneButton.setBackgroundImage(self.imageWithColor(UIColor.grayColor()), forState: UIControlState.Normal)
         }else{
-            addPhoneButton.hidden = false
+            addPhoneButton.userInteractionEnabled = true
+            addPhoneButton.setBackgroundImage(self.imageWithColor(UIColor(red: 195.0/255.0, green: 13/255.0, blue: 35/255.0, alpha: 1.0)), forState: UIControlState.Normal)
         }
         return true
     }
@@ -51,6 +79,23 @@ class AddPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addPhoneNumberButtonPressed(sender: AnyObject) {
+        
+        if agreeSegmented.selectedSegmentIndex == 1 {
+            //不同意
+            let alertController = UIAlertController(title: "協議事項",
+                message: "註冊前，須同意協議事項。",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "確定",
+                style: UIAlertActionStyle.Default,
+                handler: nil)
+            )
+            // Display alert
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+            
+        }
+        
         
         activityIndicatorView.hidden = false
         activityIndicatorView.startAnimating()

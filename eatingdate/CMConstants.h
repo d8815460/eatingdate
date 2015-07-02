@@ -103,6 +103,8 @@ extern NSString *const kIsTVIP;                 //是否用TVIP身份發佈
 extern NSString *const kIsVIP;                  //是不是VIP
 extern NSString *const kIsGVIP;                 //是不是GVIP
 extern NSString *const kDateBeenLookedAmount;   //該篇貼文被觀看的次數
+extern NSString *const kDateIsChosed;           //已經確定人選
+extern NSString *const kDateIsFinished;         //已經互相給評價
 
 
 #pragma mark - PFObject Activity Class
@@ -332,7 +334,7 @@ extern NSString *const WriteTaskFile;
 
 
 
-#pragma mark - Cached Photo Attributes
+#pragma mark - Cached PostDate Attributes
 // keys
 extern NSString *const kPAPPhotoAttributesIsAskedByCurrentUserKey;
 extern NSString *const kPAPPhotoAttributesIsReadedByCurrentUserKey;
@@ -341,6 +343,14 @@ extern NSString *const kPAPPhotoAttributesLikersKey;
 extern NSString *const kPAPPhotoAttributesCommentCountKey;
 extern NSString *const kPAPPhotoAttributesCommentersKey;
 extern NSString *const kPAPPhotoAttributesIsLikedByThisPeople;
+
+#pragma mark - Cached Restaurant Attributes
+// keys
+extern NSString *const kPAPRestaurantAttributesIsFollowedByCurrentUserKey;
+extern NSString *const kPAPRestaurantAttributesDateCountKey;
+extern NSString *const kPAPRestaurantAttributesDatesKey;
+extern NSString *const kPAPRestaurantAttributesMessengerCountKey;
+extern NSString *const kPAPRestaurantAttributesMessengersKey;
 
 #pragma mark - Cached User Attributes
 // keys

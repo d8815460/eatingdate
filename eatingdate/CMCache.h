@@ -105,4 +105,15 @@
 //計算報名約會的總人數
 + (void)askPostDateCountQuery:(PFQuery *)Date block:(void (^)(BOOL successed, NSArray *array))completionBlock;
 
+
+//餐廳資料
+- (void)setAttributesForRestaurant:(PFObject *)restaurant dates:(NSArray *)dates messagers:(NSArray *)messagers;
+- (NSDictionary *)attributesForRestaurant:(PFObject *)restaurant;
+- (void)setThisRestaurantIsFollowedByCurrentUser:(PFObject *)restaurant followed:(BOOL)followed;
+- (NSNumber *)dateCountForRestaurant:(PFObject *)restaurant;
+- (NSNumber *)messagerCountForRestaurant:(PFObject *)restaurant;
+- (NSArray *)datesForRestaurant:(PFObject *)restaurant;
+- (NSArray *)messagersForRestaurant:(PFObject *)restaurant;
+- (BOOL)isRestaurantFollowedByCurrentUser:(PFObject *)restaurant;
+
 @end

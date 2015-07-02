@@ -169,7 +169,12 @@ class RestaurantDetailTableViewController: ParallaxTableViewController {
             }
             
             return cell2
-        } else if indexPath.row == 3 || indexPath.row == 4{
+        } else if indexPath.row == 3 {
+            cell3.titleLabel.text = "正在定位的約吃飯"
+            
+            return cell3
+        } else if indexPath.row == 4 {
+            cell3.titleLabel.text = "約吃飯留言訊息區"
             
             return cell3
         }

@@ -11,23 +11,49 @@ import UIKit
 class PhoneVerifiedViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
-    
     @IBOutlet weak var startVerifiedButton: UIButton!
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var countDownTimerLabel: UILabel!
+    @IBOutlet var reSendVerifiedButton: UIButton!
+    var countDownTimer:NSTimer!
+    var IntCount:Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.activityIndicator.hidden = true
-        self.activityIndicator.stopAnimating()
-        
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        IntCount = 180
+        countDownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("handleInputPasswordTimeout:"), userInfo: nil, repeats: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func handleInputPasswordTimeout(sender: NSTimer) {
+        if (IntCount > 0) {
+            IntCount = IntCount - 1;
+            countDownTimerLabel.text = "\(IntCount) s"
+        }else{
+            countDownTimer.invalidate();
+            countDownTimer = nil;
+            
+            let alertController = UIAlertController(title: "行動電話號碼驗證失敗",
+                message: "您有可能未提供正確行動電話號碼或已超過3分鐘驗證時間",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "確定",
+                style: UIAlertActionStyle.Default,
+                handler: nil)
+            )
+            // Display alert
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func startPhoneVerifiedViewController(sender: AnyObject) {
@@ -48,8 +74,6 @@ class PhoneVerifiedViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func startVerifiedButtonPressed(sender: AnyObject) {
         // Start activity indicator
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
         
         let variable = textField.text.toInt()
         
@@ -61,9 +85,6 @@ class PhoneVerifiedViewController: UIViewController, UITextFieldDelegate {
                 
                 if let thisVariable = user?.objectForKey("phoneCode") as? Int{
                     if thisVariable == variable {
-                        // Stop activity indicator
-                        self.activityIndicator.hidden = true
-                        self.activityIndicator.stopAnimating()
                         
                         //一致，儲存phoneVerified，然後下一頁
                         let user:PFUser! = PFUser.currentUser()!
@@ -71,7 +92,7 @@ class PhoneVerifiedViewController: UIViewController, UITextFieldDelegate {
                         ACL.setPublicReadAccess(true)
                         user!.ACL = ACL
                         
-                        user?.setObject(true, forKey: "phoneVerified")
+                        user?.setObject(true, forKey: "isPhoneVerified")
                         user?.saveInBackgroundWithBlock({ (succeeded:Bool, error:NSError?) -> Void in
                             
                         })
@@ -80,8 +101,6 @@ class PhoneVerifiedViewController: UIViewController, UITextFieldDelegate {
                         self.performSegueWithIdentifier("wProfile", sender: self)
                     }else{
                         // Stop activity indicator
-                        self.activityIndicator.hidden = true
-                        self.activityIndicator.stopAnimating()
                         
                         //不一致，彈出錯誤
                         let alertController = UIAlertController(title: "驗證時發生錯誤",
@@ -100,6 +119,9 @@ class PhoneVerifiedViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    @IBAction func reSendVerifiedButtonPressed(sender: AnyObject) {
+        
+    }
     /*
     // MARK: - Navigation
 

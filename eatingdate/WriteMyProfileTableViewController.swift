@@ -12,11 +12,9 @@ extension Int {
     var days:Int {
         return 60*60*24*self
     }
-    
     var years:Int {
         return 60*60*24*365*self
     }
-    
     var ago:NSDate{
         return NSDate().dateByAddingTimeInterval(-Double(self))
     }
@@ -56,9 +54,7 @@ class WriteMyProfileTableViewController: UITableViewController, UITextFieldDeleg
         let label = UILabel()
         label.backgroundColor = UIColor.clearColor()
         label.font = UIFont.boldSystemFontOfSize(20.0)
-        label.shadowColor = UIColor(white: 0.0, alpha: 0.5)
         label.textAlignment = NSTextAlignment.Center
-        label.textColor = UIColor.whiteColor()
         self.navigationItem.titleView = label
         label.text = "請輸入基本資料"
         label.sizeToFit()

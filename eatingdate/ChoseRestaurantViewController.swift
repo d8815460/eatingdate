@@ -21,6 +21,8 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
     
     @IBOutlet weak var viewForTableView: UIView!
     
+    var category: Int!
+    
     var task:WriteTask!
     var categoryTable:CategoryRestaurantTableViewController!
     let mainStoryboard:UIStoryboard! = UIStoryboard(name: "Main", bundle: nil)
@@ -32,7 +34,7 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
 
         // Do any additional setup after loading the view.
         
-        categoriesForRestaurant = ["日式料理", "中式料理", "亞洲料理", "異國料理", "主題特色餐廳", "燒烤類", "鍋類", "Buffet自助", "速食料理", "素食", "小吃", "烘培甜點零食", "冰品飲料甜湯", "咖啡簡餐茶", "早餐", "其他"]
+        categoriesForRestaurant = ["日式料理", "中式料理", "亞洲料理", "異國料理", "主題特色餐廳", "燒烤類", "鍋類", "Buffet自助", "速食料理", "素食", "小吃", "烘培甜點零食", "冰品飲料甜湯", "咖啡簡餐茶", "早餐", "其他", "飯店", "百貨公司"]
         
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
@@ -92,12 +94,18 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
         //選擇否個類別之後，就隱藏colllectionView
         categoryCollectionView.hidden = true
         
+        category = indexPath.row//選擇的類別
+        
         //然後已經有 categoryTable 就直接顯示，並隱藏其他的tableview
         if self.categoryTable != nil {
             self.categoryTable.view.hidden = false
+            self.categoryTable.category = indexPath.row
+//            self.categoryTable.refreshControl?.addTarget(self.categoryTable, action: Selector("refresh:"), forControlEvents: UIControlEvents.ValueChanged)
+            self.categoryTable.loadObjects()
         }else{
-            self.loadPostsTableViewController()
+            self.loadPostsTableViewController(indexPath)
         }
+        
         if self.hotRestaurantTable != nil {
             self.hotRestaurantTable.view.hidden = true
         }
@@ -119,11 +127,11 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
     }
     
     
-    func loadPostsTableViewController () {
+    func loadPostsTableViewController (indexPath: NSIndexPath) {
         // add the posts tableview as a subview with view containment
         self.categoryTable = mainStoryboard.instantiateViewControllerWithIdentifier("categoryRestaurantTable") as! CategoryRestaurantTableViewController
+        self.categoryTable.category = indexPath.row
         self.categoryTable.view.frame = CGRectMake(0.0, 0.0, self.viewForTableView.frame.size.width, self.viewForTableView.frame.size.height)
-        
         self.viewForTableView.addSubview(self.categoryTable.view)
         self.addChildViewController(self.categoryTable)
         self.categoryTable.didMoveToParentViewController(self)
@@ -191,7 +199,7 @@ class ChoseRestaurantViewController: UIViewController, UICollectionViewDataSourc
             if self.categoryTable != nil {
                 self.categoryTable.view.hidden = true
             }else{
-                self.loadPostsTableViewController()
+//                self.loadPostsTableViewController()
             }
             if self.hotRestaurantTable != nil {
                 self.hotRestaurantTable.view.hidden = true

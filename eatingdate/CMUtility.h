@@ -115,4 +115,16 @@
 //+(void) broadcastMinnaMessage:(NSString *)broadcastMessage;
 
 
+//正在定位的約吃飯數量
++ (void)nowDatingNumberPostAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSNumber *number))completionBlock;
+
+//約吃飯留言訊息數量
++ (void)nowMessengerNumberAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSString *number))completionBlock;
+
+//正在定位的約吃飯Array
++ (void)nowDatingArrayPostAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSArray *array))completionBlock;
+
+//約吃飯留言訊息數量
++ (void)nowMessengerArrayAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSString *array))completionBlock;
+
 @end

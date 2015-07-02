@@ -24,16 +24,6 @@
     
     [[IQKeyboardManager sharedManager] setEnable:true];
     
-    activityIndicator.hidden = true;
-    
-    bgImageView.image = [UIImage imageNamed:@"nav-bg-2"];
-    bgImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
-    titleLabel.text = NSLocalizedString(@"登入", "登入畫面");
-    titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 45];
-    titleLabel.textColor = [UIColor whiteColor];
-    
-    
     [facebookButton setTitle:NSLocalizedString(@"使用Facebook登入", "登入畫面") forState: UIControlStateNormal];
     [facebookButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
     facebookButton.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 16];
@@ -53,12 +43,6 @@
     [forgotPassword setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     forgotPassword.titleLabel.font = [UIFont fontWithName:MegaTheme.semiBoldFontName size: 14];
     
-    passwordContainer.backgroundColor = [UIColor clearColor];
-    
-    passwordLabel.text = NSLocalizedString(@"密碼", "登入畫面");
-    passwordLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
-    passwordLabel.textColor = [UIColor whiteColor];
-    
     passwordTextField.text = @"";
     passwordTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
     passwordTextField.textColor = [UIColor blackColor];
@@ -68,18 +52,38 @@
     passwordTextField.layer.borderWidth = 1;
     passwordTextField.layer.cornerRadius = 5;
     
-    userContainer.backgroundColor = [UIColor clearColor];
-    
-    userLabel.text = NSLocalizedString(@"手機", "登入畫面");
-    userLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
-    userLabel.textColor = [UIColor whiteColor];
-    
     userTextField.text = @"";
     userTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
     userTextField.textColor = [UIColor blackColor];
     userTextField.layer.borderColor = [UIColor blackColor].CGColor;
     userTextField.layer.borderWidth = 1;
     userTextField.layer.cornerRadius = 5;
+    userTextField.delegate = self;
+    
+    passwordText2Field.text = @"";
+    passwordText2Field.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
+    passwordText2Field.textColor = [UIColor blackColor];
+    passwordText2Field.secureTextEntry = YES;
+    passwordText2Field.delegate = self;
+    passwordText2Field.layer.borderColor = [UIColor blackColor].CGColor;
+    passwordText2Field.layer.borderWidth = 1;
+    passwordText2Field.layer.cornerRadius = 5;
+    
+    userText2Field.text = @"";
+    userText2Field.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
+    userText2Field.textColor = [UIColor blackColor];
+    userText2Field.layer.borderColor = [UIColor blackColor].CGColor;
+    userText2Field.layer.borderWidth = 1;
+    userText2Field.layer.cornerRadius = 5;
+    userText2Field.delegate = self;
+    
+    emailAddressTextField.text = @"";
+    emailAddressTextField.font = [UIFont fontWithName:MegaTheme.fontName size: 16];
+    emailAddressTextField.textColor = [UIColor blackColor];
+    emailAddressTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    emailAddressTextField.layer.borderWidth = 1;
+    emailAddressTextField.layer.cornerRadius = 5;
+    emailAddressTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,8 +93,6 @@
 
 -(void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    
-    titleLabel.hidden = newCollection.verticalSizeClass ==  UIUserInterfaceSizeClassCompact;
     
 }
 
@@ -116,26 +118,18 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
-    //檢查文字輸入框是不是有少輸入
-    activityIndicator.hidden = false;
-    [activityIndicator startAnimating];
-    
     [PFUser logInWithUsernameInBackground:userTextField.text password:passwordTextField.text
                                     block:^(PFUser *user, NSError *error) {
                                         if (user) {
                                             // Do stuff after successful login.
-                                            [activityIndicator stopAnimating];
                                             
                                             dispatch_async(dispatch_get_main_queue(), ^{
-                                                //取消登錄程序畫面
-                                                [self dismissViewControllerAnimated:true completion:^{
-                                                    
-                                                }];
+                                                //直接轉場至首頁
+                                                [[AppDelegate sharedDelegate] presentToHomePage];
                                             });
                                             
                                         } else {
                                             // The login failed. Check error to see why.
-                                            [activityIndicator stopAnimating];
                                             
                                             NSString *message = error.userInfo[@"error"];
                                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登錄時發生錯誤" message:message delegate:self cancelButtonTitle:@"確定" otherButtonTitles:nil];
@@ -146,6 +140,82 @@
 
 - (IBAction)signupButtonPressed:(id)sender {
     
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    _hud.dimBackground = YES;
+    _hud.labelText = NSLocalizedString(@"正在進行註冊", nil);
+    
+    PFUser *user = [PFUser user];
+    
+    if (emailAddressTextField.text.length > 0) {
+        user.email    = emailAddressTextField.text;
+    }
+
+    user.username = userText2Field.text;
+    user.password = passwordText2Field.text;
+    
+    NSString *privateChannelName = [NSString stringWithFormat:@"user_%@", [user objectId]];
+    [user setValue:privateChannelName forKey:kPAPUserPrivateChannelKey];
+    
+    /* OTP 部分 */
+    //隨機亂碼
+    int ValueCode = arc4random() % 9999;
+    if (ValueCode < 1000) {
+        ValueCode = arc4random() % 9999;
+    }
+    NSNumber *valueCodeNumber = [NSNumber numberWithInt:ValueCode];
+    [user setObject:valueCodeNumber forKey:@"phoneCode"];
+    [user setObject:userText2Field.text forKey:@"phone"];
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            //第一次註冊，導航至同意協定頁面
+            _hud.labelText = NSLocalizedString(@"註冊中", nil);
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            //儲存用戶名稱
+            [userDefaults setValue:userText2Field.text forKey:kCMUserNameString];
+            [userDefaults setValue:privateChannelName forKey:kPAPUserPrivateChannelKey];
+            [userDefaults synchronize];
+            
+            [PFUser currentUser].username = userText2Field.text;
+            
+            [[PFUser currentUser] setObject:privateChannelName forKey:kPAPUserPrivateChannelKey];
+            
+            PFACL *ACL = [PFACL ACL];
+            [ACL setPublicReadAccess:YES];
+            [PFUser currentUser].ACL = ACL;
+            
+            
+            //執行雲端代碼
+            NSString *number = @"number";
+            NSString *phoneCode = @"phoneCode";
+            
+            NSString *userPhoneNumber = [NSString stringWithFormat:@"+886%@", userText2Field.text];
+            
+            //雲端代碼
+            [PFCloud callFunctionInBackground:@"inviteWithTwilio" withParameters:@{number:userPhoneNumber, phoneCode:valueCodeNumber} block:^(id object, NSError *error) {
+                if (!error) {
+                    NSLog(@"簡訊已經送出");
+                    
+                    [MBProgressHUD hideHUDForView:self.view animated:NO];
+                    
+                    [self performSegueWithIdentifier:@"verified" sender:noAccountButton];
+                }
+            }];
+        }else{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSString *errorString = [error userInfo][@"error"];
+            
+            if ([[errorString substringToIndex:17] isEqualToString:@"the email address"]) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"電子信箱已經被註冊過", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"確定", nil) otherButtonTitles: nil];
+                [alertView show];
+            }else{
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"電話號碼已經被註冊過", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"確定", nil) otherButtonTitles:nil] show];
+            }
+            
+        }
+    }];
 }
 
 - (IBAction)forgotPasswordButtonPressed:(id)sender {
@@ -153,8 +223,6 @@
 }
 
 - (IBAction)facebookLoginButtonPressed:(id)sender {
-    activityIndicator.hidden = false;
-    [activityIndicator startAnimating];
     
     // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends"];
@@ -165,9 +233,6 @@
     
     // Login PFUser using facebook
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        
-        [activityIndicator stopAnimating]; // Hide loading indicator
-        activityIndicator.hidesWhenStopped = YES;
         
         if (!user) {
             if (!error) {
@@ -208,7 +273,6 @@
                 [user saveEventually:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
                         //轉場到 首頁 的畫面
-                        
                         // Request new Publish Permissions
                         if ([FBSDKAccessToken currentAccessToken]) {
                             [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
@@ -226,17 +290,20 @@
                     }
                 }];
             }else{
-                //舊的用戶，直接轉場至首頁即可。
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
+                //沒有連結，錯誤
+                NSLog(@"isLinkedWithUser = false");
             }
         } else {
             NSLog(@"User logged in through Facebook!");
-            //舊的用戶，直接轉場至首頁即可。
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
+            //舊的用戶，先確認手機是否已經經過驗證，經過驗證才能至首頁，否則就要到手機驗證畫面去
+            
+            if ([[user objectForKey:@"isPhoneVerified"] boolValue]) {
+                //已經經過驗證
+                [[AppDelegate sharedDelegate] presentToHomePage];
+            }else{
+                //尚未經過驗證
+                [self performSegueWithIdentifier:@"addPhone" sender:facebookButton];
+            }
         }
     }];
 }
@@ -329,7 +396,7 @@
             
             [[PFUser currentUser] saveEventually:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    [self performSegueWithIdentifier:@"addPhone" sender:nil];
+                    [self performSegueWithIdentifier:@"addPhone" sender:facebookButton];
                 }
             }];
         }

@@ -13,6 +13,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
+static AppDelegate *sharedDelegate;
 
 @interface AppDelegate ()
 
@@ -20,6 +21,13 @@
 
 @implementation AppDelegate
 
++ (AppDelegate *)sharedDelegate {
+    if (!sharedDelegate) {
+        sharedDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return sharedDelegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -29,7 +37,7 @@
     
     // Enable storing and querying data from Local Datastore. Remove this line if you don't want to
     // use Local Datastore features or want to use cachePolicy.
-    [Parse enableLocalDatastore];
+//    [Parse enableLocalDatastore];
 
     // ****************************************************************************
     // Uncomment this line if you want to enable Crash Reporting
@@ -323,5 +331,40 @@
     }
 }
 
+#pragma mark - 登出
+- (void)logOut{
+    // clear cache
+    [[CMCache sharedCache] clear];
+    
+    // clear NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPAPUserDefaultsCacheFacebookFriendsKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPAPUserDefaultsActivityFeedViewControllerLastRefreshKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"install 4");
+    [[PFInstallation currentInstallation] setObject:@[@""] forKey:kPAPInstallationChannelsKey];
+    [[PFInstallation currentInstallation] removeObjectForKey:kPAPInstallationUserKey];
+    [[PFInstallation currentInstallation] removeObjectForKey:@"channels"];
+    //    [[PFInstallation currentInstallation] removeObjectForKey:@"deviceToken"];
+    [[PFInstallation currentInstallation] saveInBackground];
+    
+    // Clear all caches
+    [PFQuery clearAllCachedResults];
+    
+    //要把用戶名稱刪除
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:kCMUserNameString];
+    [userDefaults removeObjectForKey:@"mediumImage"];
+    [userDefaults removeObjectForKey:@"smallRoundedImage"];
+    [userDefaults removeObjectForKey:@"isPhoneVerified"];
+    [userDefaults removeObjectForKey:@"email"];
+    [userDefaults removeObjectForKey:@"emailVerified"];
+    [userDefaults removeObjectForKey:@"facebookId"];
+    
+    [userDefaults synchronize];
+    [PFUser logOut];
+    
+    [self presentToLoginPage];
+}
 
 @end

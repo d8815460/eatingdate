@@ -12,6 +12,7 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
 
     @IBOutlet weak var searchBar: UISearchBar!
     var keywork: String!
+    var category: Int!
     
     // Initialise the PFQueryTable tableview
     override init(style: UITableViewStyle, className: String?) {
@@ -49,6 +50,23 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         
         self.searchBar.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,16 +106,78 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         let query = PFQuery(className: self.parseClassName!)
         query.includeKey("category")
         query.includeKey("photoLibrary")
-        if self.objects?.count == 0 {
-            
-        }else{
-            query.fromLocalDatastore()
-        }
-        query.orderByAscending("createdAt")
+        
         if keywork != nil {
             println("有搜尋到嗎")
-            query.whereKey("name", containsString: keywork)
         }
+        
+        query.cachePolicy = PFCachePolicy.NetworkOnly
+        //是否選擇類別
+        if category != nil {
+            println("我的類別是\(category)")
+            switch category {
+            case 0:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "YSwcdchSZj")
+                query.whereKey("category", equalTo: categoryObject)
+            case 1:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "zVutHHoyEl")
+                query.whereKey("category", equalTo: categoryObject)
+            case 2:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "zERXZSBgR1")
+                query.whereKey("category", equalTo: categoryObject)
+            case 3:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "zVutHHoyEl")
+                query.whereKey("category", equalTo: categoryObject)
+            case 4:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "XYNc8f76F0")
+                query.whereKey("category", equalTo: categoryObject)
+            case 5:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "x6NMrjt3qQ")
+                query.whereKey("category", equalTo: categoryObject)
+            case 6:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "ZodVoEDADD")
+                query.whereKey("category", equalTo: categoryObject)
+            case 7:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "qVu7Fm1wL6")
+                query.whereKey("category", equalTo: categoryObject)
+            case 8:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "XJ0d4ZCE0r")
+                query.whereKey("category", equalTo: categoryObject)
+            case 9:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "Bomz4vu9q6")
+                query.whereKey("category", equalTo: categoryObject)
+            case 10:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "J1dstD420I")
+                query.whereKey("category", equalTo: categoryObject)
+            case 11:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "UZw8yJUU4q")
+                query.whereKey("category", equalTo: categoryObject)
+            case 12:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "2LaepbFYNV")
+                query.whereKey("category", equalTo: categoryObject)
+            case 13:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "saGxNiJYEP")
+                query.whereKey("category", equalTo: categoryObject)
+            case 14:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "T5opxasZt4")
+                query.whereKey("category", equalTo: categoryObject)
+            case 15:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "CcboUuaKPi")
+                query.whereKey("category", equalTo: categoryObject)
+            case 16:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "RcD0zhJykl")
+                query.whereKey("category", equalTo: categoryObject)
+            case 17:
+                var categoryObject:PFObject! = PFObject(withoutDataWithClassName: "RestaurantCategory", objectId: "DAuWHBuAcj")
+                query.whereKey("category", equalTo: categoryObject)
+            default:
+                break
+            }
+        }
+        
+        
+        query.orderByAscending("createdAt")
+        
         return query
     }
     
@@ -105,7 +185,11 @@ class CategoryRestaurantTableViewController: PFQueryTableViewController, UISearc
         self.loadingViewEnabled = false
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         
-//        println("objects = \(self.objects)")
+        self.refreshControl?.endRefreshing();
+    }
+    
+    func refresh(sender: AnyObject) {
+        self.loadObjects()
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {

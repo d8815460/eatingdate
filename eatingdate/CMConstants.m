@@ -172,7 +172,7 @@ NSString *const kPAPPushPayloadActivitySMSResultKey         = @"result";     // 
 
 NSString *const kPAPPushPayloadFromUserObjectIdKey          = @"fu";
 NSString *const kPAPPushPayloadToUserObjectIdKey            = @"tu";
-NSString *const kPAPPushPayloadPostDateObjectIdKey          = @"pd";
+NSString *const kPAPPushPayloadPostDateObjectIdKey          = @"po";
 
 
 
@@ -303,6 +303,9 @@ NSString *const kIsTVIP                 = @"isTVIP";            //是否用TVIP�
 NSString *const kIsVIP                  = @"isVIP";             //是不是VIP
 NSString *const kIsGVIP                 = @"isGVIP";            //是不是GVIP
 NSString *const kDateBeenLookedAmount   = @"beenLookedAmount";  //該篇貼文被觀看的次數
+NSString *const kDateIsChosed           = @"isChosed";          //已經確定人選
+NSString *const kDateIsFinished         = @"isFinished";        //已經互相給評價
+
 
 #pragma mark - Cached 任務 Attributes
 // keys
@@ -313,6 +316,15 @@ NSString *const kPAPPhotoAttributesLikersKey               = @"likers";
 NSString *const kPAPPhotoAttributesCommentCountKey         = @"commentCount";
 NSString *const kPAPPhotoAttributesCommentersKey           = @"commenters";
 NSString *const kPAPPhotoAttributesIsLikedByThisPeople     = @"isLikedByThisPeople";
+
+#pragma mark - Cached Restaurant Attributes
+// keys
+NSString *const kPAPRestaurantAttributesIsFollowedByCurrentUserKey  = @"isFollowedByCurrentUser";
+NSString *const kPAPRestaurantAttributesDateCountKey                = @"dateCount";
+NSString *const kPAPRestaurantAttributesDatesKey                    = @"dates";
+NSString *const kPAPRestaurantAttributesMessengerCountKey           = @"messengerCount";
+NSString *const kPAPRestaurantAttributesMessengersKey               = @"messengers";
+
 
 #pragma mark - Cached User Attributes
 // keys

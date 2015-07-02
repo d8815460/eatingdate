@@ -1433,4 +1433,41 @@ typedef enum {
 }
 
 
+#pragma mark - 餐廳用
+//餐廳用
+//正在定位的約吃飯數量
++ (void)nowDatingNumberPostAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSNumber *number))completionBlock{
+    PFQuery *datingNowQuery = [PFQuery queryWithClassName:kPostDateClassesKey];
+    [datingNowQuery whereKey:kDateRestaurant equalTo:restaurant];
+    //還沒確定人選的約會單
+    [datingNowQuery whereKey:kDateIsChosed notEqualTo:[NSNumber numberWithBool:true]];
+    [datingNowQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (completionBlock) {
+                completionBlock(true, [NSNumber numberWithInt:(int)objects.count]);
+            }
+        }else{
+            if (completionBlock) {
+                completionBlock(false, [NSNumber numberWithInt:0]);
+            }
+        }
+    }];
+}
+
+//約吃飯留言訊息數量
++ (void)nowMessengerNumberAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSString *number))completionBlock{
+    
+}
+
+//正在定位的約吃飯Array
++ (void)nowDatingArrayPostAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSArray *array))completionBlock{
+    
+}
+
+//約吃飯留言訊息數量
++ (void)nowMessengerArrayAtRestaurant:(PFObject *)restaurant block:(void (^)(BOOL succeeded, NSString *array))completionBlock{
+    
+}
+
+
 @end
