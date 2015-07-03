@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.separatorColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+//    self.tableView.separatorColor = [UIColor colorWithWhite:0.92 alpha:1.0];
     
     bgImageView.image = [UIImage imageNamed: @"profile-bg"];
     profileImageView.image = [UIImage imageNamed: @"profile-pic-2"];
@@ -170,12 +170,12 @@
     
     NSDictionary* info = notification.userInfo;
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    UIEdgeInsets insets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0, keyboardSize.height, 0);
+//    UIEdgeInsets insets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0, keyboardSize.height, 0);
     
-    self.tableView.contentInset = insets;
-    self.tableView.scrollIndicatorInsets = insets;
+//    self.tableView.contentInset = insets;
+//    self.tableView.scrollIndicatorInsets = insets;
     
-    self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y + keyboardSize.height);
+//    self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y + keyboardSize.height);
 }
 
 -(void)keyboardWillBeHidden:(NSNotification*)notification {
@@ -183,10 +183,10 @@
     NSDictionary* info = notification.userInfo;
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
-    UIEdgeInsets insets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0, keyboardSize.height, 0);
+//    UIEdgeInsets insets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0, keyboardSize.height, 0);
     
-    self.tableView.contentInset = insets;
-    self.tableView.scrollIndicatorInsets = insets;
+//    self.tableView.contentInset = insets;
+//    self.tableView.scrollIndicatorInsets = insets;
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -206,8 +206,8 @@
 
 -(void)viewDidLayoutSubviews
 {
-    self.tableView.separatorInset = UIEdgeInsetsZero;
-    self.tableView.layoutMargins = UIEdgeInsetsZero;
+//    self.tableView.separatorInset = UIEdgeInsetsZero;
+//    self.tableView.layoutMargins = UIEdgeInsetsZero;
 }
 
 /*

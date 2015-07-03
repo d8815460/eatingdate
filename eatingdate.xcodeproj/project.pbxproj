@@ -23,6 +23,7 @@
 		238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */; };
 		238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */; };
 		238934731B01AE2700C1E8B3 /* SettingPostTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */; };
+		2396123F1B45974C004CBC86 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2396123E1B45974C004CBC86 /* LeftMenuViewController.m */; };
 		23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */; };
 		23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658E1B057B9C00DBADE1 /* WriteTask.m */; };
 		23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965901B057B9C00DBADE1 /* writeTaskSync.m */; };
@@ -191,6 +192,8 @@
 		238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantCell.swift; sourceTree = "<group>"; };
 		238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPostTitleViewController.swift; sourceTree = "<group>"; };
+		2396123D1B45974C004CBC86 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
+		2396123E1B45974C004CBC86 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		23A9658B1B057B9C00DBADE1 /* WriteTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTaskManager.h; sourceTree = "<group>"; };
 		23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTaskManager.m; sourceTree = "<group>"; };
 		23A9658D1B057B9C00DBADE1 /* WriteTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTask.h; sourceTree = "<group>"; };
@@ -1021,7 +1024,6 @@
 				DB0BE17E1AF4678800B49B4A /* DataModel */,
 				DB0BE1661AF4676A00B49B4A /* Controls */,
 				DB0BE15C1AF466D300B49B4A /* Theme */,
-				DB5C826A1AF5AE2B00A8F57E /* AMSlideMenu */,
 				DB5C82811AF5B19100A8F57E /* 左右菜單 */,
 				DB5C82661AF5A4B000A8F57E /* 0.0註冊與登入 */,
 				DB0BE1581AF4669B00B49B4A /* 1.0首頁約會清單 */,
@@ -1118,6 +1120,9 @@
 		DB5C82811AF5B19100A8F57E /* 左右菜單 */ = {
 			isa = PBXGroup;
 			children = (
+				DB5C826A1AF5AE2B00A8F57E /* AMSlideMenu */,
+				2396123D1B45974C004CBC86 /* LeftMenuViewController.h */,
+				2396123E1B45974C004CBC86 /* LeftMenuViewController.m */,
 				DB5C82881AF5BF1200A8F57E /* ProfileViewController.h */,
 				DB5C82891AF5BF1200A8F57E /* ProfileViewController.m */,
 				DB5C828B1AF5C96F00A8F57E /* AccountViewController.h */,
@@ -1357,6 +1362,7 @@
 				DB5C827E1AF5AE4700A8F57E /* AMSlideMenuRightMenuSegue.m in Sources */,
 				23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */,
 				DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */,
+				2396123F1B45974C004CBC86 /* LeftMenuViewController.m in Sources */,
 				DB0BE2481AF4909B00B49B4A /* RCSwitch.m in Sources */,
 				23759AB21B2718E900C5127F /* MapCell.swift in Sources */,
 				DB0BE2471AF4909B00B49B4A /* MyFile.m in Sources */,
