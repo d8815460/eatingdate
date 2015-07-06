@@ -30,6 +30,8 @@
 
 #import "AMSlideMenuContentSegue.h"
 
+#import "MenuWithIconCell.h"
+
 @interface AMSlideMenuLeftTableViewController ()
 
 @end
@@ -62,6 +64,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    if (indexPath.row == 1) {
+        //首頁
+        
+    }else if (indexPath.row == 2) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_publish__normal"]];
+    }else if (indexPath.row == 3) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_schedule_normal"]];
+    }else if (indexPath.row == 4) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_mail_normal"]];
+    }else if (indexPath.row == 5) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_heart_normal"]];
+    }else if (indexPath.row == 6) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_history_normal"]];
+    }else if (indexPath.row == 7) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_gvip_normal"]];
+    }else if (indexPath.row == 8) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_tvip_normal"]];
+    }else if (indexPath.row == 9) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_point_normal"]];
+    }else if (indexPath.row == 10) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_setting_normal"]];
+    }
+    
+    
+    
     if ([self.mainVC respondsToSelector:@selector(navigationControllerForIndexPathInLeftMenu:)]) {
         UINavigationController *navController = [self.mainVC navigationControllerForIndexPathInLeftMenu:indexPath];
         AMSlideMenuContentSegue *segue = [[AMSlideMenuContentSegue alloc] initWithIdentifier:@"ContentSugue" source:self destination:navController];
@@ -74,6 +103,35 @@
         }
     }
 }
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+    
+    if (indexPath.row == 1) {
+        //首頁
+        
+    }else if (indexPath.row == 2) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_publish__pressed"]];
+    }else if (indexPath.row == 3) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_schedule_pressed"]];
+    }else if (indexPath.row == 4) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_mail_pressed"]];
+    }else if (indexPath.row == 5) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_heart_pressed"]];
+    }else if (indexPath.row == 6) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_history_pressed"]];
+    }else if (indexPath.row == 7) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_gvip_pressed"]];
+    }else if (indexPath.row == 8) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_tvip_pressed"]];
+    }else if (indexPath.row == 9) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_point_pressed"]];
+    }else if (indexPath.row == 10) {
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_setting_pressed"]];
+    }
+}
+
 
 
 @end

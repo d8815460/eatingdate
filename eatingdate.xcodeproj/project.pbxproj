@@ -24,6 +24,13 @@
 		238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */; };
 		238934731B01AE2700C1E8B3 /* SettingPostTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */; };
 		2396123F1B45974C004CBC86 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2396123E1B45974C004CBC86 /* LeftMenuViewController.m */; };
+		239612BE1B48F127004CBC86 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 239612BD1B48F127004CBC86 /* ProfileCell.m */; };
+		239612C11B48F1E0004CBC86 /* MenuWithIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 239612C01B48F1E0004CBC86 /* MenuWithIconCell.m */; };
+		239612C41B48F1F4004CBC86 /* MenuWithOutIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 239612C31B48F1F4004CBC86 /* MenuWithOutIconCell.m */; };
+		239612C71B48F805004CBC86 /* LeftMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239612C61B48F805004CBC86 /* LeftMenuTableViewController.m */; };
+		239612CB1B491A00004CBC86 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239612CA1B491A00004CBC86 /* ProfileViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		239612CF1B493878004CBC86 /* point.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 239612CE1B493878004CBC86 /* point.jpg */; };
+		239612D31B493D7B004CBC86 /* BuyPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239612D21B493D7B004CBC86 /* BuyPointViewController.m */; };
 		23A965931B057B9C00DBADE1 /* WriteTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */; };
 		23A965941B057B9C00DBADE1 /* WriteTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9658E1B057B9C00DBADE1 /* WriteTask.m */; };
 		23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A965901B057B9C00DBADE1 /* writeTaskSync.m */; };
@@ -151,7 +158,6 @@
 		DB5C82801AF5AE4700A8F57E /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5C82791AF5AE4700A8F57E /* UIViewController+AMSlideMenu.m */; };
 		DB5C82861AF5B19F00A8F57E /* LeftMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5C82831AF5B19F00A8F57E /* LeftMenuVC.m */; };
 		DB5C82871AF5B19F00A8F57E /* RightMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5C82851AF5B19F00A8F57E /* RightMenuVC.m */; };
-		DB5C828A1AF5BF1200A8F57E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5C82891AF5BF1200A8F57E /* ProfileViewController.m */; };
 		DB5C828D1AF5C96F00A8F57E /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5C828C1AF5C96F00A8F57E /* AccountViewController.m */; };
 		DBFFBDE91AF62313003127DB /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFFBDE81AF62313003127DB /* MainVC.m */; };
 		DBFFBDED1AF62452003127DB /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFFBDEC1AF62452003127DB /* UIColor+CreateMethods.m */; };
@@ -194,6 +200,19 @@
 		238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPostTitleViewController.swift; sourceTree = "<group>"; };
 		2396123D1B45974C004CBC86 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
 		2396123E1B45974C004CBC86 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
+		239612BC1B48F127004CBC86 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		239612BD1B48F127004CBC86 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		239612BF1B48F1E0004CBC86 /* MenuWithIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuWithIconCell.h; sourceTree = "<group>"; };
+		239612C01B48F1E0004CBC86 /* MenuWithIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuWithIconCell.m; sourceTree = "<group>"; };
+		239612C21B48F1F4004CBC86 /* MenuWithOutIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuWithOutIconCell.h; sourceTree = "<group>"; };
+		239612C31B48F1F4004CBC86 /* MenuWithOutIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuWithOutIconCell.m; sourceTree = "<group>"; };
+		239612C51B48F805004CBC86 /* LeftMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuTableViewController.h; sourceTree = "<group>"; };
+		239612C61B48F805004CBC86 /* LeftMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuTableViewController.m; sourceTree = "<group>"; };
+		239612C91B491A00004CBC86 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		239612CA1B491A00004CBC86 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		239612CE1B493878004CBC86 /* point.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = point.jpg; sourceTree = "<group>"; };
+		239612D11B493D7B004CBC86 /* BuyPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyPointViewController.h; sourceTree = "<group>"; };
+		239612D21B493D7B004CBC86 /* BuyPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyPointViewController.m; sourceTree = "<group>"; };
 		23A9658B1B057B9C00DBADE1 /* WriteTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTaskManager.h; sourceTree = "<group>"; };
 		23A9658C1B057B9C00DBADE1 /* WriteTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTaskManager.m; sourceTree = "<group>"; };
 		23A9658D1B057B9C00DBADE1 /* WriteTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTask.h; sourceTree = "<group>"; };
@@ -399,8 +418,6 @@
 		DB5C82831AF5B19F00A8F57E /* LeftMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuVC.m; sourceTree = "<group>"; };
 		DB5C82841AF5B19F00A8F57E /* RightMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuVC.h; sourceTree = "<group>"; };
 		DB5C82851AF5B19F00A8F57E /* RightMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuVC.m; sourceTree = "<group>"; };
-		DB5C82881AF5BF1200A8F57E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		DB5C82891AF5BF1200A8F57E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		DB5C828B1AF5C96F00A8F57E /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		DB5C828C1AF5C96F00A8F57E /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		DBFFBDE71AF62313003127DB /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
@@ -506,6 +523,37 @@
 				238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */,
 			);
 			name = "30.1.1 設定主題";
+			sourceTree = "<group>";
+		};
+		239612BB1B48F052004CBC86 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				239612BC1B48F127004CBC86 /* ProfileCell.h */,
+				239612BD1B48F127004CBC86 /* ProfileCell.m */,
+				239612BF1B48F1E0004CBC86 /* MenuWithIconCell.h */,
+				239612C01B48F1E0004CBC86 /* MenuWithIconCell.m */,
+				239612C21B48F1F4004CBC86 /* MenuWithOutIconCell.h */,
+				239612C31B48F1F4004CBC86 /* MenuWithOutIconCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		239612C81B4919F3004CBC86 /* 4.0個人頁面 */ = {
+			isa = PBXGroup;
+			children = (
+				239612C91B491A00004CBC86 /* ProfileViewController.h */,
+				239612CA1B491A00004CBC86 /* ProfileViewController.m */,
+			);
+			name = "4.0個人頁面";
+			sourceTree = "<group>";
+		};
+		239612D01B493D38004CBC86 /* 買點數的畫面 */ = {
+			isa = PBXGroup;
+			children = (
+				239612D11B493D7B004CBC86 /* BuyPointViewController.h */,
+				239612D21B493D7B004CBC86 /* BuyPointViewController.m */,
+			);
+			name = "買點數的畫面";
 			sourceTree = "<group>";
 		};
 		23A9658A1B057B0D00DBADE1 /* 約會單的類 */ = {
@@ -1030,7 +1078,9 @@
 				23B30D6B1B25056A0021C972 /* 2.0約會清單 */,
 				2321996F1B3685FB008B8050 /* 2.5餐廳詳細資料 */,
 				236580FB1AFDEC88008BC27D /* 3.0發佈約流程 */,
+				239612C81B4919F3004CBC86 /* 4.0個人頁面 */,
 				DB0BE1531AF445F500B49B4A /* RMParallax */,
+				239612D01B493D38004CBC86 /* 買點數的畫面 */,
 				DB0BE1511AF445A800B49B4A /* IntroViewController.swift */,
 				DB571C901AF340A2005CAB77 /* AppDelegate.h */,
 				DB571C911AF340A2005CAB77 /* AppDelegate.m */,
@@ -1050,6 +1100,7 @@
 		DB571C8C1AF340A2005CAB77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				239612CE1B493878004CBC86 /* point.jpg */,
 				233328571B1F260E00833F08 /* area.plist */,
 				23D7BA9B1B1B4BE7007DE1E1 /* Address.plist */,
 				DBFFBDEE1AF6387D003127DB /* simpleMenuButton.png */,
@@ -1123,14 +1174,15 @@
 				DB5C826A1AF5AE2B00A8F57E /* AMSlideMenu */,
 				2396123D1B45974C004CBC86 /* LeftMenuViewController.h */,
 				2396123E1B45974C004CBC86 /* LeftMenuViewController.m */,
-				DB5C82881AF5BF1200A8F57E /* ProfileViewController.h */,
-				DB5C82891AF5BF1200A8F57E /* ProfileViewController.m */,
 				DB5C828B1AF5C96F00A8F57E /* AccountViewController.h */,
 				DB5C828C1AF5C96F00A8F57E /* AccountViewController.m */,
+				239612BB1B48F052004CBC86 /* Cells */,
 				DB5C82821AF5B19F00A8F57E /* LeftMenuVC.h */,
 				DB5C82831AF5B19F00A8F57E /* LeftMenuVC.m */,
 				DB5C82841AF5B19F00A8F57E /* RightMenuVC.h */,
 				DB5C82851AF5B19F00A8F57E /* RightMenuVC.m */,
+				239612C51B48F805004CBC86 /* LeftMenuTableViewController.h */,
+				239612C61B48F805004CBC86 /* LeftMenuTableViewController.m */,
 			);
 			name = "左右菜單";
 			sourceTree = "<group>";
@@ -1236,6 +1288,7 @@
 			files = (
 				DB571C9B1AF340A2005CAB77 /* Main.storyboard in Resources */,
 				DB571CA01AF340A2005CAB77 /* LaunchScreen.xib in Resources */,
+				239612CF1B493878004CBC86 /* point.jpg in Resources */,
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
 				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
 				233328581B1F260E00833F08 /* area.plist in Resources */,
@@ -1308,18 +1361,21 @@
 				DB5C827C1AF5AE4700A8F57E /* AMSlideMenuLeftTableViewController.m in Sources */,
 				23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */,
 				238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */,
+				239612C41B48F1F4004CBC86 /* MenuWithOutIconCell.m in Sources */,
 				DBFFBDE91AF62313003127DB /* MainVC.m in Sources */,
 				DB0BE2101AF48D7300B49B4A /* Utils.m in Sources */,
 				DB5C82871AF5B19F00A8F57E /* RightMenuVC.m in Sources */,
 				23B9B1F11B30D33B007DA769 /* ChosseTaTableViewController.swift in Sources */,
 				DB0BE1961AF4678800B49B4A /* Product.m in Sources */,
 				DB0BE2461AF4909B00B49B4A /* MinnaOpenGraphRequest.m in Sources */,
+				239612BE1B48F127004CBC86 /* ProfileCell.m in Sources */,
 				23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */,
 				DB0BE1F51AF467C400B49B4A /* CategoryCell.m in Sources */,
 				DB0BE24B1AF4909B00B49B4A /* UIImage+AlphaAdditions.m in Sources */,
 				23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */,
 				DB0BE1791AF4676A00B49B4A /* ADVGradientButton.m in Sources */,
 				DB0BE2011AF467C400B49B4A /* PictureCell.m in Sources */,
+				239612CB1B491A00004CBC86 /* ProfileViewController.m in Sources */,
 				23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */,
 				DB0BE2491AF4909B00B49B4A /* RCSwitchOnOff.m in Sources */,
 				DB0BE1521AF445A800B49B4A /* IntroViewController.swift in Sources */,
@@ -1346,6 +1402,7 @@
 				DB0BE2001AF467C400B49B4A /* ConnectionCell.m in Sources */,
 				23B0C7A61B11DB1400D60CC3 /* PostDateCell.swift in Sources */,
 				DB0BE24D1AF4909B00B49B4A /* UIImage+ResizeAdditions.m in Sources */,
+				239612C11B48F1E0004CBC86 /* MenuWithIconCell.m in Sources */,
 				DB0BE2451AF4909B00B49B4A /* MinnaMessageView.m in Sources */,
 				DB0BE1911AF4678800B49B4A /* Album.m in Sources */,
 				DB0BE15F1AF466E100B49B4A /* MegaTheme.m in Sources */,
@@ -1361,6 +1418,7 @@
 				DB0BE2441AF4909B00B49B4A /* JSONKit.m in Sources */,
 				DB5C827E1AF5AE4700A8F57E /* AMSlideMenuRightMenuSegue.m in Sources */,
 				23DEEFB81B08B7C700273EC2 /* FemalePostCostTableViewController.swift in Sources */,
+				239612D31B493D7B004CBC86 /* BuyPointViewController.m in Sources */,
 				DB571C951AF340A2005CAB77 /* eatingdate.xcdatamodeld in Sources */,
 				2396123F1B45974C004CBC86 /* LeftMenuViewController.m in Sources */,
 				DB0BE2481AF4909B00B49B4A /* RCSwitch.m in Sources */,
@@ -1376,7 +1434,6 @@
 				23D78E0A1B19CA9D00EF5FB8 /* DatePickerDialog.swift in Sources */,
 				DB0BE1561AF4460200B49B4A /* RMParallaxItem.swift in Sources */,
 				DB0BE20D1AF48D7300B49B4A /* CMCache.m in Sources */,
-				DB5C828A1AF5BF1200A8F57E /* ProfileViewController.m in Sources */,
 				DB0BE20E1AF48D7300B49B4A /* CMConstants.m in Sources */,
 				23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */,
 				DB0BE2111AF48D7300B49B4A /* FlatTheme.m in Sources */,
@@ -1424,6 +1481,7 @@
 				DB5C827B1AF5AE4700A8F57E /* AMSlideMenuLeftMenuSegue.m in Sources */,
 				23B0C7A11B107C2600D60CC3 /* AddPhoneNumberViewController.swift in Sources */,
 				DB571C8F1AF340A2005CAB77 /* main.m in Sources */,
+				239612C71B48F805004CBC86 /* LeftMenuTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

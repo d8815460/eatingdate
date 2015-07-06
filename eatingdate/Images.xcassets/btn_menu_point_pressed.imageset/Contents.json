@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "btn_menu_point_pressed.png"
+      "filename" : "btn_menu_ponit_pressed.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "btn_menu_point_pressed@2x.png"
+      "filename" : "btn_menu_ponit_pressed@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "btn_menu_point_pressed@3x.png"
+      "filename" : "btn_menu_ponit_pressed@3x.png"
     }
   ],
   "info" : {

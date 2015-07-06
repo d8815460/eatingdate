@@ -45,12 +45,40 @@
 - (NSString *)segueIdentifierForIndexPathInLeftMenu:(NSIndexPath *)indexPath
 {
     NSString *identifier = @"";
+    NSLog(@"indexPath = %ld", (long)indexPath.row);
     switch (indexPath.row) {
-        case 0:
+        case 0: //個人頁
+            identifier = @"profile";
+            break;
+        case 1: //首頁
             identifier = @"firstRow";
             break;
-        case 1:
+        case 2: //發佈約
             identifier = @"secondRow";
+            break;
+        case 3: //吃飯行事曆
+            identifier = @"date";
+            break;
+        case 4: //訊息通知
+            identifier = @"messenger";
+            break;
+        case 5: //口袋名單
+            identifier = @"heart";
+            break;
+        case 6: //歷史清單
+            identifier = @"history";
+            break;
+        case 7: //GVIP
+            identifier = @"gvip";
+            break;
+        case 8: //TVIP
+            identifier = @"tvip";
+            break;
+        case 9: //點數查詢
+            identifier = @"point";
+            break;
+        case 10: //設定
+            identifier = @"setting";
             break;
     }
     
@@ -74,24 +102,29 @@
             storyboardId = @"FirstNC";
             break;
         case 1:
-            storyboardId = @"SecondNC";
+            storyboardId = @"homeNav";
+            break;
+        case 2:
+            storyboardId = @"postNav";
             break;
     }
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
     return nc;
-}
-*/
+}*/
+
 
 - (NSString *)segueIdentifierForIndexPathInRightMenu:(NSIndexPath *)indexPath
 {
     NSString *identifier = @"";
     switch (indexPath.row) {
-        case 0:
-            identifier = @"firstRow";
+        case 0: //個人頁
+            identifier = @"profile";
             break;
-        case 1:
+        case 1: //首頁
+            identifier = @"firstRow";
+        case 2: //發佈約
             identifier = @"secondRow";
             break;
     }

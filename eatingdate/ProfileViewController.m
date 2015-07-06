@@ -9,52 +9,26 @@
 #import "ProfileViewController.h"
 #import "MegaTheme.h"
 @interface ProfileViewController ()
-@property (strong, nonatomic) UITableView *myTableView;
+
 @end
 
 @implementation ProfileViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && ![UIApplication sharedApplication].isStatusBarHidden)
-    {
-//        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
-    }
-    
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        // The device is an iPhone or iPod touch.
-//        [self setFixedStatusBar];
-    }
-    
-    
-    
     bgImageView.image = [UIImage imageNamed: @"profile-bg"];
-    if (![PFUser currentUser]) {
-        profileImageView.image = [UIImage imageNamed:@"profile-pic-1"];
-    }else{
-        PFFile *profile = [[PFUser currentUser] objectForKey:kPAPUserProfilePicMediumKey];
-        [profile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            profileImageView.image = [UIImage imageWithData:data];
-        }];
-    }
+    profileImageView.image = [UIImage imageNamed:@"profile-pic-1"];
     profileImageView.layer.cornerRadius = 30;
     profileImageView.clipsToBounds = true;
     
     nameLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 20];
     nameLabel.textColor =  [UIColor whiteColor];
-    if (![PFUser currentUser]) {
-        nameLabel.text = @"尚未登入";
-    }else{
-        nameLabel.text = [[PFUser currentUser] objectForKey:kPAPUserDisplayNameKey];
-    }
-    
+    nameLabel.text = @"John Hoylett";
     
     locationLabel.font = [UIFont fontWithName:MegaTheme.fontName size: 12];
     locationLabel.textColor =  [UIColor whiteColor];
-    locationLabel.text = @"台北市, 大安區";
+    locationLabel.text = @"London, UK";
     
     locationImageView.image = [UIImage imageNamed:@"location"];
     
@@ -135,34 +109,7 @@
     [doneButton setImage:doneImage forState:UIControlStateNormal];
     doneButton.tintColor = [UIColor whiteColor];
     
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        // iOS 7
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    } else {
-        // iOS 6 or under
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-        
-    }
 }
-
--(BOOL)prefersStatusBarHidden {
-    return true;
-}
-
-- (void)setFixedStatusBar
-{
-//    self.myTableView = self.tableView;
-    
-    self.view = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.view.backgroundColor = self.myTableView.backgroundColor;
-    [self.view addSubview:self.myTableView];
-    
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAX(self.view.frame.size.width,self.view.frame.size.height), 20)];
-    statusBarView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:statusBarView];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -172,22 +119,15 @@
 {
     if(indexPath.row == 0){
         return 250;
-    }else if (indexPath.row == 2){
-        return 300;
-    }else if (indexPath.row == 1) {
+    }else if (indexPath.row == 3){
+        return 400;
+    }else if (indexPath.row == 4) {
         return 100;
     }else{
         return 44;
     }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (collectionView == photosCollectionView) {
-        return CGSizeMake(70, 70);
-    }else {
-        return CGSizeMake(46, 46);
-    }
-}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -209,7 +149,6 @@
         return cell;
     }
 }
-
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
