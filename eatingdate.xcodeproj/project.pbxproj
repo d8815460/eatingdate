@@ -21,6 +21,7 @@
 		238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */; };
 		238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */; };
 		238665B61AFF8C8400745655 /* CategoryRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */; };
+		23883FBA1B4B552B00DB9BEA /* PostWhatDateIsTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23883FB91B4B552B00DB9BEA /* PostWhatDateIsTodayCell.swift */; };
 		238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */; };
 		238934731B01AE2700C1E8B3 /* SettingPostTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */; };
 		2396123F1B45974C004CBC86 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2396123E1B45974C004CBC86 /* LeftMenuViewController.m */; };
@@ -196,6 +197,7 @@
 		238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantViewController.swift; sourceTree = "<group>"; };
 		238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryCell.swift; sourceTree = "<group>"; };
 		238665B51AFF8C8400745655 /* CategoryRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		23883FB91B4B552B00DB9BEA /* PostWhatDateIsTodayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostWhatDateIsTodayCell.swift; sourceTree = "<group>"; };
 		2389346F1B018B3800C1E8B3 /* ChoseRestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantCell.swift; sourceTree = "<group>"; };
 		238934721B01AE2700C1E8B3 /* SettingPostTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPostTitleViewController.swift; sourceTree = "<group>"; };
 		2396123D1B45974C004CBC86 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
@@ -888,6 +890,7 @@
 				DB0BE1F21AF467C400B49B4A /* PictureCell.m */,
 				23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */,
 				23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */,
+				23883FB91B4B552B00DB9BEA /* PostWhatDateIsTodayCell.swift */,
 			);
 			path = SocialCells;
 			sourceTree = "<group>";
@@ -1436,6 +1439,7 @@
 				DB0BE20D1AF48D7300B49B4A /* CMCache.m in Sources */,
 				DB0BE20E1AF48D7300B49B4A /* CMConstants.m in Sources */,
 				23A965951B057B9C00DBADE1 /* writeTaskSync.m in Sources */,
+				23883FBA1B4B552B00DB9BEA /* PostWhatDateIsTodayCell.swift in Sources */,
 				DB0BE2111AF48D7300B49B4A /* FlatTheme.m in Sources */,
 				23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */,
 				238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */,

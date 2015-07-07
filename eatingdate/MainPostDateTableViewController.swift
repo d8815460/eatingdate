@@ -275,7 +275,7 @@ class MainPostDateTableViewController: PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 21
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
