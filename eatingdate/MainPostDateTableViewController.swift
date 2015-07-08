@@ -380,10 +380,11 @@ class MainPostDateTableViewController: PFQueryTableViewController {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "moreDetail" {
-            let PostDateNv = segue.destinationViewController as! UINavigationController
-            let VC = PostDateNv.viewControllers[0] as! PostDateDetailTableViewController
-            VC.detailItem = sender
-        }
+//        let scene:AnyObject! = segue.destinationViewController
+//        
+//        if scene.isKindOfClass(PostDateDetailTableViewController) {
+//            let VC = scene as! PostDateDetailTableViewController
+//            VC.detailItem = sender
+//        }
     }
 }
