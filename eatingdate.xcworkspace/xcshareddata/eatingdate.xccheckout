@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BB5B9F34-2700-47A2-AAD4-3B1EFBB1AFD6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>eatingdate</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2022D1EAAB9F57344F6456E298FADD78DFFFCE56</key>
+		<string>github.com:d8815460/eatingdate.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>eatingdate.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2022D1EAAB9F57344F6456E298FADD78DFFFCE56</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:d8815460/eatingdate.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2022D1EAAB9F57344F6456E298FADD78DFFFCE56</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2022D1EAAB9F57344F6456E298FADD78DFFFCE56</string>
+			<key>IDESourceControlWCCName</key>
+			<string>eatingdate</string>
+		</dict>
+	</array>
+</dict>
+</plist>

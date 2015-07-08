@@ -376,15 +376,18 @@ class MainPostDateTableViewController: PFQueryTableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
-//        let scene:AnyObject! = segue.destinationViewController
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Get the new view controller using [segue destinationViewController].
+//        // Pass the selected object to the new view controller.
 //        
-//        if scene.isKindOfClass(PostDateDetailTableViewController) {
-//            let VC = scene as! PostDateDetailTableViewController
-//            VC.detailItem = sender
+//        if segue.identifier == "moreDetail" {
+//            println("c")
+////            let scene:AnyObject! = segue.destinationViewController
+////            
+////            if scene.isKindOfClass(PostDateDetailTableViewController) {
+////                let VC = scene as! PostDateDetailTableViewController
+////                VC.detailItem = sender
+////            }
 //        }
-    }
+//    }
 }

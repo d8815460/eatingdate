@@ -17,7 +17,6 @@
 		23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23631E581B2663EB00EDDF75 /* ActionCell.swift */; };
 		236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */; };
 		23759AB21B2718E900C5127F /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23759AB11B2718E900C5127F /* MapCell.swift */; };
-		237ACB7D1B4C501F00B98D5A /* BuyPoint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */; };
 		237ACB811B4CA6C300B98D5A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 237ACB801B4CA6C300B98D5A /* Home.storyboard */; };
 		23841E211B36FCDB00987F40 /* RestaurantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23841E201B36FCDB00987F40 /* RestaurantDetailTableViewController.swift */; };
 		238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */; };
@@ -63,6 +62,7 @@
 		23F2FE2B1B2C65C500594204 /* AskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F2FE2A1B2C65C500594204 /* AskCell.swift */; };
 		23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */; };
 		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
+		23FE32AF1B4D57F000129AEE /* ManPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23FE32AE1B4D57F000129AEE /* ManPost.storyboard */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
 		DB0BE11C1AF37F8700B49B4A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11B1AF37F8700B49B4A /* libz.dylib */; };
 		DB0BE11E1AF37F9600B49B4A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11D1AF37F9600B49B4A /* Social.framework */; };
@@ -195,7 +195,6 @@
 		23631E581B2663EB00EDDF75 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillPostDateViewController.swift; sourceTree = "<group>"; };
 		23759AB11B2718E900C5127F /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
-		237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BuyPoint.storyboard; sourceTree = "<group>"; };
 		237ACB801B4CA6C300B98D5A /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		23841E201B36FCDB00987F40 /* RestaurantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewController.swift; sourceTree = "<group>"; };
 		238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +251,7 @@
 		23F2FE2A1B2C65C500594204 /* AskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskCell.swift; sourceTree = "<group>"; };
 		23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDatePhotoCell.swift; path = ../PostDatePhotoCell.swift; sourceTree = "<group>"; };
+		23FE32AE1B4D57F000129AEE /* ManPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManPost.storyboard; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DB0BE1191AF37F8000B49B4A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB0BE11B1AF37F8700B49B4A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -1074,7 +1074,7 @@
 			children = (
 				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
 				DB571C991AF340A2005CAB77 /* Main.storyboard */,
-				237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */,
+				23FE32AE1B4D57F000129AEE /* ManPost.storyboard */,
 				237ACB801B4CA6C300B98D5A /* Home.storyboard */,
 				DB0BE2551AF4AC6F00B49B4A /* 有動畫效果的button */,
 				DB0BE2131AF4909B00B49B4A /* 常用的Library */,
@@ -1300,9 +1300,9 @@
 				DB571CA01AF340A2005CAB77 /* LaunchScreen.xib in Resources */,
 				239612CF1B493878004CBC86 /* point.jpg in Resources */,
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
+				23FE32AF1B4D57F000129AEE /* ManPost.storyboard in Resources */,
 				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
 				233328581B1F260E00833F08 /* area.plist in Resources */,
-				237ACB7D1B4C501F00B98D5A /* BuyPoint.storyboard in Resources */,
 				DBFFBDF01AF6387D003127DB /* simpleMenuButton.png in Resources */,
 				DB571C9D1AF340A2005CAB77 /* Images.xcassets in Resources */,
 			);

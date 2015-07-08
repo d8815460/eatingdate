@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -803,7 +803,8 @@
                     <connections>
                         <outlet property="headerView" destination="EzZ-F5-2OC" id="JBM-6n-En5"/>
                         <segue destination="qUe-x2-erM" kind="presentation" identifier="signIn" id="KrB-ge-9SI"/>
-                        <segue destination="Nig-Az-1CQ" kind="custom" identifier="moreDetail" customClass="RBStoryboardPushSegue" id="G8m-rP-Sg6"/>
+                        <segue destination="Nig-Az-1CQ" kind="custom" identifier="moreDetail" customClass="RBStoryboardPushSegue" id="5bg-fm-y82"/>
+                        <segue destination="qeF-nb-a6F" kind="show" identifier="moreDetail" id="HZ9-ds-bqD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hX-cZ-pVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -994,12 +995,30 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Home"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="ManPost"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rl0-ce-kOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5785" y="3247"/>
+            <point key="canvasLocation" x="5755" y="3247"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ipP-Rd-8uT">
+            <objects>
+                <viewController id="qeF-nb-a6F" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7nu-Al-8MG"/>
+                        <viewControllerLayoutGuide type="bottom" id="I1m-0J-XV0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XlR-5E-AKg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Bf-Tg-MEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5715" y="3758"/>
         </scene>
         <!--發佈約-->
         <scene sceneID="yCr-tA-T2G">
@@ -4958,7 +4977,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zwJ-Pj-dON">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G05-kk-l4v">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G05-kk-l4v">
                                 <rect key="frame" x="16" y="180" width="568" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="ggv-tL-oR7"/>
@@ -4970,7 +4989,7 @@
                                     <action selector="buy1Point:" destination="vpr-nx-E9i" eventType="touchUpInside" id="Kty-rN-qsv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ato-Ch-AWX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ato-Ch-AWX">
                                 <rect key="frame" x="92" y="100" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="5pP-SK-gTk"/>
@@ -4980,7 +4999,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfX-UK-t98">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfX-UK-t98">
                                 <rect key="frame" x="167" y="100" width="382" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="nHi-qe-dJz"/>
@@ -4989,7 +5008,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gp5-bi-pbg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gp5-bi-pbg">
                                 <rect key="frame" x="16" y="260" width="568" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="Uz7-AZ-RxQ"/>
@@ -5001,7 +5020,7 @@
                                     <action selector="buy2Point:" destination="vpr-nx-E9i" eventType="touchUpInside" id="0c2-8M-Rz6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIG-Dr-mnT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIG-Dr-mnT">
                                 <rect key="frame" x="16" y="340" width="568" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="6EZ-Po-Dzo"/>
@@ -5013,7 +5032,7 @@
                                     <action selector="buy3Point:" destination="vpr-nx-E9i" eventType="touchUpInside" id="Yhb-fm-m3m"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaT-V0-pjE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaT-V0-pjE">
                                 <rect key="frame" x="16" y="420" width="568" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="Dnk-5u-ZE3"/>
@@ -5098,9 +5117,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Sqj-cn-NI9"/>
-        <segue reference="7sL-ve-NQm"/>
-        <segue reference="DwY-f7-zmq"/>
         <segue reference="KrB-ge-9SI"/>
+        <segue reference="DwY-f7-zmq"/>
+        <segue reference="7sL-ve-NQm"/>
         <segue reference="nBo-Wg-Iaf"/>
     </inferredMetricsTieBreakers>
 </document>

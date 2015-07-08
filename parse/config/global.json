@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "_default": {
+      "link": "吃飯交友俱樂部"
+    },
+    "吃飯交友俱樂部": {
+      "applicationId": "ZTxP3OKo5rhzUL9U6HCU5mFUmRMLI0nyLDbebM9o",
+      "masterKey": "Q99LFri6Vjl28TrdSRCVlkXsZnhnf23nGvwI23kQ"
+    }
+  }
+}
