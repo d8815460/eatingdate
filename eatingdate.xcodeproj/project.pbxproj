@@ -17,6 +17,7 @@
 		23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23631E581B2663EB00EDDF75 /* ActionCell.swift */; };
 		236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */; };
 		23759AB21B2718E900C5127F /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23759AB11B2718E900C5127F /* MapCell.swift */; };
+		237ACB7D1B4C501F00B98D5A /* BuyPoint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */; };
 		23841E211B36FCDB00987F40 /* RestaurantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23841E201B36FCDB00987F40 /* RestaurantDetailTableViewController.swift */; };
 		238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */; };
 		238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */; };
@@ -193,6 +194,7 @@
 		23631E581B2663EB00EDDF75 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillPostDateViewController.swift; sourceTree = "<group>"; };
 		23759AB11B2718E900C5127F /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BuyPoint.storyboard; sourceTree = "<group>"; };
 		23841E201B36FCDB00987F40 /* RestaurantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewController.swift; sourceTree = "<group>"; };
 		238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantViewController.swift; sourceTree = "<group>"; };
 		238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryCell.swift; sourceTree = "<group>"; };
@@ -1068,6 +1070,9 @@
 		DB571C8B1AF340A2005CAB77 /* eatingdate */ = {
 			isa = PBXGroup;
 			children = (
+				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
+				DB571C991AF340A2005CAB77 /* Main.storyboard */,
+				237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */,
 				DB0BE2551AF4AC6F00B49B4A /* 有動畫效果的button */,
 				DB0BE2131AF4909B00B49B4A /* 常用的Library */,
 				DB0BE2021AF48D6500B49B4A /* Utils */,
@@ -1091,9 +1096,7 @@
 				DB571C971AF340A2005CAB77 /* ViewController.m */,
 				232199771B36AAC2008B8050 /* UIViewController+ScrollingNavbar.h */,
 				232199781B36AAC2008B8050 /* UIViewController+ScrollingNavbar.m */,
-				DB571C991AF340A2005CAB77 /* Main.storyboard */,
 				DB571C9C1AF340A2005CAB77 /* Images.xcassets */,
-				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
 				DB571C931AF340A2005CAB77 /* eatingdate.xcdatamodeld */,
 				DB571C8C1AF340A2005CAB77 /* Supporting Files */,
 			);
@@ -1295,6 +1298,7 @@
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
 				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
 				233328581B1F260E00833F08 /* area.plist in Resources */,
+				237ACB7D1B4C501F00B98D5A /* BuyPoint.storyboard in Resources */,
 				DBFFBDF01AF6387D003127DB /* simpleMenuButton.png in Resources */,
 				DB571C9D1AF340A2005CAB77 /* Images.xcassets in Resources */,
 			);

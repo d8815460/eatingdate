@@ -5824,126 +5824,6 @@
             </objects>
             <point key="canvasLocation" x="2537" y="5461"/>
         </scene>
-        <!--點數查詢-->
-        <scene sceneID="LsN-s4-bpa">
-            <objects>
-                <viewController id="wmh-pD-32A" customClass="BuyPointViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LPr-al-XYg"/>
-                        <viewControllerLayoutGuide type="bottom" id="YQf-IS-hV2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LVi-Ph-gwA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="abf-h6-8lB">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aqw-mw-P1M">
-                                <rect key="frame" x="16" y="180" width="568" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="gEq-Eh-Qdu"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buy1Point:" destination="wmh-pD-32A" eventType="touchUpInside" id="F7U-2a-JM0"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khe-UB-BYv">
-                                <rect key="frame" x="92" y="100" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="MAV-U6-8sb"/>
-                                    <constraint firstAttribute="width" constant="42" id="xsO-FV-boQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-93-Wch">
-                                <rect key="frame" x="167" y="100" width="382" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Nts-qk-cM4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-wU-4vE">
-                                <rect key="frame" x="16" y="260" width="568" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="IYf-Jv-qAu"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buy2Point:" destination="wmh-pD-32A" eventType="touchUpInside" id="AIp-2x-FL3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RbG-2P-8fh">
-                                <rect key="frame" x="16" y="340" width="568" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="PNr-sB-t19"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buy3Point:" destination="wmh-pD-32A" eventType="touchUpInside" id="Twd-9m-Law"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SF-mq-Qxs">
-                                <rect key="frame" x="16" y="420" width="568" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="pdo-T3-lcP"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buy4Point:" destination="wmh-pD-32A" eventType="touchUpInside" id="khC-5P-Qws"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="khe-UB-BYv" firstAttribute="centerY" secondItem="JOS-93-Wch" secondAttribute="centerY" id="67N-nD-sGb"/>
-                            <constraint firstItem="9SF-mq-Qxs" firstAttribute="leading" secondItem="LVi-Ph-gwA" secondAttribute="leadingMargin" id="6c3-Y6-jUT"/>
-                            <constraint firstItem="9SF-mq-Qxs" firstAttribute="trailing" secondItem="LVi-Ph-gwA" secondAttribute="trailingMargin" id="BSM-MT-DjF"/>
-                            <constraint firstItem="Aqw-mw-P1M" firstAttribute="trailing" secondItem="LVi-Ph-gwA" secondAttribute="trailingMargin" id="CwZ-dn-oue"/>
-                            <constraint firstItem="RbG-2P-8fh" firstAttribute="leading" secondItem="LVi-Ph-gwA" secondAttribute="leadingMargin" id="D90-Ze-UCN"/>
-                            <constraint firstItem="gTm-wU-4vE" firstAttribute="top" secondItem="Aqw-mw-P1M" secondAttribute="bottom" constant="33" id="L01-jr-AZP"/>
-                            <constraint firstItem="gTm-wU-4vE" firstAttribute="trailing" secondItem="LVi-Ph-gwA" secondAttribute="trailingMargin" id="LvS-fS-OOw"/>
-                            <constraint firstItem="abf-h6-8lB" firstAttribute="top" secondItem="LVi-Ph-gwA" secondAttribute="topMargin" id="Mpm-Kd-j18"/>
-                            <constraint firstAttribute="centerX" secondItem="abf-h6-8lB" secondAttribute="centerX" id="QlX-g2-MKp"/>
-                            <constraint firstItem="gTm-wU-4vE" firstAttribute="leading" secondItem="LVi-Ph-gwA" secondAttribute="leadingMargin" id="T7X-zG-oQZ"/>
-                            <constraint firstItem="khe-UB-BYv" firstAttribute="leading" secondItem="LVi-Ph-gwA" secondAttribute="leadingMargin" constant="76" id="UWg-Qy-IXi"/>
-                            <constraint firstItem="9SF-mq-Qxs" firstAttribute="top" secondItem="RbG-2P-8fh" secondAttribute="bottom" constant="33" id="UzD-cn-apj"/>
-                            <constraint firstItem="abf-h6-8lB" firstAttribute="leading" secondItem="LVi-Ph-gwA" secondAttribute="leadingMargin" constant="-16" id="dTC-UL-IZO"/>
-                            <constraint firstItem="YQf-IS-hV2" firstAttribute="top" secondItem="abf-h6-8lB" secondAttribute="bottom" id="gO5-hb-zcY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="abf-h6-8lB" secondAttribute="trailing" constant="-16" id="hkZ-ox-UlN"/>
-                            <constraint firstItem="Aqw-mw-P1M" firstAttribute="leading" secondItem="LVi-Ph-gwA" secondAttribute="leadingMargin" id="mio-qR-ZAy"/>
-                            <constraint firstItem="JOS-93-Wch" firstAttribute="leading" secondItem="khe-UB-BYv" secondAttribute="trailing" constant="33" id="p8N-F3-BXt"/>
-                            <constraint firstItem="khe-UB-BYv" firstAttribute="top" secondItem="LPr-al-XYg" secondAttribute="bottom" constant="36" id="pVk-Bk-cjD"/>
-                            <constraint firstItem="RbG-2P-8fh" firstAttribute="trailing" secondItem="LVi-Ph-gwA" secondAttribute="trailingMargin" id="ql0-qF-kwq"/>
-                            <constraint firstItem="RbG-2P-8fh" firstAttribute="top" secondItem="gTm-wU-4vE" secondAttribute="bottom" constant="33" id="ubq-p3-nVm"/>
-                            <constraint firstItem="Aqw-mw-P1M" firstAttribute="top" secondItem="JOS-93-Wch" secondAttribute="bottom" constant="59" id="x4L-Ya-ubN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="JOS-93-Wch" secondAttribute="trailing" constant="35" id="zDo-Jl-OZb"/>
-                            <constraint firstAttribute="centerY" secondItem="abf-h6-8lB" secondAttribute="centerY" id="zgT-B2-Urp"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="點數查詢" id="oo6-WI-iSD"/>
-                    <connections>
-                        <outlet property="myPointDescLabel" destination="JOS-93-Wch" id="0W9-G0-Drt"/>
-                        <outlet property="myPointLabel" destination="khe-UB-BYv" id="0ch-JB-Z8G"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ySX-UL-A9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3344" y="6149"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MGe-lP-oYb">
             <objects>
@@ -5956,12 +5836,33 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wmh-pD-32A" kind="relationship" relationship="rootViewController" id="8iD-L9-d1T"/>
+                        <segue destination="Mwr-uj-a5Y" kind="custom" customClass="RBStoryboardModalSegue" id="FzB-TP-R8K"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vki-NH-bBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2537" y="6149"/>
+        </scene>
+        <!--Storyboard Link-->
+        <scene sceneID="fXr-Fr-zSr">
+            <objects>
+                <viewController id="Mwr-uj-a5Y" customClass="RBStoryboardLink" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fLs-X7-EM1"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yed-ZP-5eP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Da3-3p-YAC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="BuyPoint"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7r-3v-APp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3349" y="6149"/>
         </scene>
         <!--設定-->
         <scene sceneID="piK-lh-ZuQ">
@@ -6041,7 +5942,6 @@
         <image name="lump_login_green" width="345" height="39"/>
         <image name="menu" width="22" height="22"/>
         <image name="photos-8" width="95" height="95"/>
-        <image name="point.jpg" width="750" height="1334"/>
         <image name="vvip_icon" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
