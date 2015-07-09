@@ -14,6 +14,7 @@
 		233328551B1F23A300833F08 /* Province.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328521B1F23A300833F08 /* Province.m */; };
 		233328561B1F23A300833F08 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 233328541B1F23A300833F08 /* City.m */; };
 		233328581B1F260E00833F08 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 233328571B1F260E00833F08 /* area.plist */; };
+		2361E5D41B4EB1FB00CB49EF /* LoginSignup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2361E5D31B4EB1FB00CB49EF /* LoginSignup.storyboard */; };
 		23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23631E581B2663EB00EDDF75 /* ActionCell.swift */; };
 		236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */; };
 		23759AB21B2718E900C5127F /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23759AB11B2718E900C5127F /* MapCell.swift */; };
@@ -193,10 +194,10 @@
 		233328531B1F23A300833F08 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		233328541B1F23A300833F08 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		233328571B1F260E00833F08 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		2361E5D31B4EB1FB00CB49EF /* LoginSignup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginSignup.storyboard; sourceTree = "<group>"; };
 		23631E581B2663EB00EDDF75 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillPostDateViewController.swift; sourceTree = "<group>"; };
 		23759AB11B2718E900C5127F /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
-		237ACB801B4CA6C300B98D5A /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		23841E201B36FCDB00987F40 /* RestaurantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewController.swift; sourceTree = "<group>"; };
 		238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoseRestaurantViewController.swift; sourceTree = "<group>"; };
 		238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryCell.swift; sourceTree = "<group>"; };
@@ -1078,7 +1079,7 @@
 			children = (
 				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
 				DB571C991AF340A2005CAB77 /* Main.storyboard */,
-				237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */,
+				2361E5D31B4EB1FB00CB49EF /* LoginSignup.storyboard */,
 				23FE32B81B4DFE0D00129AEE /* IWantPost.storyboard */,
 				23FE32B61B4DF88A00129AEE /* ManPost.storyboard */,
 				DB0BE2551AF4AC6F00B49B4A /* 有動畫效果的button */,
@@ -1301,15 +1302,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB571C9B1AF340A2005CAB77 /* Main.storyboard in Resources */,
-				237ACB811B4CA6C300B98D5A /* Home.storyboard in Resources */,
 				DB571CA01AF340A2005CAB77 /* LaunchScreen.xib in Resources */,
 				239612CF1B493878004CBC86 /* point.jpg in Resources */,
+				2361E5D41B4EB1FB00CB49EF /* LoginSignup.storyboard in Resources */,
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
-				23FE32AF1B4D57F000129AEE /* ManPost.storyboard in Resources */,
 				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
 				23FE32B71B4DF88A00129AEE /* ManPost.storyboard in Resources */,
 				233328581B1F260E00833F08 /* area.plist in Resources */,
-				237ACB7D1B4C501F00B98D5A /* BuyPoint.storyboard in Resources */,
 				23FE32B91B4DFE0D00129AEE /* IWantPost.storyboard in Resources */,
 				DBFFBDF01AF6387D003127DB /* simpleMenuButton.png in Resources */,
 				DB571C9D1AF340A2005CAB77 /* Images.xcassets in Resources */,
