@@ -11,9 +11,10 @@ import MapKit
 
 class PostDateDetailTableViewController: PFQueryTableViewController, UICollectionViewDelegate, UICollectionViewDataSource{
 
-    var detailItem:AnyObject!
+    
     var Geo:PFGeoPoint!
     var friends:NSArray!
+    var nav:PostDateNavigationViewController!
     
     @IBOutlet weak var actionCell: UITableViewCell!
     
@@ -46,6 +47,8 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.nav = self.navigationController as! PostDateNavigationViewController
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -62,7 +65,6 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         })
         
         self.friends = NSArray()
-        self.loadFriends()
         
         //加入手勢辨識
         var upSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
@@ -101,16 +103,16 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     
     func loadFriends () {
         //取得該約會單目前的報名人。
-        var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(detailItem as! PFObject)
+        var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(self.nav.detailItem as! PFObject)
         
         if attributesForDate != nil {
-            self.friends = CMCache.sharedCache().askersForDate(detailItem as! PFObject)
+            self.friends = CMCache.sharedCache().askersForDate(self.nav.detailItem as! PFObject)
             self.tableView.reloadData()
         }else{
             //如果沒有，就要update the cache.
             objc_sync_enter(self)
             // do something
-            var query:PFQuery = CMUtility.queryForActivitiesOnDate(detailItem as! PFObject, cachePolicy: PFCachePolicy.CacheThenNetwork)
+            var query:PFQuery = CMUtility.queryForActivitiesOnDate(self.nav.detailItem as! PFObject, cachePolicy: PFCachePolicy.CacheThenNetwork)
             query.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]?, error:NSError?) -> Void in
                 if error != nil {
                     return
@@ -133,7 +135,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                         }
                     }
                     
-                    CMCache.sharedCache().setAttributesForDate(self.detailItem as! PFObject, askers: askers as NSArray as [AnyObject], commenters: commenters as NSArray as [AnyObject], askedByCurrentUser: isAskedByCurrentuser)
+                    CMCache.sharedCache().setAttributesForDate(self.nav.detailItem as! PFObject, askers: askers as NSArray as [AnyObject], commenters: commenters as NSArray as [AnyObject], askedByCurrentUser: isAskedByCurrentuser)
                     
                     self.friends = askers as NSArray
                     self.tableView.reloadData()
@@ -146,6 +148,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.loadFriends()
     }
     
     
@@ -231,7 +234,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         // Configure the cell...
         if indexPath.row == 0 {
             
-            if let picMediumFile = detailItem?[kDatePicMedium] as? PFFile {
+            if let picMediumFile = self.nav.detailItem?[kDatePicMedium] as? PFFile {
                 picMediumFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
                     if imageData != nil {
                         cell0.bgImageView.image = UIImage(data: imageData!)
@@ -250,8 +253,8 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 })
             }
             
-            if detailItem?[kDateFromUser] != nil {
-                let fromUser = detailItem?[kDateFromUser] as! PFUser
+            if self.nav.detailItem?[kDateFromUser] != nil {
+                let fromUser = self.nav.detailItem?[kDateFromUser] as! PFUser
                 if let picProfilePhotoFile: PFFile! = fromUser[kPAPUserProfilePicMediumKey] as? PFFile {
                     if picProfilePhotoFile != nil {
                         picProfilePhotoFile?.getDataInBackgroundWithBlock({ (imageDate, error:NSError?) -> Void in
@@ -288,12 +291,12 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             }
             
             //餐廳姓名
-            if let Restaurant:String! = detailItem?[kDateRestaurantName] as? String {
+            if let Restaurant:String! = self.nav.detailItem?[kDateRestaurantName] as? String {
                 cell0.restaurantLabel.text = Restaurant!
             }
             
             //誠意值
-            if let cost:NSNumber! = detailItem?[kDatePostCost] as? NSNumber {
+            if let cost:NSNumber! = self.nav.detailItem?[kDatePostCost] as? NSNumber {
                 if cost != nil{
                     cell0.sinceritygoodLabel.text = "誠意\(cost!)%"
                 }else{
@@ -302,7 +305,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             }
             
             //被觀看次數
-            if let beenLooked:NSNumber! = detailItem?[kDateBeenLookedAmount] as? NSNumber {
+            if let beenLooked:NSNumber! = self.nav.detailItem?[kDateBeenLookedAmount] as? NSNumber {
                 if beenLooked != nil {
                     cell0.beenLookedLabel.text = "\(beenLooked!)"
                 }else{
@@ -311,19 +314,19 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             }
             
             //我請客/誰請我
-            if let dateType:String! = detailItem?[kDateType] as? String {
+            if let dateType:String! = self.nav.detailItem?[kDateType] as? String {
                 cell0.whoTreatLabel.text = "\(dateType!)"
             }
             
             //約會時間
-            if let dateTime:NSDate! = detailItem?[kDateTime] as? NSDate {
+            if let dateTime:NSDate! = self.nav.detailItem?[kDateTime] as? NSDate {
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "HH:mm"
                 cell0.dateTimeLabel.text = dateFormatter.stringFromDate(dateTime!)
             }
             
             //約會單的地點
-            if let restaurant:PFObject! = detailItem?[kDateRestaurant] as? PFObject{
+            if let restaurant:PFObject! = self.nav.detailItem?[kDateRestaurant] as? PFObject{
                 if let AArea:String! = restaurant?[kDateRestaurantAdministrativeArea] as? String{
                     if let City:String! = restaurant?[kDateRestaurantCity] as? String{
                         cell0.locationLabel.text = "\(AArea!) \(City!)"
@@ -336,15 +339,15 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 }
             }
             
-            var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(detailItem! as! PFObject)
+            var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(self.nav.detailItem! as! PFObject)
             if attributesForDate != nil {
-                cell0.askLabel.text = "\(CMCache.sharedCache().askCountForDate(detailItem! as! PFObject))/5"
+                cell0.askLabel.text = "\(CMCache.sharedCache().askCountForDate(self.nav.detailItem! as! PFObject))/5"
             }else{
                 //沒有緩存資料
                 var askAmount:PFQuery! = PFQuery(className: kAskDateListClassesKey)
-                askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem!)
+                askAmount.whereKey(kAskDateFromPostDate, equalTo: self.nav.detailItem!)
                 askAmount.findObjectsInBackgroundWithBlock({ (askers, error) -> Void in
-                    CMCache.sharedCache().setAttributesForDate(self.detailItem! as! PFObject, askers: askers, commenters: NSArray() as [AnyObject], askedByCurrentUser: false)
+                    CMCache.sharedCache().setAttributesForDate(self.nav.detailItem! as! PFObject, askers: askers, commenters: NSArray() as [AnyObject], askedByCurrentUser: false)
                     
                     cell0.askLabel.text = "\(askers!.count)/5"
                 })
@@ -356,19 +359,19 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 1 {
             //主題
             cell.textLabel?.text = "主題"
-            if let title:String! = detailItem?[kDateTitle] as? String {
+            if let title:String! = self.nav.detailItem?[kDateTitle] as? String {
                 cell.detailTextLabel?.text = title!
             }
         } else if indexPath.row == 2 {
             //費用
             cell.textLabel?.text = "費用"
-            if let dateType:String! = detailItem?[kDateType] as? String {
+            if let dateType:String! = self.nav.detailItem?[kDateType] as? String {
                 cell.detailTextLabel?.text = dateType!
             }
         } else if indexPath.row == 3 {
             //日期
             cell.textLabel?.text = "日期"
-            if let dateDay:NSDate! = detailItem?[kDateTime] as? NSDate {
+            if let dateDay:NSDate! = self.nav.detailItem?[kDateTime] as? NSDate {
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy/MM/dd EEEE"
                 cell.detailTextLabel?.text = dateFormatter.stringFromDate(dateDay!)
@@ -376,7 +379,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 4 {
             //時間
             cell.textLabel?.text = "時間"
-            if let dateDay:NSDate! = detailItem?[kDateTime] as? NSDate {
+            if let dateDay:NSDate! = self.nav.detailItem?[kDateTime] as? NSDate {
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "HH:mm"
                 cell.detailTextLabel?.text = dateFormatter.stringFromDate(dateDay!)
@@ -384,24 +387,24 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 5 {
             //餐廳名稱
             cell.textLabel?.text = "餐廳"
-            if let res:String! = detailItem?[kDateRestaurantName] as? String {
+            if let res:String! = self.nav.detailItem?[kDateRestaurantName] as? String {
                 cell.detailTextLabel?.text = res!
             }
         } else if indexPath.row == 6 {
             //電話
             cell.textLabel?.text = "電話"
-            if let res:String! = detailItem?[kDateRestaurantPhone] as? String {
+            if let res:String! = self.nav.detailItem?[kDateRestaurantPhone] as? String {
                 cell.detailTextLabel?.text = res!
             }
         } else if indexPath.row == 7 {
             //地址
             cell2.titleLabel?.text = "地址"
-            if let res:String! = detailItem?[kDateRestaurantAddress] as? String {
+            if let res:String! = self.nav.detailItem?[kDateRestaurantAddress] as? String {
                 cell2.detailLabel?.text = res!
             }
             
             //1
-            let rGeo = detailItem?[kDateRestaurantGeo] as! PFGeoPoint
+            let rGeo = self.nav.detailItem?[kDateRestaurantGeo] as! PFGeoPoint
             let RestaurantLocation = CLLocationCoordinate2D(latitude: rGeo.latitude, longitude: rGeo.longitude)
             //2
             let span = MKCoordinateSpanMake(0.01, 0.01)
@@ -412,7 +415,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             let annotation = MKPointAnnotation()
             annotation.coordinate = RestaurantLocation
             
-            if let res:String! = detailItem?[kDateRestaurantPhone] as? String {
+            if let res:String! = self.nav.detailItem?[kDateRestaurantPhone] as? String {
                 annotation.title = res!
             }
             cell2.map.addAnnotation(annotation)
@@ -443,16 +446,16 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 9 {
             //報名截止倒數
             cell.textLabel?.text = "報名截止倒數"
-            cell.detailTextLabel?.text = self.stringForTimeIntervalFromDateNow(NSDate(), toDateDay: detailItem?[kDateTime]! as! NSDate)
+            cell.detailTextLabel?.text = self.stringForTimeIntervalFromDateNow(NSDate(), toDateDay: self.nav.detailItem?[kDateTime]! as! NSDate)
         } else if indexPath.row == 10 {
             //報名者所需支付誠意值
             cell.textLabel?.text = "報名者所需支付誠意值"
-            if let res:NSNumber! = detailItem?[kDatePostCost] as? NSNumber {
+            if let res:NSNumber! = self.nav.detailItem?[kDatePostCost] as? NSNumber {
                 cell.detailTextLabel?.text = "\(res!)%"
             }
         } else if indexPath.row == 11 {
             //修改或報名
-            let fromUser = detailItem?[kDateFromUser] as! PFUser
+            let fromUser = self.nav.detailItem?[kDateFromUser] as! PFUser
             if let objectId:String! = fromUser.objectId {
                 if objectId == PFUser.currentUser()?.objectId! {
                     cell1.askOrModifyButton.setTitle("修改", forState: UIControlState.Normal)
@@ -477,8 +480,8 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         } else if indexPath.row == 7 {
             return 213
         } else if indexPath.row == 8 {
-            //顯示大頭照與否
-            let fromUser = detailItem?[kDateFromUser] as! PFUser
+            //報名人數，顯示大頭照與否
+            let fromUser = self.nav.detailItem?[kDateFromUser] as! PFUser
             if let objectId:String! = fromUser.objectId {
                 if objectId == PFUser.currentUser()?.objectId! {
                     return 96
@@ -544,7 +547,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     // MARK: - action
     
     @IBAction func askOrModifyButtonPressed(sender: AnyObject) {
-        let fromUser = detailItem?[kDateFromUser] as! PFUser
+        let fromUser = self.nav.detailItem?[kDateFromUser] as! PFUser
         if let objectId:String! = fromUser.objectId {
             
             if objectId == PFUser.currentUser()?.objectId! {
@@ -552,10 +555,10 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 
             }else{
                 //確認當前用戶是否已經報名過，如果已經報名過，就提示，否則就新增報名
-                var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(detailItem as! PFObject)
+                var attributesForDate:NSDictionary! = CMCache.sharedCache()?.attributesForDate!(self.nav.detailItem as! PFObject)
                 if attributesForDate != nil {
                     //當前用戶是否已經報過名？
-                    if CMCache.sharedCache().isDateAskedByCurrentUser(detailItem as! PFObject) {
+                    if CMCache.sharedCache().isDateAskedByCurrentUser(self.nav.detailItem as! PFObject) {
                         //報過名
                         //已經報名過
                         let alertController = UIAlertController(title: "您過去曾報名",
@@ -570,14 +573,14 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                         self.presentViewController(alertController, animated: true, completion: nil)
                     }else{
                         //沒報過名，確認人數是否超過五人，超過就不能報名，沒超過才能報名
-                        if CMCache.sharedCache().askCountForDate(detailItem as! PFObject).intValue < 5 {
+                        if CMCache.sharedCache().askCountForDate(self.nav.detailItem as! PFObject).intValue < 5 {
                             //還能報名
                             //新增報名
                             //儲存報名資料
                             var savePostObject = PFObject(className: kAskDateListClassesKey)
                             savePostObject[kAskFromUser] = PFUser.currentUser()
                             savePostObject[kAskToUser] = fromUser
-                            savePostObject[kAskDateFromPostDate] = self.detailItem as! PFObject
+                            savePostObject[kAskDateFromPostDate] = self.nav.detailItem as! PFObject
                             
                             var ACL = PFACL()
                             ACL.setPublicReadAccess(true)
@@ -597,12 +600,12 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                                 self.presentViewController(alertController, animated: true, completion: nil)
                                 self.loadFriends()
                                 
-                                CMCache.sharedCache().setDateIsAskedByCurrentUser(self.detailItem as! PFObject, asked: true)
+                                CMCache.sharedCache().setDateIsAskedByCurrentUser(self.nav.detailItem as! PFObject, asked: true)
                             })
                             
                             //另外要儲存Activities
                             var activities = PFObject(className: kPAPActivityClassKey)
-                            activities[kPAPActivityDateKey]     = self.detailItem as! PFObject
+                            activities[kPAPActivityDateKey]     = self.nav.detailItem as! PFObject
                             activities[kPAPActivityTypeKey] = kPAPActivityTypeAsk
                             activities[kPAPActivityFromUserKey] = PFUser.currentUser()
                             activities[kPAPActivityToUserKey]   = fromUser
@@ -618,7 +621,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                                     }else{
                                         let user = PFUser.currentUser()
                                         let userName: String! = user?.objectForKey(kPAPUserFacebookLastNameKey) as! String
-                                        let postDate: PFObject! = self.detailItem as! PFObject
+                                        let postDate: PFObject! = self.nav.detailItem as! PFObject
                                         let data:Dictionary<String, String> = ["\(userName!) 報名您的約會." : kAPNSAlertKey,
                                             kPAPPushPayloadPayloadTypeActivityKey : kPAPPushPayloadPayloadTypeKey,
                                             kPAPPushPayloadActivityAskKey : kPAPPushPayloadActivityTypeKey,
@@ -654,7 +657,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                 }else{
                     //沒有緩存資料
                     var askAmount:PFQuery! = PFQuery(className: kAskDateListClassesKey)
-                    askAmount.whereKey(kAskDateFromPostDate, equalTo: detailItem)
+                    askAmount.whereKey(kAskDateFromPostDate, equalTo: self.nav.detailItem)
                     
                     //先確定現在報名人數是不是已經達到上限5人，若達上線就表示不能報名了
                     askAmount.countObjectsInBackgroundWithBlock({ (count, error) -> Void in
@@ -671,7 +674,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                                         var savePostObject = PFObject(className: kAskDateListClassesKey)
                                         savePostObject[kAskFromUser] = PFUser.currentUser()
                                         savePostObject[kAskToUser] = fromUser
-                                        savePostObject[kAskDateFromPostDate] = self.detailItem as! PFObject
+                                        savePostObject[kAskDateFromPostDate] = self.nav.detailItem as! PFObject
                                         
                                         var ACL = PFACL()
                                         ACL.setPublicReadAccess(true)
@@ -693,14 +696,14 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                                                 self.presentViewController(alertController, animated: true, completion: nil)
                                                 self.loadFriends()
                                                 
-                                                CMCache.sharedCache().setDateIsAskedByCurrentUser(self.detailItem as! PFObject, asked: true)
+                                                CMCache.sharedCache().setDateIsAskedByCurrentUser(self.nav.detailItem as! PFObject, asked: true)
                                             }
                                             
                                         })
                                         
                                         //另外要儲存Activities
                                         var activities = PFObject(className: kPAPActivityClassKey)
-                                        activities[kPAPActivityDateKey]     = self.detailItem as! PFObject
+                                        activities[kPAPActivityDateKey]     = self.nav.detailItem as! PFObject
                                         activities[kPAPActivityTypeKey] = kPAPActivityTypeAsk
                                         activities[kPAPActivityFromUserKey] = PFUser.currentUser()
                                         activities[kPAPActivityToUserKey]   = fromUser
@@ -716,7 +719,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
                                                 }else{
                                                     let user = PFUser.currentUser()
                                                     let userName: String! = user?.objectForKey(kPAPUserFacebookLastNameKey) as! String
-                                                    let postDate: PFObject! = self.detailItem as! PFObject
+                                                    let postDate: PFObject! = self.nav.detailItem as! PFObject
                                                     let data:Dictionary<String, String> = ["\(userName!) 報名您的約會" : kAPNSAlertKey,
                                                         kPAPPushPayloadPayloadTypeActivityKey : kPAPPushPayloadPayloadTypeKey,
                                                         kPAPPushPayloadActivityAskKey : kPAPPushPayloadActivityTypeKey,
@@ -773,7 +776,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
             
         } else if indexPath.row == 5 {
             //餐廳詳細資料
-            self.performSegueWithIdentifier("detail", sender: detailItem!)
+            self.performSegueWithIdentifier("detail", sender: self.nav.detailItem!)
         }
     }
     
@@ -818,7 +821,7 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("choseTa", sender: detailItem)
+        self.performSegueWithIdentifier("choseTa", sender: self.nav.detailItem)
     }
     
     /*
@@ -865,10 +868,10 @@ class PostDateDetailTableViewController: PFQueryTableViewController, UICollectio
         // Pass the selected object to the new view controller.
         if segue.identifier == "choseTa" {
             let view = segue.destinationViewController as! ChosseTaTableViewController
-            view.detailItem = detailItem
+            view.detailItem = self.nav.detailItem
         } else if segue.identifier == "detail" {
             let view = segue.destinationViewController as! RestaurantDetailTableViewController
-            view.detailItem = detailItem
+            view.detailItem = self.nav.detailItem
         }
         
     }

@@ -62,6 +62,9 @@
 		23F2FE2B1B2C65C500594204 /* AskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F2FE2A1B2C65C500594204 /* AskCell.swift */; };
 		23F681FA1B041EA8008EC56E /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */; };
 		23F99A9A1AFE399D0006BC78 /* PostDatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */; };
+		23FE32B51B4DF83700129AEE /* PostDateNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE32B41B4DF83700129AEE /* PostDateNavigationViewController.swift */; };
+		23FE32B71B4DF88A00129AEE /* ManPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23FE32B61B4DF88A00129AEE /* ManPost.storyboard */; };
+		23FE32B91B4DFE0D00129AEE /* IWantPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23FE32B81B4DFE0D00129AEE /* IWantPost.storyboard */; };
 		C5F224E24C1F89D41092E781 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0D2DC7EA608B6634039FD3 /* libPods.a */; };
 		DB0BE11C1AF37F8700B49B4A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11B1AF37F8700B49B4A /* libz.dylib */; };
 		DB0BE11E1AF37F9600B49B4A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0BE11D1AF37F9600B49B4A /* Social.framework */; };
@@ -250,6 +253,9 @@
 		23F2FE2A1B2C65C500594204 /* AskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskCell.swift; sourceTree = "<group>"; };
 		23F681F91B041EA8008EC56E /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		23F99A991AFE399D0006BC78 /* PostDatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDatePhotoCell.swift; path = ../PostDatePhotoCell.swift; sourceTree = "<group>"; };
+		23FE32B41B4DF83700129AEE /* PostDateNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateNavigationViewController.swift; sourceTree = "<group>"; };
+		23FE32B61B4DF88A00129AEE /* ManPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManPost.storyboard; sourceTree = "<group>"; };
+		23FE32B81B4DFE0D00129AEE /* IWantPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IWantPost.storyboard; sourceTree = "<group>"; };
 		DB0BE1101AF3500800B49B4A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DB0BE1191AF37F8000B49B4A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB0BE11B1AF37F8700B49B4A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -595,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				23B9B1EF1B30D301007DA769 /* 2.1決定人選 */,
+				23FE32B41B4DF83700129AEE /* PostDateNavigationViewController.swift */,
 				23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */,
 				23631E581B2663EB00EDDF75 /* ActionCell.swift */,
 				23759AB11B2718E900C5127F /* MapCell.swift */,
@@ -1073,6 +1080,8 @@
 				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
 				DB571C991AF340A2005CAB77 /* Main.storyboard */,
 				237ACB7C1B4C501F00B98D5A /* BuyPoint.storyboard */,
+				23FE32B81B4DFE0D00129AEE /* IWantPost.storyboard */,
+				23FE32B61B4DF88A00129AEE /* ManPost.storyboard */,
 				DB0BE2551AF4AC6F00B49B4A /* 有動畫效果的button */,
 				DB0BE2131AF4909B00B49B4A /* 常用的Library */,
 				DB0BE2021AF48D6500B49B4A /* Utils */,
@@ -1297,8 +1306,10 @@
 				239612CF1B493878004CBC86 /* point.jpg in Resources */,
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
 				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
+				23FE32B71B4DF88A00129AEE /* ManPost.storyboard in Resources */,
 				233328581B1F260E00833F08 /* area.plist in Resources */,
 				237ACB7D1B4C501F00B98D5A /* BuyPoint.storyboard in Resources */,
+				23FE32B91B4DFE0D00129AEE /* IWantPost.storyboard in Resources */,
 				DBFFBDF01AF6387D003127DB /* simpleMenuButton.png in Resources */,
 				DB571C9D1AF340A2005CAB77 /* Images.xcassets in Resources */,
 			);
@@ -1367,6 +1378,7 @@
 				23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */,
 				DB5C827C1AF5AE4700A8F57E /* AMSlideMenuLeftTableViewController.m in Sources */,
 				23A965961B057B9C00DBADE1 /* writeTaskSync+Extern.m in Sources */,
+				23FE32B51B4DF83700129AEE /* PostDateNavigationViewController.swift in Sources */,
 				238934701B018B3800C1E8B3 /* ChoseRestaurantCell.swift in Sources */,
 				239612C41B48F1F4004CBC86 /* MenuWithOutIconCell.m in Sources */,
 				DBFFBDE91AF62313003127DB /* MainVC.m in Sources */,
