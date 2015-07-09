@@ -17,7 +17,6 @@
 		23631E591B2663EB00EDDF75 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23631E581B2663EB00EDDF75 /* ActionCell.swift */; };
 		236580FF1AFDED6B008BC27D /* FillPostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236580FE1AFDED6B008BC27D /* FillPostDateViewController.swift */; };
 		23759AB21B2718E900C5127F /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23759AB11B2718E900C5127F /* MapCell.swift */; };
-		237ACB811B4CA6C300B98D5A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 237ACB801B4CA6C300B98D5A /* Home.storyboard */; };
 		23841E211B36FCDB00987F40 /* RestaurantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23841E201B36FCDB00987F40 /* RestaurantDetailTableViewController.swift */; };
 		238665B11AFF682900745655 /* ChoseRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B01AFF682900745655 /* ChoseRestaurantViewController.swift */; };
 		238665B31AFF7A3200745655 /* RestaurantCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238665B21AFF7A3200745655 /* RestaurantCategoryCell.swift */; };
