@@ -1017,8 +1017,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="fZ3-0i-cAX"/>
                                 <exclude reference="Oow-Lb-v2I"/>
+                                <exclude reference="fZ3-0i-cAX"/>
                                 <exclude reference="oZD-bS-18R"/>
                             </mask>
                         </variation>

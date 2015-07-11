@@ -68,7 +68,7 @@
     
     if (indexPath.row == 1) {
         //首頁
-        
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"menu_homepage_pressed_btn"]];
     }else if (indexPath.row == 2) {
         [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_publish__normal"]];
     }else if (indexPath.row == 3) {
@@ -110,7 +110,7 @@
     
     if (indexPath.row == 1) {
         //首頁
-        
+        [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"menu_homepage_pressed_btn"]];
     }else if (indexPath.row == 2) {
         [[(MenuWithIconCell *)[tableView cellForRowAtIndexPath:indexPath] logoView] setImage:[UIImage imageNamed:@"btn_menu_publish__pressed"]];
     }else if (indexPath.row == 3) {

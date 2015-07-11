@@ -18,3 +18,4 @@ pod 'IQDropDownTextField'
 pod 'IQKeyboardManager'
 
 pod 'RBStoryboardLink', '~> 0.1'
+pod 'ECSlidingViewController', '~> 2.0'

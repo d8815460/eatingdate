@@ -32,7 +32,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         titleLabel.font = UIFont(name: MegaTheme.semiBoldFontName(), size: 30)
         titleLabel.textColor = UIColor.whiteColor()
         
-        dissmissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
+//        dissmissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         
         // Do any additional setup after loading the view.
         
@@ -67,8 +67,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         /*dismissViewControllerAnimated(true, completion: { () -> Void in
             
         })*/
-        
-        self.navigationController?.popViewControllerAnimated(true)
+        self.performSegueWithIdentifier("forgot", sender: nil)
+//        self.navigationController?.popViewControllerAnimated(true)
 
     }
     

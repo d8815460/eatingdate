@@ -12,6 +12,7 @@
 #import <Facebook-iOS-SDK/FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "METransitionsViewController.h"
 
 static AppDelegate *sharedDelegate;
 
@@ -272,7 +273,7 @@ static AppDelegate *sharedDelegate;
 //轉場至首頁
 - (void)presentToHomePage{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"homeNavigation"];
+    METransitionsViewController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"homeNavigation"];
     self.window.rootViewController = homeNav;
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
@@ -281,13 +282,22 @@ static AppDelegate *sharedDelegate;
 #pragma mark - 轉場至登入畫面
 //轉場至登入畫面
 - (void)presentToLoginPage{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginSignup" bundle:nil];
     UINavigationController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"loginNav"];
     self.window.rootViewController = homeNav;
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
 }
 
+#pragma mark - 轉場至發布約
+//轉場至發布約
+- (void)presentToManPostPage{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ManPost" bundle:nil];
+    UINavigationController *homeNav = [storyboard instantiateViewControllerWithIdentifier:@"manPostNav"];
+    self.window.rootViewController = homeNav;
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
+}
 
 #pragma mark - MinnaListenerServerProtocol
 -(void) addMinnaListener:(id<MinnaNotificationProtocol>)listener

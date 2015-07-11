@@ -849,7 +849,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0s6-z3-QiA">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0s6-z3-QiA">
                                             <rect key="frame" x="164" y="40" width="23" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="uBA-3a-MyI"/>
@@ -857,7 +857,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_ctn_eye" translatesAutoresizingMaskIntoConstraints="NO" id="9Zg-S2-tfs">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ctn_eye" translatesAutoresizingMaskIntoConstraints="NO" id="9Zg-S2-tfs">
                                             <rect key="frame" x="147" y="45" width="9" height="15"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JO-Kb-1b2">
@@ -958,7 +958,7 @@
         <!--Post Date Navigation View Controller-->
         <scene sceneID="X0S-sg-sXn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rot-LQ-DrS" customClass="PostDateNavigationViewController" customModule="eatingdate" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="manPostNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rot-LQ-DrS" customClass="PostDateNavigationViewController" customModule="eatingdate" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="izd-2G-6gl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

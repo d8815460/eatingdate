@@ -40,6 +40,9 @@
 //轉場至登入畫面
 - (void)presentToLoginPage;
 
+//轉場至發布約
+- (void)presentToManPostPage;
+
 //登出
 - (void)logOut;
 @end
