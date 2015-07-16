@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -958,7 +958,7 @@
                                     <action selector="startVerifiedButtonPressed:" destination="TEt-2Z-35V" eventType="touchUpInside" id="pZt-9Z-4Qc"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="請輸入驗證號碼" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W4c-T4-MLZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="請輸入驗證號碼" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W4c-T4-MLZ">
                                 <rect key="frame" x="16" y="121" width="568" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="NBU-kH-DmJ"/>
@@ -966,7 +966,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEa-0h-sBI">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEa-0h-sBI">
                                 <rect key="frame" x="441" y="171" width="143" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="143" id="4UH-ga-kJq"/>
@@ -985,7 +985,7 @@
                                 <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="驗證碼：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g32-cg-DkQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="驗證碼：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g32-cg-DkQ">
                                 <rect key="frame" x="16" y="79" width="568" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="4ix-A1-1qP"/>
@@ -1064,6 +1064,6 @@
         <image name="lump_login_green" width="345" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="254-w0-Tbt"/>
+        <segue reference="Dlv-ey-6jI"/>
     </inferredMetricsTieBreakers>
 </document>

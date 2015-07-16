@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PictureListViewController: UIViewController, UIGestureRecognizerDelegate {
+class PictureListViewController: UIViewController, UIGestureRecognizerDelegate, ECSlidingViewControllerDelegate {
 
     @IBOutlet weak var contentViewForTable: UIView!
     @IBOutlet weak var postDateButton: UIButton!
@@ -64,5 +64,9 @@ class PictureListViewController: UIViewController, UIGestureRecognizerDelegate {
         }else {
             self.performSegueWithIdentifier("signIn", sender: self)
         }
+    }
+    
+    @IBAction func menuButtonPressed(sender: AnyObject) {
+        self.slidingViewController().anchorTopViewToRightAnimated(true)
     }
 }

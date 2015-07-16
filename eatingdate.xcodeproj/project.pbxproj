@@ -56,6 +56,7 @@
 		23B0C7A61B11DB1400D60CC3 /* PostDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */; };
 		23B0C7A81B11DDDE00D60CC3 /* PostDateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */; };
 		23B0C7AA1B11E3DD00D60CC3 /* PictureListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */; };
+		23B2D9D51B50D6F9004565B9 /* MainTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B2D9D41B50D6F9004565B9 /* MainTable.storyboard */; };
 		23B30D6D1B2505C50021C972 /* PostDateDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */; };
 		23B4284E1B08177000181D1A /* HotRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */; };
 		23B428501B08177F00181D1A /* MyRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */; };
@@ -263,6 +264,7 @@
 		23B0C7A51B11DB1400D60CC3 /* PostDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateCell.swift; sourceTree = "<group>"; };
 		23B0C7A71B11DDDE00D60CC3 /* PostDateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateHeaderView.swift; sourceTree = "<group>"; };
 		23B0C7A91B11E3DD00D60CC3 /* PictureListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureListViewController.swift; sourceTree = "<group>"; };
+		23B2D9D41B50D6F9004565B9 /* MainTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTable.storyboard; sourceTree = "<group>"; };
 		23B30D6C1B2505C50021C972 /* PostDateDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateDetailTableViewController.swift; sourceTree = "<group>"; };
 		23B4284D1B08177000181D1A /* HotRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		23B4284F1B08177F00181D1A /* MyRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantTableViewController.swift; sourceTree = "<group>"; };
@@ -1117,6 +1119,7 @@
 			children = (
 				DB571C9E1AF340A2005CAB77 /* LaunchScreen.xib */,
 				DB571C991AF340A2005CAB77 /* Main.storyboard */,
+				23B2D9D41B50D6F9004565B9 /* MainTable.storyboard */,
 				2361E5D31B4EB1FB00CB49EF /* LoginSignup.storyboard */,
 				23FE32B81B4DFE0D00129AEE /* IWantPost.storyboard */,
 				23FE32B61B4DF88A00129AEE /* ManPost.storyboard */,
@@ -1358,6 +1361,7 @@
 				2361E5D41B4EB1FB00CB49EF /* LoginSignup.storyboard in Resources */,
 				DBFFBDF11AF6387D003127DB /* simpleMenuButton@2x.png in Resources */,
 				23D7BA9C1B1B4BE7007DE1E1 /* Address.plist in Resources */,
+				23B2D9D51B50D6F9004565B9 /* MainTable.storyboard in Resources */,
 				23FE32B71B4DF88A00129AEE /* ManPost.storyboard in Resources */,
 				233328581B1F260E00833F08 /* area.plist in Resources */,
 				23FE32B91B4DFE0D00129AEE /* IWantPost.storyboard in Resources */,
