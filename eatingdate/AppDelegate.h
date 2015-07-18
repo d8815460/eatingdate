@@ -20,7 +20,6 @@
     
     // store MinnaOpenGraphRequest
     NSMutableArray *minnaOpenGraphQueue;
-    
 }
 
 @property (strong, nonatomic) UIWindow *window;
